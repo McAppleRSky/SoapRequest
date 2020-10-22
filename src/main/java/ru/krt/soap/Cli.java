@@ -1,9 +1,9 @@
-package ru.crt.soaprequest;
+package ru.krt.soap;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Cli implements namespaces{
+public class Cli{
 
     private static final Logger logger;
     static {
@@ -13,10 +13,12 @@ public class Cli implements namespaces{
     }
 
     public static void main(String[] args) {
+        RequestGenerator requestGenerator = new RequestGenerator();
         if (args.length==0) {
             args = new String[1];
-            args[0] = VS00648001PFR001;
+            args[0] = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
         }
+        requestGenerator.setArtefactData(args[0]);
 
 
     }
