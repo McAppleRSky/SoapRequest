@@ -1,0 +1,64 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="?">
+            <ns:MessageID>?</ns:MessageID>
+            <!--Optional:-->
+            <ns:ReferenceMessageID>?</ns:ReferenceMessageID>
+            <!--Optional:-->
+            <ns:TransactionCode>?</ns:TransactionCode>
+            <!--Optional:-->
+            <ns:NodeID>?</ns:NodeID>
+            <!--Optional:-->
+            <ns:EOL>?</ns:EOL>
+            <ns1:MessagePrimaryContent>
+               <!--You may enter ANY elements at this point-->
+            </ns1:MessagePrimaryContent>
+            <!--Optional:-->
+            <ns:PersonalSignature>
+               <!--You may enter ANY elements at this point-->
+            </ns:PersonalSignature>
+            <!--Optional:-->
+            <ns1:AttachmentHeaderList>
+               <!--1 or more repetitions:-->
+               <ns1:AttachmentHeader>
+                  <ns1:contentId>?</ns1:contentId>
+                  <ns1:MimeType>?</ns1:MimeType>
+                  <!--Optional:-->
+                  <ns1:SignaturePKCS7>cid:703830881246</ns1:SignaturePKCS7>
+               </ns1:AttachmentHeader>
+            </ns1:AttachmentHeaderList>
+            <!--Optional:-->
+            <ns1:RefAttachmentHeaderList>
+               <!--1 or more repetitions:-->
+               <ns1:RefAttachmentHeader>
+                  <ns1:uuid>?</ns1:uuid>
+                  <ns1:Hash>?</ns1:Hash>
+                  <ns1:MimeType>?</ns1:MimeType>
+                  <!--Optional:-->
+                  <ns1:SignaturePKCS7>cid:570979290311</ns1:SignaturePKCS7>
+               </ns1:RefAttachmentHeader>
+            </ns1:RefAttachmentHeaderList>
+            <!--Optional:-->
+            <ns:BusinessProcessMetadata>
+               <!--You may enter ANY elements at this point-->
+            </ns:BusinessProcessMetadata>
+            <!--Optional:-->
+            <ns:TestMessage/>
+         </ns:SenderProvidedRequestData>
+         <!--Optional:-->
+         <ns1:AttachmentContentList>
+            <!--1 or more repetitions:-->
+            <ns1:AttachmentContent>
+               <ns1:Id>?</ns1:Id>
+               <ns1:Content>cid:1405515198314</ns1:Content>
+            </ns1:AttachmentContent>
+         </ns1:AttachmentContentList>
+         <!--Optional:-->
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:SendRequestRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
