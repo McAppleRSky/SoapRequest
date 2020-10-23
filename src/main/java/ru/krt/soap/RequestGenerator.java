@@ -3,6 +3,7 @@ package ru.krt.soap;
 import ru.krt.soap.artefactData.ArtefactData;
 import org.reflections.Reflections;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -70,12 +71,12 @@ public class RequestGenerator {
         this.namesspace_uri = namesspace_uri;
     }
 
-    public String[] generate() {
-        String[] result = null;
+    public ByteArrayOutputStream generate() {
+        ByteArrayOutputStream result = null;
         if( ! listNamespaces.contains(namesspace_uri) ) return result;
         forReflectArtefact = listNamespaceArtefact.get(namesspace_uri);
         try {
-            result = (String[]) forReflectArtefact.getMethod().invoke(forReflectArtefact.getInstance(), param);
+            result = (ByteArrayOutputStream) forReflectArtefact.getMethod().invoke(forReflectArtefact.getInstance(), param);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }

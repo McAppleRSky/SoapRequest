@@ -1,5 +1,6 @@
 package ru.krt.soap.artefactData;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,7 +22,6 @@ public abstract class ArtefactData {
         return namespace_uri;
     }
 
-    public abstract String[] returnRequest(//int ... operands
-                                                );
+    public abstract ByteArrayOutputStream returnRequest();
 
 }
