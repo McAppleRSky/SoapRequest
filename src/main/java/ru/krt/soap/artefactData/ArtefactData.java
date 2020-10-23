@@ -9,10 +9,19 @@ public abstract class ArtefactData {
 //    protected static HashMap<String, String> artefactsData = new HashMap<>();
     protected static ArrayList<String> artefactsData = new ArrayList<>();
 
-    protected void addArefactData(String id, String namespace_uri){
+    public ArrayList<String> getArtefacts(){
+        return artefactsData;
+    }
+
+    protected void addArtefactData(String id, String namespace_uri){
         artefactsData.add(namespace_uri);
     }
 
-    public abstract String[] returnSoapPocket(int ... operands);
+    public String getNamespace_uri() {
+        return namespace_uri;
+    }
+
+    public abstract String[] returnRequest(//int ... operands
+                                                );
 
 }

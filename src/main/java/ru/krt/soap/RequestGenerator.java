@@ -5,6 +5,7 @@ import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -22,11 +23,22 @@ public class RequestGenerator {
 
     protected String prefixPackage = "ru.krt.soap.artefactData";
     protected Class<?> artefactClass = null;
-    protected Object artefactInstance = null;
-    protected Class[] paramTypes = null;
-    protected Object[] param = null;
+//    protected Object artefactInstance = null;
+    protected Class[] //paramTypes = null;
+                        paramTypes = (Class<?>[]) null;
+    protected Object[] //param = null;
+                        param = new Object[]{};
     protected HashMap<String, Method> method = new HashMap<>();
-    protected String returnSoapPocket = "returnSoapPocket";
+    protected HashMap<String, ForReflectArtefact> listNamespaceArtefact = new HashMap<>();
+    protected ArrayList<String> listNamespaces = null;
+    protected String returnRequest = "returnRequest"
+            ,getNamespace_uri = "getNamespace_uri"
+            ,getArtefacts = "getArtefacts"
+            //,getArtefactsData = "getArtefactsData"
+            //,getArtefacts = "getArtefacts"
+            ;
+    protected ForReflectArtefact forReflectArtefact = null;
+    private String namesspace_uri;
 
     public RequestGenerator() throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         Set<Class<? extends ArtefactData>> artefacts = new Reflections(prefixPackage).getSubTypesOf(ArtefactData.class);
@@ -35,28 +47,38 @@ public class RequestGenerator {
             Iterator<Class<? extends ArtefactData>> artefact = artefacts.iterator();
             while (artefact.hasNext()) {
                 artefactClass = Class.forName(artefact.next().getName());
-                artefactInstance = artefactClass.getDeclaredConstructor().newInstance();
-                if (!method.containsKey(getMnemonic)) {
-                    paramTypes = (Class<?>[]) null;
-                    method.put(getMnemonic, artefactClass.getMethod(getMnemonic, paramTypes));
-                }
-                paramTypes = new Class[]{int[].class};
-                method.put(returnSoapPocket, artefactClass.getMethod(returnSoapPocket, paramTypes));
-                param = new Object[]{};
-                Integer mn = 0;
-                mn = (Integer) method.get(getMnemonic).invoke(artefactInstance, param);
-                plainOperation = new PlainOperation(artefactInstance, method.get(returnSoapPocket));
-                listMnemonicsOperations.put(mn, plainOperation);
+                forReflectArtefact = new ForReflectArtefact( artefactClass.getDeclaredConstructor().newInstance() );
+                //paramTypes = (Class<?>[]) null; // дубль
+                forReflectArtefact.setMethod(artefactClass.getMethod(returnRequest, paramTypes));
+                //paramTypes = (Class<?>[]) null; // дубль
+                //param = new Object[]{}; // дубль
+                listNamespaceArtefact.put( (String) artefactClass
+                                                        .getMethod(getNamespace_uri, paramTypes)
+                                                        .invoke(forReflectArtefact.getInstance(), param),
+                                                    forReflectArtefact );
             }
-            paramTypes = (Class<?>[]) null;
-            method.put(getMnemonics, artefactClass.getMethod(getMnemonics, paramTypes));
-            paramTypes = new Class[]{char.class};
-            method.put(genMnemonic, artefactClass.getMethod(genMnemonic, paramTypes));
-            param = new Object[]{};
-            listSymbolsMnemonics = (HashMap<Character, Integer>) method.get(getMnemonics).invoke(operationInstance, param);
+
+            //param = new Object[]{}; // дубль
+            listNamespaces = (ArrayList<String>)
+                    artefactClass
+                            .getMethod(getArtefacts, paramTypes)
+                            .invoke(forReflectArtefact.getInstance(), param);
         }
     }
 
-    protected void setArtefactData(String arg) {
+    protected void setArtefactData(String namesspace_uri) {
+        this.namesspace_uri = namesspace_uri;
+    }
+
+    public String[] generate() {
+        String[] result = null;
+        if( ! listNamespaces.contains(namesspace_uri) ) return result;
+        forReflectArtefact = listNamespaceArtefact.get(namesspace_uri);
+        try {
+            result = (String[]) forReflectArtefact.getMethod().invoke(forReflectArtefact.getInstance(), param);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
