@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1"
+  xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1"><SOAP-ENV:Header/>
+  <SOAP-ENV:Body>
+    <ns2:SendRequestRequest
+      xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1"
+      xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1"
+      xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1">
+      <ns2:SenderProvidedRequestData Id="SIGNED_BY_CALLER">
+        <ns2:MessageID>6af9e24d-9362-11e9-bb81-001a00000673</ns2:MessageID>
+        <MessagePrimaryContent>
+          <tns:PensionsOnDateRequest xmlns:tns="http://kvs.pfr.com/pensions-on-date/1.0.1" xmlns:benefits="http://kvs.pfr.com/benefits-common/1.0.0" xmlns:smev="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1">
+            <smev:FamilyName>Иванов</smev:FamilyName>
+            <smev:FirstName>иван</smev:FirstName>
+            <benefits:Snils>19021619648</benefits:Snils>
+            <benefits:BirthDate>1980-09-25</benefits:BirthDate>
+            <benefits:Gender>Male</benefits:Gender>
+            <benefits:AppDate>2019-06-20</benefits:AppDate>
+          </tns:PensionsOnDateRequest>
+        </MessagePrimaryContent>
+      </ns2:SenderProvidedRequestData>
+      <ns2:CallerInformationSystemSignature>
+        <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+          <ds:SignedInfo><ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411"/>
+            <ds:Reference URI="#SIGNED_BY_CALLER">
+              <ds:Transforms><ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><ds:Transform Algorithm="urn://smev-gov-ru/xmldsig/transform"/></ds:Transforms><ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#gostr3411"/>
+              <ds:DigestValue>rHop6DPBGESwpP5lzDddYVsl00ZOJY9L1bH8vv4CrUM=</ds:DigestValue>
+            </ds:Reference>
+          </ds:SignedInfo>
+          <ds:SignatureValue>ykdeyLBkAZwlPSpzD2wds6XTyMYPxJ3/4hKDHIB71VQ9ji9BvH5Zj9OhWXFy2hn+349NjHzoEbf33OMFtwnOsg==</ds:SignatureValue>
+          <ds:KeyInfo>
+            <ds:X509Data>
+              <ds:X509Certificate>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Y2VydHMvNTA0M2M2OThlZDIyODVhNTAzZGYyM2EwZTFlZjIxOWU1NmVkNGE0Zi5jcmwwSKBGoESGQmh0dHA6Ly9yY2lzcm8ucnUvY2VydC81MDQzYzY5OGVkMjI4NWE1MDNkZjIzYTBlMWVmMjE5ZTU2ZWQ0YTRmLmNybDBHoEWgQ4ZBaHR0cDovL3JjaXMtdWMwMS9jZHAvNTA0M2M2OThlZDIyODVhNTAzZGYyM2EwZTFlZjIxOWU1NmVkNGE0Zi5jcmwwggEJBggrBgEFBQcBAQSB/DCB+TBTBggrBgEFBQcwAoZHaHR0cDovL3dpbi1sY2FpOW8wc3FsMC9haWEvNTA0M2M2OThlZDIyODVhNTAzZGYyM2EwZTFlZjIxOWU1NmVkNGE0Zi5jcnQwUwYIKwYBBQUHMAKGR2h0dHA6Ly93aW4tbGNhaTlvMHNxbDAvYWlhLzUwNDNjNjk4ZWQyMjg1YTUwM2RmMjNhMGUxZWYyMTllNTZlZDRhNGYuY3J0ME0GCCsGAQUFBzAChkFodHRwOi8vcmNpcy11YzAxL2FpYS81MDQzYzY5OGVkMjI4NWE1MDNkZjIzYTBlMWVmMjE5ZTU2ZWQ0YTRmLmNydDAIBgYqhQMCAgMDQQAAhW2SLozhVmeUuUbfxAvHJfVn987J0Y5G1j3htIJViQi0qk6XHofiIXWZX9wRDYTlBaCjnpMXxBzqnwK/e7s3</ds:X509Certificate>
+            </ds:X509Data>
+          </ds:KeyInfo>
+        </ds:Signature>
+      </ns2:CallerInformationSystemSignature>
+    </ns2:SendRequestRequest>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

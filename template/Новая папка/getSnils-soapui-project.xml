@@ -1,0 +1,2230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="240facf7-da33-457b-82bc-861bba852ddf" activeEnvironment="Default" name="getSnils" resourceRoot="${projectDir}" soapui-version="5.6.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="1a325955-7b98-4a73-a802-f65653be5a6b" wsaVersion="NONE" name="SMEVMessageExchangeSoap11Binding" type="wsdl" bindingName="{urn://x-artefacts-smev-gov-ru/services/message-exchange/1.1}SMEVMessageExchangeSoap11Binding" soapVersion="1_1" anonymous="optional" definition="http://smev3-d.test.gosuslugi.ru:7500/ws?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://smev3-d.test.gosuslugi.ru:7500/ws?wsdl"><con:part><con:url>http://smev3-d.test.gosuslugi.ru:7500/ws?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsoma="http://schemas.xmlsoap.org/ws/2004/09/policy/optimizedmimeserialization" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:types="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:tns="urn://x-artefacts-smev-gov-ru/services/message-exchange/1.1" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" xmlns:fault="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1">
+  <wsdl:documentation>Веб-сервис, предоставляемый СМЭВ, через который
+        все участники межведомственного взаимодействия обмениваются сообщениями.</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema>
+      <xs:import namespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" schemaLocation="http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws?xsd=smev-message-exchange-types-1.1.xsd"/>
+      <xs:import namespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1" schemaLocation="http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws?xsd=smev-message-exchange-faults-1.1.xsd"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="AckRequestMsg">
+    <wsdl:part element="types:AckRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetIncomingQueueStatisticsRequestMsg">
+    <wsdl:part element="types:GetIncomingQueueStatisticsRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AttachmentSizeLimitExceededException">
+    <wsdl:part element="fault:AttachmentSizeLimitExceeded" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SenderIsNotRegisteredException">
+    <wsdl:part element="fault:SenderIsNotRegistered" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetResponseRequestMsg">
+    <wsdl:part element="types:GetResponseRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SignatureVerificationFaultException">
+    <wsdl:part element="fault:SignatureVerificationFault" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendRequestRequestMsg">
+    <wsdl:part element="types:SendRequestRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnknownMessageTypeException">
+    <wsdl:part element="fault:UnknownMessageType" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BusinessDataTypeIsNotSupportedException">
+    <wsdl:part element="fault:BusinessDataTypeIsNotSupported" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendRequestResponseMsg">
+    <wsdl:part element="types:SendRequestResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetStatusResponseMsg">
+    <wsdl:part element="types:GetStatusResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetIncomingQueueStatisticsResponseMsg">
+    <wsdl:part element="types:GetIncomingQueueStatisticsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidMessageIdFormatException">
+    <wsdl:part element="fault:InvalidMessageIdFormat" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TransactionCodeInvalidException">
+    <wsdl:part element="fault:TransactionCodeInvalid" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="MessageIsAlreadySentException">
+    <wsdl:part element="fault:MessageIsAlreadySent" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="QuoteLimitExceededException">
+    <wsdl:part element="fault:QuoteLimitExceeded" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SMEVFailureException">
+    <wsdl:part element="fault:SMEVFailure" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendResponseRequestMsg">
+    <wsdl:part element="types:SendResponseRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IncorrectResponseContentTypeException">
+    <wsdl:part element="fault:IncorrectResponseContentType" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DestinationOverflowException">
+    <wsdl:part element="fault:DestinationOverflow" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TargetMessageIsNotFoundException">
+    <wsdl:part element="fault:TargetMessageIsNotFound" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetStatusRequestMsg">
+    <wsdl:part element="types:GetStatusRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetRequestResponseMsg">
+    <wsdl:part element="types:GetRequestResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SendResponseResponseMsg">
+    <wsdl:part element="types:SendResponseResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetRequestRequestMsg">
+    <wsdl:part element="types:GetRequestRequest" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccessDeniedException">
+    <wsdl:part element="fault:AccessDenied" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="GetResponseResponseMsg">
+    <wsdl:part element="types:GetResponseResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="StaleMessageIdException">
+    <wsdl:part element="fault:StaleMessageId" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RequestIsNotFoundException">
+    <wsdl:part element="fault:RequestIsNotFound" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AttachmentContentMiscoordinationException">
+    <wsdl:part element="fault:AttachmentContentMiscoordination" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EndOfLifeException">
+    <wsdl:part element="fault:EndOfLifeReached" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RecipientIsNotFoundException">
+    <wsdl:part element="fault:RecipientIsNotFound" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AckResponseMsg">
+    <wsdl:part element="types:AckResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InvalidContentException">
+    <wsdl:part element="fault:InvalidContent" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SMEVMessageExchangePortType">
+    <wsdl:documentation>Точка доступа, позволяющая принимать запросы любых типов,
+            а также заявки на предоставление госуслуг.
+            Кроме того, через этот сервис производится отмена запросов.
+            Поскольку СМЭВ поколения 2 работает в режиме принудительной передачи ответов,
+            функциональность "узнать статус запроса и получить ответ, если он готов" отсутствует.</wsdl:documentation>
+    <wsdl:operation name="SendRequest">
+      <wsdl:documentation>Послать запрос.
+                Факт прихода запроса говорит о том, что СМЭВ удостоверился в том, что отправитель
+                имеет право на получение данных по этому типу запросов.
+                Дополнительный контроль доступа в ИС-поставщике данных запрещён.
+                Тип запроса идентифицируется полным именем (qualified name) элемента //SendRequestRequest/PrimaryContent/element().</wsdl:documentation>
+      <wsdl:input message="tns:SendRequestRequestMsg"></wsdl:input>
+      <wsdl:output message="tns:SendRequestResponseMsg"></wsdl:output>
+      <wsdl:fault message="tns:SMEVFailureException" name="SMEVFailureFault">
+        <wsdl:documentation>Сообщение невозможно принять по причине сбоя в инфраструктуре СМЭВ.
+                    Действия клиента: оповестить техподдержку СМЭВ, предпринимать повторные попытки доставить сообщение, без ограничения количества попыток.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:BusinessDataTypeIsNotSupportedException" name="BusinessDataTypeIsNotSupportedFault">
+        <wsdl:documentation>Запрос с таким полным именем корневого элемента не зарегистрирован в СМЭВ (см. //SendRequestRequest/MessagePrimaryContent/element()).
+                    Вероятные причины:
+                    ошибка при формировании содержательной части запроса (см. //SendRequestRequest/MessagePrimaryContent/element());
+                    запрос этого типа ещё не зарегистрирован в СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidContentException" name="InvalidContentFault">
+        <wsdl:documentation>Содержательная часть сообщения (//SendRequestRequest/PrimaryContent/element()) не прошла валидацию по XSD,
+                    зарегистрированной в СМЭВ для этого типа запросов.
+                    Бизнес-конверт (//SendRequestRequest) содержит не все подэлементы, обязательные для заполнения, либо имеет неверный формат.
+                    Действия клиента: исправить ошибки и послать запрос повторно.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:AttachmentSizeLimitExceededException" name="AttachmentSizeLimitExceededFault">
+        <wsdl:documentation>Суммарный размер вложений превысил предел, установленный правилами СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:TransactionCodeInvalidException" name="TransactionCodeInvalidFault">
+        <wsdl:documentation></wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:EndOfLifeException" name="EndOfLifeFault">
+        <wsdl:documentation>Превышено время жизни сообщения (end of life).
+                    Действия клиента: должны предприниматься повторные попытки доставить сообщение,
+                    возможно с увеличенным временем жизни.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:QuoteLimitExceededException" name="QuoteLimitExceededFault">
+        <wsdl:documentation>Суммарный размер вложений превысил значения квоты СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:AccessDeniedException" name="AccessDeniedFault">
+        <wsdl:documentation>Отправителю не разрешено отправлять запросы этого типа.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:MessageIsAlreadySentException" name="MessageIsAlreadySentFault">
+        <wsdl:documentation>Сообщение с таким MessageID уже было отправлено ранее.
+                    Возможно в следующих ситуациях:
+                    a) Клиент пытался отправить сообщение, отправка прошла успешно, но в конце взаимодействия HTTP соединение оборвалось,
+                    и клиент не получил ответ от СМЭВ об успешной отправке.
+                    При повторной попытке отправить сообщение клиент получит этот fault.
+                    В этой ситуации нужно прекратить пытаться повторно послать сообщение.
+                    b) Клиент использует алгоритм генерации ID сообщений, не соответствующий МР.
+                    c) Клиент пытается послать несколько сообщений, используя один и тот же ID.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:RecipientIsNotFoundException" name="RecipientIsNotFoundFault">
+        <wsdl:documentation>Не найден получатель для запроса.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:AttachmentContentMiscoordinationException" name="AttachmentContentMiscoordinationFault">
+        <wsdl:documentation>Заголовки вложений не соответствуют содержимому.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:DestinationOverflowException" name="DestinationOverflowFault">
+        <wsdl:documentation>Очередь, в которую должен быть послано сообщение, переполнена.
+                    Действия клиента: обратиться в службу техподдержки СМЭВ, и продолжать посылать запрос повторно, до успеха.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SenderIsNotRegisteredException" name="SenderIsNotRegisteredFault">
+        <wsdl:documentation>Отправитель сообщения не зарегистрирован в СМЭВ.
+                    Возможная причина - смена X-400 имени при получении нового сертификата.
+                    Остальные возможные причины - неправильная настройка СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SignatureVerificationFaultException" name="SignatureVerificationFaultFault">
+        <wsdl:documentation>ЭП-ОВ не прошла проверку.
+                    Действия клиента: см. описание {urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/types/1.0}SignatureVerificationFault.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidMessageIdFormatException" name="InvalidMessageIdFormatFault">
+        <wsdl:documentation>Идентификатор, присвоенный сообщению отправителем, не является корректным строковым представлением UUID, вариант 1 (см. RFC-4122).</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:StaleMessageIdException" name="StaleMessageIdFault">
+        <wsdl:documentation>Идентификатор (UUID), присвоенный сообщению отправителем, содержит старый timestamp.
+                    Возможно в следующих случаях:
+                    a) в системе отправителя неверно установлено время.
+                    Действия клиента: установить в операционной системе реальное время.
+                    b) в результате очень плохого качества связи, сообщение пытаются отправить в течение двух суток или более.
+                    Действия клиента: сгенерировать новый UUID, присвоить его сообщению, отправить сообщение.</wsdl:documentation>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SendResponse">
+      <wsdl:documentation>Дай сообщение из моей входящей очереди, если она не пуста.</wsdl:documentation>
+      <wsdl:input message="tns:SendResponseRequestMsg"></wsdl:input>
+      <wsdl:output message="tns:SendResponseResponseMsg"></wsdl:output>
+      <wsdl:fault message="tns:SMEVFailureException" name="SMEVFailureFault">
+        <wsdl:documentation>Сообщение невозможно отправить по причине сбоя в инфраструктуре СМЭВ.
+                    Действия клиента: оповестить техподдержку СМЭВ, предпринимать повторные попытки доставить сообщение, без ограничения количества попыток.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:BusinessDataTypeIsNotSupportedException" name="BusinessDataTypeIsNotSupportedFault">
+        <wsdl:documentation>Ответ с таким полным именем корневого элемента не зарегистрирован в СМЭВ (см. //SendResponseRequest/MessagePrimaryContent/element()).
+                    Вероятные причины:
+                    ошибка при формировании содержательной части ответа (см. //SendResponseRequest/MessagePrimaryContent/element());
+                    схема, в которой описан XML-тип, ещё не зарегистрирован в СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidContentException" name="InvalidContentFault">
+        <wsdl:documentation>Содержательная часть сообщения (//SendResponseRequest/PrimaryContent/element()) не прошла валидацию по XSD,
+                    зарегистрированной в СМЭВ для этого типа сообщений.
+                    Бизнес-конверт (//SendResponseRequest) содержит не все подэлементы, обязательные для заполнения, либо имеет неверный формат.
+                    Действия клиента: исправить ошибки и послать ответ повторно.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:AttachmentSizeLimitExceededException" name="AttachmentSizeLimitExceededFault">
+        <wsdl:documentation>Суммарный размер вложений превысил предел, установленный правилами СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:IncorrectResponseContentTypeException" name="IncorrectResponseContentTypeFault">
+        <wsdl:documentation>Содержимое посылается через метод SendResponse,
+                    но, согласно реестру типов запросов СМЭВ, содержательная часть сообщения
+                    представляет из себя запрос или заявку, а не ответ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:QuoteLimitExceededException" name="QuoteLimitExceededFault">
+        <wsdl:documentation>Суммарный размер вложений превысил значения квоты СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:MessageIsAlreadySentException" name="MessageIsAlreadySentFault">
+        <wsdl:documentation>Сообщение с таким MessageID уже было отправлено ранее.
+                    Возможно в следующих ситуациях:
+                    a) Клиент пытался отправить сообщение, отправка прошла успешно, но в конце взаимодействия HTTP соединение оборвалось,
+                    и клиент не получил ответ от СМЭВ об успешной отправке.
+                    При повторной попытке отправить сообщение клиент получит этот fault.
+                    В этой ситуации нужно прекратить пытаться повторно послать сообщение.
+                    b) Клиент использует алгоритм генерации ID сообщений, не соответствующий МР.
+                    c) Клиент пытается послать несколько сообщений, используя один и тот же ID.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:RecipientIsNotFoundException" name="RecipientIsNotFoundFault">
+        <wsdl:documentation>Содержимое посылается через метод SendResponse,
+                    но значение //SendResponseRequest/To/text(), по данным СМЭВ,
+                    не соотевтствует никакому получателю.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:AttachmentContentMiscoordinationException" name="AttachmentContentMiscoordinationFault">
+        <wsdl:documentation>Заголовки вложений не соответствуют содержимому.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:DestinationOverflowException" name="DestinationOverflowFault">
+        <wsdl:documentation>Очередь, в которую должен быть послано сообщение, переполнена.
+                    Действия клиента: обратиться в службу техподдержки СМЭВ, и продолжать посылать ответ повторно, до успеха.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SenderIsNotRegisteredException" name="SenderIsNotRegisteredFault">
+        <wsdl:documentation>Отправитель сообщения не зарегистрирован в СМЭВ.
+                    Возможная причина - смена X-400 имени при получении нового сертификата.
+                    Остальные возможные причины - неправильная настройка СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SignatureVerificationFaultException" name="SignatureVerificationFaultFault">
+        <wsdl:documentation>ЭП-ОВ не прошла проверку.
+                    Действия клиента: см. описание {urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/fault/1.0}SignatureVerificationFault.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidMessageIdFormatException" name="InvalidMessageIdFormatFault">
+        <wsdl:documentation>Идентификатор, присвоенный сообщению отправителем, не является корректным строковым представлением UUID, вариант 1 (см. RFC-4122).</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:StaleMessageIdException" name="StaleMessageIdFault">
+        <wsdl:documentation>Идентификатор (UUID), присвоенный сообщению отправителем, содержит старый timestamp.
+                    Возможно в следующих случаях:
+                    a) в системе отправителя неверно установлено время.
+                    Действия клиента: установить в операционной системе реальное время.
+                    b) в результате очень плохого качества связи, сообщение пытаются отправить в течение двух суток или более.
+                    Действия клиента: сгенерировать новый UUID, присвоить его сообщению, отправить сообщение.</wsdl:documentation>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <wsdl:documentation>Дай сообщение из моей входящей очереди _запросов_, если она не пуста.</wsdl:documentation>
+      <wsdl:input message="tns:GetStatusRequestMsg"></wsdl:input>
+      <wsdl:output message="tns:GetStatusResponseMsg"></wsdl:output>
+      <wsdl:fault message="tns:SMEVFailureException" name="SMEVFailureFault">
+        <wsdl:documentation>Сообщение невозможно принять по причине сбоя в инфраструктуре СМЭВ.
+                    Действия клиента: оповестить техподдержку СМЭВ, предпринимать повторные попытки доставить сообщение, без ограничения количества попыток.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidContentException" name="InvalidContentFault">
+        <wsdl:documentation>Бизнес-конверт (//GetStatusRequest) содержит не все подэлементы, обязательные для заполнения, либо имеет неверный формат.
+                    Действия клиента: исправить ошибки и послать запрос повторно.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:UnknownMessageTypeException" name="UnknownMessageTypeFault">
+        <wsdl:documentation>a) Указан тип сообщения, либо не зарегистрированный в СМЭВ.
+                    b) Текущий клиент не является зарегистрированным поставщиком сведений по запрошенному типу сообщения.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SenderIsNotRegisteredException" name="SenderIsNotRegisteredFault">
+        <wsdl:documentation>Отправитель сообщения не зарегистрирован в СМЭВ.
+                    Возможные причины:
+                    - смена X-400 имени при получении нового сертификата.
+                    - неправильная настройка СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SignatureVerificationFaultException" name="SignatureVerificationFaultFault">
+        <wsdl:documentation>ЭП-ОВ не прошла проверку.
+                    Действия клиента: см. описание {urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/types/1.0}SignatureVerificationFault.</wsdl:documentation>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequest">
+      <wsdl:documentation>Дай сообщение из моей входящей очереди _запросов_, если она не пуста.</wsdl:documentation>
+      <wsdl:input message="tns:GetRequestRequestMsg"></wsdl:input>
+      <wsdl:output message="tns:GetRequestResponseMsg"></wsdl:output>
+      <wsdl:fault message="tns:SMEVFailureException" name="SMEVFailureFault">
+        <wsdl:documentation>Сообщение невозможно принять по причине сбоя в инфраструктуре СМЭВ.
+                    Действия клиента: оповестить техподдержку СМЭВ, предпринимать повторные попытки доставить сообщение, без ограничения количества попыток.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidContentException" name="InvalidContentFault">
+        <wsdl:documentation>Бизнес-конверт (//GetRequestRequest) содержит не все подэлементы, обязательные для заполнения, либо имеет неверный формат.
+                    Действия клиента: исправить ошибки и послать запрос повторно.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:UnknownMessageTypeException" name="UnknownMessageTypeFault">
+        <wsdl:documentation>a) Указан тип сообщения, либо не зарегистрированный в СМЭВ.
+                    b) Текущий клиент не является зарегистрированным поставщиком сведений по запрошенному типу сообщения.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SenderIsNotRegisteredException" name="SenderIsNotRegisteredFault">
+        <wsdl:documentation>Отправитель сообщения не зарегистрирован в СМЭВ.
+                    Возможные причины:
+                    - смена X-400 имени при получении нового сертификата.
+                    - неправильная настройка СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SignatureVerificationFaultException" name="SignatureVerificationFaultFault">
+        <wsdl:documentation>ЭП-ОВ не прошла проверку.
+                    Действия клиента: см. описание {urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/types/1.0}SignatureVerificationFault.</wsdl:documentation>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetResponse">
+      <wsdl:documentation>Дай сообщение из моей входящей очереди _ответов_, если она не пуста.</wsdl:documentation>
+      <wsdl:input message="tns:GetResponseRequestMsg"></wsdl:input>
+      <wsdl:output message="tns:GetResponseResponseMsg"></wsdl:output>
+      <wsdl:fault message="tns:SMEVFailureException" name="SMEVFailureFault">
+        <wsdl:documentation>Сообщение невозможно принять по причине сбоя в инфраструктуре СМЭВ.
+                    Действия клиента: оповестить техподдержку СМЭВ, предпринимать повторные попытки доставить сообщение, без ограничения количества попыток.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidContentException" name="InvalidContentFault">
+        <wsdl:documentation>Бизнес-конверт (//GetResponseRequest) содержит не все подэлементы, обязательные для заполнения, либо имеет неверный формат.
+                    Действия клиента: исправить ошибки и послать запрос повторно.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:UnknownMessageTypeException" name="UnknownMessageTypeFault">
+        <wsdl:documentation>Указан тип сообщения, либо не зарегистрированный в СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SenderIsNotRegisteredException" name="SenderIsNotRegisteredFault">
+        <wsdl:documentation>Отправитель сообщения не зарегистрирован в СМЭВ.
+                    Возможные причины:
+                    - смена X-400 имени при получении нового сертификата.
+                    - неправильная настройка СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SignatureVerificationFaultException" name="SignatureVerificationFaultFault">
+        <wsdl:documentation>ЭП-ОВ не прошла проверку.
+                    Действия клиента: см. описание {urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/types/1.0}SignatureVerificationFault.</wsdl:documentation>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Ack">
+      <wsdl:documentation>Подтверждение получения сообщения из очереди.
+                Должен вызваться после получения сообщения методами GetRequest или GetResponse.</wsdl:documentation>
+      <wsdl:input message="tns:AckRequestMsg"></wsdl:input>
+      <wsdl:output message="tns:AckResponseMsg"></wsdl:output>
+      <wsdl:fault message="tns:SMEVFailureException" name="SMEVFailureFault">
+        <wsdl:documentation>Сообщение невозможно отправить по причине сбоя в инфраструктуре СМЭВ.
+                    Действия клиента: оповестить техподдержку СМЭВ, предпринимать повторные попытки доставить сообщение, без ограничения количества попыток.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:TargetMessageIsNotFoundException" name="TargetMessageIsNotFoundFault">
+        <wsdl:documentation>При попытке подтвердить получение сообщения, СМЭВ не находит неподтверждённого сообщения с таким ID.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidContentException" name="InvalidContentFault">
+        <wsdl:documentation>Бизнес-конверт (//AckRequest) содержит не все подэлементы, обязательные для заполнения, либо имеет неверный формат.
+                    Действия клиента: исправить ошибки и послать запрос повторно.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SenderIsNotRegisteredException" name="SenderIsNotRegisteredFault">
+        <wsdl:documentation>Отправитель сообщения не зарегистрирован в СМЭВ.
+                    Возможная причина - смена X-400 имени при получении нового сертификата.
+                    Остальные возможные причины - неправильная настройка СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SignatureVerificationFaultException" name="SignatureVerificationFaultFault">
+        <wsdl:documentation>ЭП-ОВ не прошла проверку.
+                    Действия клиента: см. описание {urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/fault/1.0}SignatureVerificationFault.</wsdl:documentation>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetIncomingQueueStatistics">
+      <wsdl:documentation>Получение статистики входящих очередей.</wsdl:documentation>
+      <wsdl:input message="tns:GetIncomingQueueStatisticsRequestMsg"></wsdl:input>
+      <wsdl:output message="tns:GetIncomingQueueStatisticsResponseMsg"></wsdl:output>
+      <wsdl:fault message="tns:SMEVFailureException" name="SMEVFailureFault">
+        <wsdl:documentation>Сообщение невозможно отправить по причине сбоя в инфраструктуре СМЭВ.
+                    Действия клиента: оповестить техподдержку СМЭВ, предпринимать повторные попытки доставить сообщение, без ограничения количества попыток.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:InvalidContentException" name="InvalidContentFault">
+        <wsdl:documentation>Бизнес-конверт (//GetIncomingQueueStatisticsRequest) содержит не все подэлементы, обязательные для заполнения, либо имеет неверный формат.
+                    Действия клиента: исправить ошибки и послать запрос повторно.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SenderIsNotRegisteredException" name="SenderIsNotRegisteredFault">
+        <wsdl:documentation>Отправитель сообщения не зарегистрирован в СМЭВ.
+                    Возможная причина - смена X-400 имени при получении нового сертификата.
+                    Остальные возможные причины - неправильная настройка СМЭВ.</wsdl:documentation>
+      </wsdl:fault>
+      <wsdl:fault message="tns:SignatureVerificationFaultException" name="SignatureVerificationFaultFault">
+        <wsdl:documentation>ЭП-ОВ не прошла проверку.
+                    Действия клиента: см. описание {urn://x-artefacts-smev-gov-ru/smev-core/client-interaction/fault/1.0}SignatureVerificationFault.</wsdl:documentation>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SMEVMessageExchangeSoap11Binding" type="tns:SMEVMessageExchangePortType">
+    <wsp:PolicyReference URI="#MTOM_Policy"/>
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SendRequest">
+      <soap:operation soapAction="urn:SendRequest"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SMEVFailureFault">
+        <soap:fault name="SMEVFailureFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="BusinessDataTypeIsNotSupportedFault">
+        <soap:fault name="BusinessDataTypeIsNotSupportedFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidContentFault">
+        <soap:fault name="InvalidContentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AttachmentSizeLimitExceededFault">
+        <soap:fault name="AttachmentSizeLimitExceededFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="TransactionCodeInvalidFault">
+        <soap:fault name="TransactionCodeInvalidFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EndOfLifeFault">
+        <soap:fault name="EndOfLifeFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="QuoteLimitExceededFault">
+        <soap:fault name="QuoteLimitExceededFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AccessDeniedFault">
+        <soap:fault name="AccessDeniedFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MessageIsAlreadySentFault">
+        <soap:fault name="MessageIsAlreadySentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RecipientIsNotFoundFault">
+        <soap:fault name="RecipientIsNotFoundFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DestinationOverflowFault">
+        <soap:fault name="DestinationOverflowFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AttachmentContentMiscoordinationFault">
+        <soap:fault name="AttachmentContentMiscoordinationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SenderIsNotRegisteredFault">
+        <soap:fault name="SenderIsNotRegisteredFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SignatureVerificationFaultFault">
+        <soap:fault name="SignatureVerificationFaultFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidMessageIdFormatFault">
+        <soap:fault name="InvalidMessageIdFormatFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="StaleMessageIdFault">
+        <soap:fault name="StaleMessageIdFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SendResponse">
+      <soap:operation soapAction="urn:SendResponse"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SMEVFailureFault">
+        <soap:fault name="SMEVFailureFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="BusinessDataTypeIsNotSupportedFault">
+        <soap:fault name="BusinessDataTypeIsNotSupportedFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidContentFault">
+        <soap:fault name="InvalidContentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="IncorrectResponseContentTypeFault">
+        <soap:fault name="IncorrectResponseContentTypeFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AttachmentSizeLimitExceededFault">
+        <soap:fault name="AttachmentSizeLimitExceededFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="QuoteLimitExceededFault">
+        <soap:fault name="QuoteLimitExceededFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="MessageIsAlreadySentFault">
+        <soap:fault name="MessageIsAlreadySentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="RecipientIsNotFoundFault">
+        <soap:fault name="RecipientIsNotFoundFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="DestinationOverflowFault">
+        <soap:fault name="DestinationOverflowFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="AttachmentContentMiscoordinationFault">
+        <soap:fault name="AttachmentContentMiscoordinationFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SenderIsNotRegisteredFault">
+        <soap:fault name="SenderIsNotRegisteredFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SignatureVerificationFaultFault">
+        <soap:fault name="SignatureVerificationFaultFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidMessageIdFormatFault">
+        <soap:fault name="InvalidMessageIdFormatFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="StaleMessageIdFault">
+        <soap:fault name="StaleMessageIdFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRequest">
+      <soap:operation soapAction="urn:GetRequest"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SMEVFailureFault">
+        <soap:fault name="SMEVFailureFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidContentFault">
+        <soap:fault name="InvalidContentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownMessageTypeFault">
+        <soap:fault name="UnknownMessageTypeFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SenderIsNotRegisteredFault">
+        <soap:fault name="SenderIsNotRegisteredFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SignatureVerificationFaultFault">
+        <soap:fault name="SignatureVerificationFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatus">
+      <soap:operation soapAction="urn:GetStatus"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SMEVFailureFault">
+        <soap:fault name="SMEVFailureFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidContentFault">
+        <soap:fault name="InvalidContentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownMessageTypeFault">
+        <soap:fault name="UnknownMessageTypeFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SenderIsNotRegisteredFault">
+        <soap:fault name="SenderIsNotRegisteredFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SignatureVerificationFaultFault">
+        <soap:fault name="SignatureVerificationFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetResponse">
+      <soap:operation soapAction="urn:GetResponse"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SMEVFailureFault">
+        <soap:fault name="SMEVFailureFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidContentFault">
+        <soap:fault name="InvalidContentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UnknownMessageTypeFault">
+        <soap:fault name="UnknownMessageTypeFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SenderIsNotRegisteredFault">
+        <soap:fault name="SenderIsNotRegisteredFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SignatureVerificationFaultFault">
+        <soap:fault name="SignatureVerificationFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Ack">
+      <soap:operation soapAction="urn:Ack"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SMEVFailureFault">
+        <soap:fault name="SMEVFailureFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="TargetMessageIsNotFoundFault">
+        <soap:fault name="TargetMessageIsNotFoundFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidContentFault">
+        <soap:fault name="InvalidContentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SenderIsNotRegisteredFault">
+        <soap:fault name="SenderIsNotRegisteredFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SignatureVerificationFaultFault">
+        <soap:fault name="SignatureVerificationFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetIncomingQueueStatistics">
+      <soap:operation soapAction="urn:GetIncomingQueueStatistics"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SMEVFailureFault">
+        <soap:fault name="SMEVFailureFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InvalidContentFault">
+        <soap:fault name="InvalidContentFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SenderIsNotRegisteredFault">
+        <soap:fault name="SenderIsNotRegisteredFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SignatureVerificationFaultFault">
+        <soap:fault name="SignatureVerificationFaultFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SMEVMessageExchangeService">
+    <wsdl:port binding="tns:SMEVMessageExchangeSoap11Binding" name="SMEVMessageExchangeEndpoint">
+      <wsdl:documentation>
+        <wsi:Claim conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+      </wsdl:documentation>
+      <soap:address location="http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws"/>
+    </wsdl:port>
+  </wsdl:service>
+  <jaxws:bindings>
+    <!--Напишите здесь имя пакета, в который должны попасть классы, сгенерированные из этого wsdl с помощью ws import-->
+    <jaxws:package name="ru.it.smev.message_exchange.autogenerated.service.v1_1"/>
+  </jaxws:bindings>
+  <wsp:Policy wsu:Id="MTOM_Policy">
+    <wsoma:OptimizedMimeSerialization wsp:Optional="true"/>
+  </wsp:Policy>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws?xsd=smev-message-exchange-types-1.1.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" jxb:version="2.0" targetNamespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:basic="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+  <xs:annotation>
+    <xs:documentation>Типы и элементы для веб-сервиса, который СМЭВ предоставляет всем участникам межведомственного взаимодействия для обмена сообщениями.</xs:documentation>
+    <xs:appinfo>
+      <jxb:schemaBindings>
+        <!--Напишите здесь имя пакета, в который должны попасть классы, сгенерированные из этой схемы с помощью ws import-->
+        <jxb:package name="ru.it.smev.message_exchange.autogenerated.types.v1_1"/>
+      </jxb:schemaBindings>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:import namespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1" schemaLocation="http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws?xsd=smev-message-exchange-basic-1.1.xsd"/>
+  <xs:element name="SendRequestRequest">
+    <xs:annotation>
+      <xs:documentation>Параметры метода "Послать запрос".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:SenderProvidedRequestData">
+          <xs:annotation>
+            <xs:documentation>Содержательная часть запроса + служебные данные, заполняемые отправителем.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" ref="basic:AttachmentContentList">
+          <xs:annotation>
+            <xs:documentation>Вложенные файлы - содержимое. Содержимое вынесено из-под ЭП-ОВ, чтобы не нарушать работу MTOM.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="CallerInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ. Подписан элемент //SenderProvidedRequestData.
+                            Подпись оставлена необязательной, чтобы клиентов можно было тестировать с упрощёнными эмуляторами СМЭВ.
+                            Реальный СМЭВ отбивает сообщения без ЭП-ОВ или ЭП-ПГУ.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendRequestResponse">
+    <xs:annotation>
+      <xs:documentation>Возвращаемое значение метода "Послать запрос": запрос принят.
+                Если запрос не может быть принят, информация о причине отказа передаётся через SOAP fault, см. WSDL-описание сервиса.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:MessageMetadata">
+          <xs:annotation>
+            <xs:documentation>Данные о сообщении: ID, присвоенный СМЭВ, дата приёма по часам СМЭВ, результат маршрутизации, etc.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="SMEVSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-СМЭВ. Подписан элемент //MessageMetadata.
+                            Подпись оставлена необязательной, чтобы клиентов можно было тестировать с упрощёнными эмуляторами СМЭВ.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendResponseRequest">
+    <xs:annotation>
+      <xs:documentation>Параметры метода "Послать ответ на запрос".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:SenderProvidedResponseData"/>
+        <xs:element minOccurs="0" ref="basic:AttachmentContentList"/>
+        <xs:element minOccurs="0" name="CallerInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ. Подписан элемент //SenderProvidedResponseData.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendResponseResponse">
+    <xs:annotation>
+      <xs:documentation>Возвращаемое значение метода "Послать ответ на запрос": ответ принят.
+                Если ответ не может быть принят, информация о причине отказа передаётся через SOAP fault, см. WSDL-описание сервиса.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:MessageMetadata">
+          <xs:annotation>
+            <xs:documentation>Данные о сообщении: ID, присвоенный СМЭВ, дата приёма по часам СМЭВ, результат маршрутизации, etc.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="SMEVSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-СМЭВ. Подписан элемент //MessageMetadata.
+                            Подпись оставлена необязательной, чтобы клиентов можно было тестировать с упрощёнными эмуляторами СМЭВ.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatusRequest">
+    <xs:annotation>
+      <xs:documentation>Параметры метода "получить сообщение из моей входящей очереди запросов, если очередь не пуста".
+                Какую входящую очередь смотреть - определаятся по владельцу сертификата, входящего в состав ЭЦП,
+                и селектору типа запроса.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:Timestamp"/>
+        <xs:element name="CallerInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ. Подписан элемент //Id.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatusResponse">
+    <xs:annotation>
+      <xs:documentation>Возвращаемая структура метода "получить сообщение из моей входящей очереди запросов, если очередь не пуста".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="tns:SmevAsyncProcessingMessage">
+          <xs:annotation></xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SmevAsyncProcessingMessage">
+    <xs:annotation>
+      <xs:documentation>Сообщение об статусе асинхронной обработки в СМЭВ.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="1" minOccurs="1">
+          <xs:element ref="tns:AsyncProcessingStatusData"/>
+        </xs:choice>
+        <xs:element minOccurs="0" name="SMEVSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-СМЭВ. Подписан элемент preceding-sibling:</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestRequest">
+    <xs:annotation>
+      <xs:documentation>Параметры метода "получить сообщение из моей входящей очереди запросов, если очередь не пуста".
+                Какую входящую очередь смотреть - определаятся по владельцу сертификата, входящего в состав ЭЦП,
+                и селектору типа запроса.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:MessageTypeSelector">
+          <xs:annotation>
+            <xs:documentation>См. описание {urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1}MessageTypeSelector</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="CallerInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ. Подписан элемент //MessageTypeSelector.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResponseRequest">
+    <xs:annotation>
+      <xs:documentation>Параметры метода "получить сообщение из моей входящей очереди ответов, если очередь не пуста".
+                Какую входящую очередь смотреть - определаятся по владельцу сертификата, входящего в состав ЭЦП,
+                и селектору типа _ответа_.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:MessageTypeSelector">
+          <xs:annotation>
+            <xs:documentation>См. описание {urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1}MessageTypeSelector</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="CallerInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ. Подписан элемент //MessageTypeSelector.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRequestResponse">
+    <xs:annotation>
+      <xs:documentation>Возвращаемая структура метода "получить сообщение из моей входящей очереди запросов, если очередь не пуста".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RequestMessage">
+          <xs:annotation>
+            <xs:documentation>Полученное сообщение. Если этот элемент отсутствует, это значит, что входящая очередь пуста.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:choice>
+                <xs:sequence>
+                  <xs:element ref="tns:Request"/>
+                  <xs:element minOccurs="0" ref="basic:AttachmentContentList"/>
+                </xs:sequence>
+                <xs:element ref="tns:Cancel"/>
+              </xs:choice>
+              <xs:element minOccurs="0" name="SMEVSignature" type="basic:XMLDSigSignatureType">
+                <xs:annotation>
+                  <xs:documentation>ЭП-СМЭВ. Подписан элемент //Request, либо //Cancel</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetResponseResponse">
+    <xs:annotation>
+      <xs:documentation>Возвращаемая структура метода "получить сообщение из моей входящей очереди, если очередь не пуста".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Если у GetResponseResponse нет child element, это значит, что входящая очередь пуста.</xs:documentation>
+        </xs:annotation>
+        <xs:element name="ResponseMessage">
+          <xs:annotation>
+            <xs:documentation>Ответ, присланный поставщиком данных.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element ref="tns:Response"/>
+              <xs:element minOccurs="0" ref="basic:AttachmentContentList"/>
+              <xs:element minOccurs="0" name="SMEVSignature" type="basic:XMLDSigSignatureType">
+                <xs:annotation>
+                  <xs:documentation>ЭП-СМЭВ. Подписан элемент preceding-sibling::tns:Response</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AsyncProcessingStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="OriginalMessageId" type="basic:UUID"/>
+        <xs:element name="StatusCategory" type="basic:InteractionStatusType">
+          <xs:annotation>
+            <xs:documentation>Категория статуса.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="StatusDetails" type="basic:string-500">
+          <xs:annotation>
+            <xs:documentation>Описание процессинга в человекочитаемом виде.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="SmevFault" type="basic:SmevFault"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AsyncProcessingStatusData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:AsyncProcessingStatus"/>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AckRequest">
+    <xs:annotation>
+      <xs:documentation>Параметры метода "Подтверждение получения сообщения".</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:AckTargetMessage"/>
+        <xs:element minOccurs="0" name="CallerInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ. Подписан элемент preceding-sibling::basic:AckTargetMessage.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AckResponse" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Возвращаемое значение метода "Подтверждение получения сообщения".</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="GetIncomingQueueStatisticsRequest">
+    <xs:annotation>
+      <xs:documentation>Параметры метода "получить статистику входящей очереди".
+                Какую входящую очередь смотреть - определаятся по владельцу сертификата, входящего в состав ЭЦП.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NodeID" type="basic:string-50">
+          <xs:annotation>
+            <xs:documentation>Идентификатор нода.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="basic:Timestamp"/>
+        <xs:element minOccurs="0" name="CallerInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ. Подписан элемент //СurrentTimestamp.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIncomingQueueStatisticsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" minOccurs="0" name="QueueStatistics">
+          <xs:complexType>
+            <xs:attribute name="queueName" type="basic:string-200"/>
+            <xs:attribute name="pendingMessageNumber" type="xs:long"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SenderProvidedRequestData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MessageID" type="basic:UUID">
+          <xs:annotation>
+            <xs:documentation>Идентификатор, присвоенный сообщению отправителем.
+                            Генерируется в соответствии с RFC-4122, по варианту 1 (на основании MAC-адреса и текущего времени).</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="ReferenceMessageID" type="basic:UUID">
+          <xs:annotation>
+            <xs:documentation>Идентификатор сообщения, порождающего цепочку сообщений.
+                            При отправке подчиненных сообщений значение соответствует MessageID корневого сообщения цепочки сообщений.
+                            Для корневого сообщения значение совпадает с MessageID</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="TransactionCode" type="basic:string-1500">
+          <xs:annotation>
+            <xs:documentation>Идентификатор кода транзакции.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="NodeID" type="basic:string-50">
+          <xs:annotation>
+            <xs:documentation>Идентификатор нода отправителя.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="EOL" type="xs:dateTime">
+          <xs:annotation>
+            <xs:documentation>Ограничение жизни сообщения.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="basic:MessagePrimaryContent">
+          <xs:annotation>
+            <xs:documentation>Содержательная часть запроса, XML-документ.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="PersonalSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-СП содержательной части запроса.
+                            Подписывается элемент, находящийся сразу под MessagePrimaryContent.
+                            Хотя этот элемент не обязателен, поставщик данных может потребовать,
+                            чтобы в запросах определённых типов ЭП-СП всегда была.
+                            Это вызвано тем, что в ряде случаев, согласно ФЗ, сведения могут предоставляться только по запросам
+                            должностных лиц определённого уровня.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" ref="basic:AttachmentHeaderList">
+          <xs:annotation>
+            <xs:documentation>Заголовки вложенных файлов.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" ref="basic:RefAttachmentHeaderList">
+          <xs:annotation>
+            <xs:documentation>Заголовки файлов по ссылке.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="BusinessProcessMetadata">
+          <xs:annotation>
+            <xs:documentation>Информация о бизнес-процессе, в рамках которого пересылается данное сообщение.
+                            Формат данных определяется в отдельной схеме (схемах).
+                            На текущий эта информация не обязательна для заполнения отправителем.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="skip"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="TestMessage" type="basic:Void">
+          <xs:annotation>
+            <xs:documentation>Если этот элемент присутствует, то запрос - тестовый.
+                            В этом случае, ИС-поставщик данных должна гарантировать, что её данные не будут изменены
+                            в результате выполнения этого запроса.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SenderProvidedResponseData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="MessageID" type="basic:UUID">
+          <xs:annotation>
+            <xs:documentation>Идентификатор, присвоенный сообщению отправителем.
+                            Генерируется в соответствии с RFC-4122, по варианту 1 (на основании MAC-адреса и текущего времени).</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="To" type="basic:string-4000">
+          <xs:annotation>
+            <xs:documentation>Адрес доставки ответа. Копируется из запроса, //GetRequestResponse/ReplyTo/text()</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:choice>
+          <xs:sequence>
+            <xs:element ref="basic:MessagePrimaryContent">
+              <xs:annotation>
+                <xs:documentation>Содержательная часть ответа, XML-документ.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" name="PersonalSignature" type="basic:XMLDSigSignatureType">
+              <xs:annotation>
+                <xs:documentation>ЭП-СП содержательной части ответа. Подписывается элемент, находящийся сразу под MessagePrimaryContent.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" ref="basic:AttachmentHeaderList">
+              <xs:annotation>
+                <xs:documentation>Заголовки вложенных файлов.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element minOccurs="0" ref="basic:RefAttachmentHeaderList">
+              <xs:annotation>
+                <xs:documentation>Заголовки файлов по ссылке.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+          <xs:element maxOccurs="unbounded" name="RequestRejected">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="RejectionReasonCode" type="tns:RejectCode">
+                  <xs:annotation>
+                    <xs:documentation>Код причины отклонения запроса.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="RejectionReasonDescription" type="basic:string-4000">
+                  <xs:annotation>
+                    <xs:documentation>Причина отклонения запроса, в человекочитаемом виде.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" name="RequestStatus">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="StatusCode" type="xs:int">
+                  <xs:annotation>
+                    <xs:documentation>Код бизнес статуса запроса.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="StatusParameter">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element minOccurs="1" name="Key" type="xs:string"/>
+                      <xs:element minOccurs="1" name="Value" type="xs:string"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+                <xs:element name="StatusDescription" type="basic:string-4000">
+                  <xs:annotation>
+                    <xs:documentation>Бизнес статус запроса, в человекочитаемом виде.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element maxOccurs="1" ref="tns:AsyncProcessingStatus"></xs:element>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="RejectCode">
+    <xs:restriction base="basic:string-50">
+      <xs:enumeration value="ACCESS_DENIED"/>
+      <xs:enumeration value="NO_DATA"/>
+      <xs:enumeration value="UNKNOWN_REQUEST_DESCRIPTION"/>
+      <xs:enumeration value="FAILURE"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Request">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="tns:SenderProvidedRequestData"/>
+        <xs:element ref="tns:MessageMetadata">
+          <xs:annotation>
+            <xs:documentation>Информация об отправителе, дате отправки, маршрутизации сообщения, и другая (см. определение типа).
+                            Все данные заполняются СМЭВ.
+                            Элемент //MessageMetadata/SendingTimestamp содержит дату и время, начиная с которых отсчитывается срок исполнения запроса.
+                            Остальные данные предназначены для целей анализа (машинного и ручного) качества обслуживания
+                            информационной системы - получателя сообщения,
+                            а также для предоставления службе поддержки оператора СМЭВ в случае необходимости.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" ref="basic:FSAttachmentsList"></xs:element>
+        <xs:element name="ReplyTo" type="basic:string-4000">
+          <xs:annotation>
+            <xs:documentation>Аналог обратного адреса; непрозрачный объект, по которому СМЭВ сможет вычислить, кому доставить ответ на этот запрос.
+                            При отправке ответа нужно скопировать это значение в //SenderProvidedResponseData/To/text().
+                            N.B. Формат обратного адреса не специфицирован, и может меняться со временем.
+                            Больше того, в запросах, пришедших от одного и того же отправителя через сколь угодно малый промежуток времени,
+                            обратный адрес не обязан быть одним и тем же.
+                            Если получатель хочет идентифицировать отправителя, можно использовать либо маршрутную информацию СМЭВ
+                            (//GetMessageIfAnyResponse/SMEVRoutingInfo/Sender/*), либо сертификат отправителя
+                            (//GetMessageIfAnyResponse/CallerInformationSystemSignature/xmldsig:Signature/...)</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="SenderInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ отправителя. Подписан элемент //SenderProvidedRequestData</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="OriginalMessageId" type="basic:UUID"/>
+        <xs:element minOccurs="0" name="OriginalTransactionCode" type="basic:string-1500"/>
+        <xs:element minOccurs="0" name="ReferenceMessageID" type="basic:UUID">
+          <xs:annotation>
+            <xs:documentation>Идентификатор сообщения, порождающего цепочку сообщений.
+                            При отправке подчиненных сообщений значение соответствует MessageID корневого сообщения цепочки сообщений.
+                            Для корневого сообщения значение совпадает с MessageID</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="tns:SenderProvidedResponseData"/>
+        <xs:element ref="tns:MessageMetadata"/>
+        <xs:element minOccurs="0" ref="basic:FSAttachmentsList"></xs:element>
+        <xs:element minOccurs="0" name="SenderInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ отправителя. Подписан элемент //SenderProvidedResponseData</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Cancel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="basic:MessageReference">
+          <xs:annotation>
+            <xs:documentation>Ссылка на запрос, который нужно отменить.
+                            Сюда нужно писать ID СМЭВ-сообщения, который был передан при отправке запроса в элементе
+                            //SendRequestRequest/SenderProvidedRequestData/MessageID.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element name="MessageID" type="basic:UUID">
+          <xs:annotation>
+            <xs:documentation>Идентификатор, присвоенный СМЭВ уведомлению об отмене.
+                            Генерируется в соответствии с RFC-4122, по варианту 1 (на основании MAC-адреса и текущего времени).</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element ref="tns:MessageMetadata"/>
+        <xs:element minOccurs="0" name="SenderInformationSystemSignature" type="basic:XMLDSigSignatureType">
+          <xs:annotation>
+            <xs:documentation>ЭП-ОВ или ЭП-ПГУ отправителя. Подписан элемент //SenderProvidedCancelData</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MessageMetadata">
+    <xs:complexType>
+      <xs:annotation>
+        <xs:documentation>Маршрутная информация, заполняемая СМЭВ.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MessageId" type="basic:UUID"/>
+        <xs:element name="MessageType" type="tns:MessageTypeType"/>
+        <xs:element name="Sender">
+          <xs:annotation>
+            <xs:documentation>Информация об отправителе сообщения.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Mnemonic" type="basic:string-50">
+                <xs:annotation>
+                  <xs:documentation>Мнемоника отправителя. Для машинной обработки. Вычисляется на основании данных сетрификата.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="HumanReadableName" type="basic:string-500">
+                <xs:annotation>
+                  <xs:documentation>Наименование отправителя в форме, удобной для восприятия человеком.
+                                        Вычисляется на основании данных сертификата.
+                                        Не обязано полностью совпадать с официальным названием организации или органа власти.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SendingTimestamp" type="xs:dateTime">
+          <xs:annotation>
+            <xs:documentation>Дата и время отправки сообщения в СМЭВ.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="MessageBroker" type="basic:string-200"/>
+        <xs:element name="DestinationName" type="basic:string-500"/>
+        <xs:element minOccurs="0" name="Recipient">
+          <xs:annotation>
+            <xs:documentation>Получатель сообщения (вычислен маршрутизатором).
+                            Для широковещательных сообщений не заполняется.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Mnemonic" type="basic:string-100">
+                <xs:annotation>
+                  <xs:documentation>Мнемоника. Для машинной обработки.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="HumanReadableName" type="basic:string-500">
+                <xs:annotation>
+                  <xs:documentation>Наименование в форме, удобной для восприятия человеком.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SupplementaryData">
+          <xs:annotation>
+            <xs:documentation>Дополнительная информация о сообщении.</xs:documentation>
+          </xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element minOccurs="0" name="DetectedContentTypeName" type="basic:string-500">
+                <xs:annotation>
+                  <xs:documentation>Тип сообщения. Вычисляется СМЭВ на основании полного имени (qualified name) корневого XML-элемента сообщения.
+                                        Например, "Заявка на получение выписки из ЕГРИП".
+                                        Для ответов на запросы этот элемент опускается.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+              <xs:element name="InteractionType" type="basic:InteractionTypeType">
+                <xs:annotation>
+                  <xs:documentation>Тип взаимодействия, например, портал госуслуг - ОИВ.</xs:documentation>
+                </xs:annotation>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element minOccurs="0" name="DeliveryTimestamp" type="xs:dateTime">
+          <xs:annotation>
+            <xs:documentation>Дата и время доставки сообщения, по часам СМЭВ.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="Status" type="basic:InteractionStatusType"/>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="MessageTypeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="REQUEST"/>
+      <xs:enumeration value="BROADCAST"/>
+      <xs:enumeration value="RESPONSE"/>
+      <xs:enumeration value="CANCEL"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws?xsd=smev-message-exchange-basic-1.1.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" jxb:version="2.0" targetNamespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:tns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1" xmlns:jxb="http://java.sun.com/xml/ns/jaxb">
+  <xs:annotation>
+    <xs:documentation>Базовые типы.</xs:documentation>
+    <xs:appinfo>
+      <jxb:schemaBindings>
+        <!--Напишите здесь имя пакета, в который должны попасть классы, сгенерированные из этой схемы с помощью wsimport (для JAX-WS)-->
+        <jxb:package name="ru.it.smev.message_exchange.autogenerated.types.basic.v1_1"/>
+      </jxb:schemaBindings>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MessagePrimaryContent">
+    <xs:annotation>
+      <xs:documentation>Содержательная часть сообщения СМЭВ.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any namespace="##other" processContents="skip">
+          <xs:annotation>
+            <xs:documentation>Корневой элемент XML-документа запроса присоединять сюда.</xs:documentation>
+          </xs:annotation>
+        </xs:any>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AttachmentHeaderList">
+    <xs:annotation>
+      <xs:documentation>Заголовки файлов, приложенных к СМЭВ-сообщению.
+                Заголовки отделены от содержимого вложений.
+                Это нужно потому, что заголовки должны попадать под ЭП-ОВ,
+                а содержимое - должно не попадать (иначе не будет работать MTOM).</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="AttachmentHeader" type="tns:AttachmentHeaderType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="AttachmentHeaderType">
+    <xs:annotation>
+      <xs:documentation>Файл, приложенный к СМЭВ-сообщению.
+                Имя файла не передаётся; вложения идентифицируются только идентификаторами внутри сообщения.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="contentId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Идентификатор вложения. Ссылка на соответствующий //AttachmentContent/@Id</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MimeType" type="tns:RFC2046MimeTypesType">
+        <xs:annotation>
+          <xs:documentation>Тип контента.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SignaturePKCS7" type="xs:base64Binary">
+        <xs:annotation>
+          <xs:documentation>ЭЦП в формате PKCS#7 detached. Подписывать ключом ЭП-СП.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttachmentContentList">
+    <xs:annotation>
+      <xs:documentation>Cодержимое вложенных файлов.
+                У элемента списка, тип base64Binary и наличие атрибута expectedContentTypes - подсказка для frameworks типа JAX-WS передавать содержимое этого элемента по MTOM протоколу.
+                Кроме того, значение expectedContentTypes="application/octet-stream" - подсказка JAX-WS дать доступ к этому элементу через InputStream/OutputStream.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="AttachmentContent" type="tns:AttachmentContentType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FSAttachmentsList">
+    <xs:annotation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="FSAttachment" type="tns:FSAuthInfo"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="FSAuthInfo">
+    <xs:sequence>
+      <xs:element name="uuid" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Идентификатор файла. Ссылка на соответствующий файл.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UserName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Пользователь.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Password" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Пароль.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="FileName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Имя файла.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AttachmentContentType">
+    <xs:annotation>
+      <xs:documentation>Содержимое вложенного файла.
+                Значение атрибута attachmentId должно быть уникально среди всех элементов и атрибутов СМЭВ-сообщения, имеющих тип xs:ID.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Id" type="xs:ID"/>
+      <xs:element name="Content" type="xs:base64Binary" xmime:expectedContentTypes="application/octet-stream"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RefAttachmentHeaderList">
+    <xs:annotation>
+      <xs:documentation>Заголовки файлов, приложенных к СМЭВ-сообщению.
+                Заголовки отделены от содержимого вложений.
+                Это нужно потому, что заголовки должны попадать под ЭП-ОВ,
+                а содержимое - должно не попадать (иначе не будет работать MTOM).</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="RefAttachmentHeader" type="tns:RefAttachmentHeaderType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="RefAttachmentHeaderType">
+    <xs:annotation>
+      <xs:documentation>Ссылка на файл, приложенный к СМЭВ-сообщению.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="uuid" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Идентификатор файла. Ссылка на соответствующий файл.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Hash" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Хэш файла.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MimeType" type="tns:RFC2046MimeTypesType">
+        <xs:annotation>
+          <xs:documentation>Тип контента.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="SignaturePKCS7" type="xs:base64Binary">
+        <xs:annotation>
+          <xs:documentation>ЭЦП в формате PKCS#7 detached. Подписывать ключом ЭП-СП.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="UUID">
+    <xs:annotation>
+      <xs:documentation>Строковое представление UUID.
+                В СМЭВ UUID используются в качестве идентификаторов сообщений.
+                Идентификаторы присваиваются сообщеням отправителями.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MessageReference">
+    <xs:annotation>
+      <xs:documentation>Тип для подписанных ссылок на сообщения СМЭВ.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="tns:UUID">
+          <xs:attribute name="Id" type="xs:ID"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AckTargetMessage">
+    <xs:annotation>
+      <xs:documentation>Ссылка на сообщение, получение которого подтверждается методом Ack.
+                Сюда нужно писать Id СМЭВ-сообщения, который берётся
+                из //GetRequestResponse/.../SenderProvidedRequestData/MessageID/text() либо
+                из //GetResponseResponse/.../SenderProvidedRequestData/MessageID/text().</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="tns:UUID">
+          <xs:attribute name="Id" type="xs:ID" use="required"/>
+          <xs:attribute name="accepted" type="xs:boolean" use="optional">
+            <xs:annotation>
+              <xs:documentation>true, если ЭП-СМЭВ прошла валидацию и сообщение передано ИС. false, если ЭП-СМЭВ отвергнута, и сообщение проигнорировано.</xs:documentation>
+            </xs:annotation>
+          </xs:attribute>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="XMLDSigSignatureType">
+    <xs:annotation>
+      <xs:documentation>Элекронная подпись в формате XMLDSig.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any namespace="http://www.w3.org/2000/09/xmldsig#" processContents="skip">
+        <xs:annotation>
+          <xs:documentation>Собственно подпись, по спецификации XMLDSig.
+                        Объявлена как any для того, чтобы инструменты типа JAXB не генерировали классов для пространства имён
+                        http://www.w3.org/2000/09/xmldsig#.
+                        Это, в свою очередь, нужно потому, что инструменты, генерирующие и проверяющие ЭЦП (напр. Apache Santuario)
+                        работают с DOM-деревьями, а не с JAXB-объектами.</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="RFC2046MimeTypesType">
+    <xs:annotation>
+      <xs:documentation>Типы вложений, в формате RFC-2046.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(text|image|audio|video|application)/[a-zA-Z0-9\-+.]*"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MessageTypeSelector">
+    <xs:complexType>
+      <xs:annotation>
+        <xs:documentation>Селектор, с помощью которого при приёме запроса или ответа
+                    можно задать фильтр по типу запроса (ответа).
+                    Поскольку тип запроса или ответа однозначно определяется полным именем
+                    корневого XML-элемента его бизнес-данных,
+                    селектор представляет из себя структуру для задания этого имени.
+                    Если селектор пуст, это значит, что нужно принять запрос (ответ)
+                    без фильтрации по типам.</xs:documentation>
+      </xs:annotation>
+      <xs:sequence>
+        <xs:sequence minOccurs="0">
+          <xs:element name="NamespaceURI" type="xs:anyURI"/>
+          <xs:element name="RootElementLocalName" type="xs:NCName"/>
+        </xs:sequence>
+        <xs:element name="Timestamp" type="xs:dateTime">
+          <xs:annotation>
+            <xs:documentation>Текущая дата и время.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+        <xs:element minOccurs="0" name="NodeID" type="tns:string-50">
+          <xs:annotation>
+            <xs:documentation>Идентификатор нода.</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Id" type="xs:ID"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="InteractionStatusType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="doesNotExist">
+        <xs:annotation>
+          <xs:documentation>Запрос с таким Id не найден в БД СМЭВ.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="requestIsQueued">
+        <xs:annotation>
+          <xs:documentation>Запрос находится в очереди на асинхронную валидацию.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="requestIsAcceptedBySmev">
+        <xs:annotation>
+          <xs:documentation>Запрос доставляется поставщику.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="requestIsRejectedBySmev">
+        <xs:annotation>
+          <xs:documentation>Запрос не прошёл асинхронную валидацию.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="underProcessing">
+        <xs:annotation>
+          <xs:documentation>Обрабатывается поставщиком сервиса.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="responseIsAcceptedBySmev">
+        <xs:annotation>
+          <xs:documentation>Запрос выполнен или отвергнут поставщиком сервиса; ответ находится в очереди СМЭВ.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="cancelled">
+        <xs:annotation>
+          <xs:documentation>Запрос отменён потребителем сервиса.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="responseIsDelivered">
+        <xs:annotation>
+          <xs:documentation>Ответ получен потребителем сервиса.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="InteractionTypeType">
+    <xs:annotation>
+      <xs:documentation>Тип взаимодействия</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PGU2OIV">
+        <xs:annotation>
+          <xs:documentation>Взаимодействие портала государственных и/или муниципальных услуг с органом власти.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OIV2OIV">
+        <xs:annotation>
+          <xs:documentation>Взаимодействие между органами власти.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OIV2sameOIV">
+        <xs:annotation>
+          <xs:documentation>Взаимодействие между различными информационными системами одного органа исполнительной власти через СМЭВ.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Charger2PaymentGate">
+        <xs:annotation>
+          <xs:documentation>Взаимодействие информационно-платежного шлюза с поставщиками начислений для оплаты услуг в электронном виде.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="PaymentGate2Treasury">
+        <xs:annotation>
+          <xs:documentation>Взаимодействие информационно-платежного шлюза с системой УНИФО ФК для получения начислений и фактов оплаты для пользователей ПГУ.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="OIV2Treasury">
+        <xs:annotation>
+          <xs:documentation>Взаимодействие ОИВ с системой УНИФО ФК для передачи начислений и получения фактов оплаты.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="other">
+        <xs:annotation>
+          <xs:documentation>Другие типы взаимодействия.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="NotDetected">
+        <xs:annotation>
+          <xs:documentation>Не удалось определить тип взаимодействия.</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Timestamp">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:dateTime">
+          <xs:attribute name="Id" type="xs:ID"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="string-10">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="string-50">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="50"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="string-100">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="100"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="string-200">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="200"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="string-500">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="500"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="string-1500">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="1500"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="string-4000">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="4000"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Void">
+    <xs:annotation>
+      <xs:documentation>Тип элемента, который передаёт информацию фактом своего наличия.</xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+  <xs:complexType name="SmevFault">
+    <xs:complexContent>
+      <xs:extension base="tns:Void">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Code" type="tns:string-50"/>
+          <xs:element minOccurs="0" name="Description" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws?xsd=smev-message-exchange-faults-1.1.xsd</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" jxb:version="2.0" targetNamespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:basic="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+  <xs:annotation>
+    <xs:documentation>Определения элементов, используемых в качестве SOAP fault-сообщений.</xs:documentation>
+    <xs:appinfo>
+      <jxb:schemaBindings>
+        <!--Напишите здесь имя пакета, в который должны попасть классы, сгенерированные из этой схемы с помощью ws import-->
+        <jxb:package name="ru.it.smev.message_exchange.autogenerated.types.fault.v1_1"/>
+      </jxb:schemaBindings>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:import namespace="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1" schemaLocation="http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws?xsd=smev-message-exchange-basic-1.1.xsd"/>
+  <xs:element name="BusinessDataTypeIsNotSupported" type="tns:BusinessDataTypeIsNotSupported">
+    <xs:annotation>
+      <xs:documentation>Запрос с таким полным именем корневого элемента не поддерживается данной ИС.
+                Вероятная причина: неверная настройка маршрутизации в СМЭВ.
+                Действия СМЭВ: Сообщение будет направлено персоналу техподдержки СМЭВ для разбирательства.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="BusinessDataTypeIsNotSupported">
+    <xs:complexContent>
+      <xs:extension base="basic:SmevFault">
+        <xs:sequence>
+          <xs:element name="RootElementLocalName" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Local name корневого элемента содержательной части запроса.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RootElementNamespaceURI" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>Namespace URI корневого элемента содержательной части запроса.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="InvalidContent" type="tns:InvalidContent">
+    <xs:annotation>
+      <xs:documentation>
+        Содержательная часть сообщения (например, в случае запроса - //AcceptRequestRequest/PrimaryContent/element())
+                не прошла валидацию по XSD, заявленной для типа запроса.
+                Действия СМЭВ: Сообщение будет направлено персоналу техподдержки для разбирательства.
+                N.B. Сообщения могут отвергаться этим способом
+        <b>только</b>
+        по результатам валидации по XML-схеме.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="InvalidContent">
+    <xs:complexContent>
+      <xs:extension base="basic:SmevFault">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="1" name="ValidationError">
+            <xs:annotation>
+              <xs:documentation>Сообщение об ошибке валидации. Текстовое содержимое элемента должно содержать сообщение об ошибке, возвращённое валидатором.</xs:documentation>
+            </xs:annotation>
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="xs:string">
+                  <xs:attribute name="errorPosition" type="xs:int" use="required">
+                    <xs:annotation>
+                      <xs:documentation>Позиция в XML-документе, в которой валидатор обнаружил ошибку.</xs:documentation>
+                    </xs:annotation>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="UnknownMessageType" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>a) При попытке выбрать ответ, указан тип сообщения, не зарегистрированный в СМЭВ
+                (тип сообщения состоит из /GetResponseRequest/MessageTypeSelector/NamespaceURI и /GetResponseRequest/MessageTypeSelector/RootElementLocalName)
+                b) При попытке выбрать запрос, указан тип сообщения, либо не зарегистрированный в СМЭВ, либо не принадлежащий текущему клиенту.
+                Действия клиента: Уточнить тип сообщения, повторить запрос.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="TransactionCodeInvalid" type="basic:SmevFault">
+    <xs:annotation>
+      <xs:documentation>a) При попытке выбрать ответ, указан тип сообщения, не зарегистрированный в СМЭВ
+                (тип сообщения состоит из /GetResponseRequest/MessageTypeSelector/NamespaceURI и /GetResponseRequest/MessageTypeSelector/RootElementLocalName)
+                b) При попытке выбрать запрос, указан тип сообщения, либо не зарегистрированный в СМЭВ, либо не принадлежащий текущему клиенту.
+                Действия клиента: Уточнить тип сообщения, повторить запрос.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="MessageIsAlreadySent" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Сообщение с таким MessageID уже было отправлено ранее.
+                Возможно в следующих ситуациях:
+                a) Клиент пытался отправить сообщение, отправка прошла успешно, но в конце взаимодействия HTTP соединение оборвалось,
+                и клиент не получил ответ от СМЭВ об успешной отправке.
+                При повторной попытке отправить сообщение клиент получит этот fault.
+                В этой ситуации нужно прекратить пытаться повторно послать сообщение.
+                b) Клиент использует алгоритм генерации ID сообщений, не соответствующий МР.
+                c) Клиент пытается послать несколько сообщений, используя один и тот же ID.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="InvalidMessageIdFormat" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Идентификатор, присвоенный сообщению отправителем, не является корректным строковым представлением UUID, вариант 1 (см. RFC-4122).</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="StaleMessageId" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Идентификатор (UUID), присвоенный сообщению отправителем, содержит старый timestamp.
+                Возможно в следующих случаях:
+                a) в системе отправителя неверно установлено время.
+                Действия клиента: установить в операционной системе реальное время.
+                b) в результате очень плохого качества связи, сообщение пытаются отправить в течение двух суток или более.
+                Действия клиента: сгенерировать новый UUID, присвоить его сообщению, отправить сообщение.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="AttachmentContentMiscoordination" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Содержимое элемента //AttachmentHeaderList не соответствует содержимому элемента //AttachmentContentList.
+                Возможные ошибки:
+                разное количество элементов в списках;
+                существует элемент //AttachmentHeaderList/AttachmentHeader, у которого атрибут contentId не ссылается либо в никуда,
+                либо на элемент, отличный от //AttachmentContentList/AttachmentContent.
+                N.B. Порядок подэлементов //AttachmentHeaderList не обязан соответствовать порядку подэлементов //AttachmentContentList.
+                Действия СМЭВ: сообщение отброшено.
+                Действия клиента: Должно быть сформировано новое сообщение, с корректной координацией между заголовками и содержимим вложений.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="AttachmentSizeLimitExceeded" type="tns:AttachmentSizeLimitExceeded">
+    <xs:annotation>
+      <xs:documentation>Суммарный размер вложений превысил предел, установленный правилами СМЭВ.
+                Действия СМЭВ: сообщение отброшено.
+                Действия клиента: приложенные файлы должны быть уменьшены в размере (например, путём увеличения уровня сжатия JPEG).
+                Должно быть сформировано новое сообщение, в котором суммарный размер вложений находится в допустимых пределах.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AttachmentSizeLimitExceeded">
+    <xs:complexContent>
+      <xs:extension base="basic:SmevFault">
+        <xs:sequence>
+          <xs:element name="PermittedTotalAttachmentSize" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>Максимальный суммарный размер вложений, разрешённый для передачи в одном СМЭВ-сообщении, в байтах.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RealTotalAttachmentSize" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>Суммарные размер вложений, переданных в отвергнутом сообщении, в байтах.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="QuoteLimitExceeded" type="tns:QuoteLimitExceeded">
+    <xs:annotation>
+      <xs:documentation>Суммарный размер вложений превысил размер оставшейся квоты, установленный правилами СМЭВ.
+                Действия СМЭВ: сообщение отброшено.
+                Действия клиента: Освобождение квоты.
+                После освобождения квоты должно быть переотправлено новое сообщение, в котором суммарный размер вложений находится в допустимых для квоты пределах.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="QuoteLimitExceeded">
+    <xs:complexContent>
+      <xs:extension base="basic:SmevFault">
+        <xs:sequence>
+          <xs:element name="RemainedTotalQuoteSize" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>Текущее значение оставшейся квоты для СМЭВ-сообщении, в байтах.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="RealTotalAttachmentSize" type="xs:long">
+            <xs:annotation>
+              <xs:documentation>Суммарные размер вложений, переданных в отвергнутом сообщении, в байтах.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AccessDenied" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Данному отправителю не разрешена посылка сообщений данному получателю.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="SignatureVerificationFault" type="tns:SignatureVerificationFault">
+    <xs:annotation>
+      <xs:documentation>ЭП-ОВ не прошла проверку.
+                Действия клиента зависят от кода ошибки верификации.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="SignatureVerificationFault">
+    <xs:complexContent>
+      <xs:extension base="basic:SmevFault">
+        <xs:sequence>
+          <xs:element name="SignatureVerificationFault">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="PoorSOAPEnvelopeFormat">
+                  <xs:annotation>
+                    <xs:documentation>Недопустимый формат SOAP-конверта: отсутствует soap:Header.
+                                            Действия клиента: исправить ошибки в коде своей ИС.</xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="NoSignatureFound">
+                  <xs:annotation>
+                    <xs:documentation>ЭП-ОВ не найдена в документе.
+                                            Действия клиента: исправить ошибки в коде своей ИС.</xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="IncorrectSignatureTarget">
+                  <xs:annotation>
+                    <xs:documentation>ЭП-ОВ подписывает не ту часть СМЭВ-сообщения, которую требуется подписать по спецификации СМЭВ.
+                                            Действия клиента: исправить ошибки в коде своей ИС.</xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="SignatureIsInvalid">
+                  <xs:annotation>
+                    <xs:documentation>Некорректная структура XMLDSig, либо подписанный фрагмент XML-фрагмент не соответствует значению ЭП-ОВ.
+                                            Действия клиента: исправить ошибки в коде своей ИС.</xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="CertificateIsNotFound">
+                  <xs:annotation>
+                    <xs:documentation>Не удалось найти сертификат клиента в ЕСИА.
+                                            Действия клиента: обратиться в службу поддержки оператора СМЭВ.</xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+                <xs:enumeration value="CertificateIsExpired">
+                  <xs:annotation>
+                    <xs:documentation>Срок действия сертификата клиента истёк.
+                                            Действия клиента: обратиться в удостоверяющий центр за новым сертификатом.</xs:documentation>
+                  </xs:annotation>
+                </xs:enumeration>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SMEVFailure" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Сообщение невозможно принять по причине сбоя в инфраструктуре СМЭВ.
+                Действия клиента: должны предприниматься повторные попытки доставить сообщение, без ограничения количества попыток.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="IncorrectResponseContentType" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Содержимое посылается через метод SendResponse,
+                но, согласно реестру типов запросов СМЭВ, содержательная часть сообщения
+                представляет из себя запрос или заявку, а не ответ.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="RecipientIsNotFound" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Содержимое посылается через метод SendResponse,
+                но значение //SendResponseRequest/To/text(), по данным СМЭВ,
+                не соотевтствует никакому получателю.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="SenderIsNotRegistered" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Отправитель не зарегистрирован в СМЭВ.
+                Ошибка может также вызываться неправильной настройкой СМЭВ,
+                а также сменой X-400 имени организации при получении нового сертификата,
+                используемого для подписания ЭП-ОВ.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="RequestIsNotFound" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>При попытке отменить запрос, СМЭВ не находит в своём журнале
+                данных этого запроса.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="TargetMessageIsNotFound" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>При попытке подтвердить получение сообщения, СМЭВ не находит неподтверждённого сообщения с таким ID.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="DestinationOverflow" type="tns:DestinationOverflow">
+    <xs:annotation>
+      <xs:documentation>Входящая очередь получателя переполнена.
+                Обратиться в службу техподдержки СМЭВ, продолжать посылать сообщение.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="DestinationOverflow">
+    <xs:complexContent>
+      <xs:extension base="basic:SmevFault">
+        <xs:sequence>
+          <xs:element name="MessageBrokerAddress" type="xs:string"/>
+          <xs:element name="DestinationName" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EndOfLifeReached" type="basic:Void">
+    <xs:annotation>
+      <xs:documentation>Превышено время жизни сообщения (end of life).
+                Действия клиента: должны предприниматься повторные попытки доставить сообщение,
+                возможно с увеличенным временем жизни.</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint></con:endpoints><con:operation id="f4e0805c-bd9a-4231-99e6-fde7ccd52c5b" isOneWay="false" action="urn:Ack" name="Ack" bindingOperationName="Ack" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="99bca552-bf7a-4be7-88ec-d27c9b8b6e2e" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:AckRequest>
+         <ns1:AckTargetMessage Id="?" accepted="?">?</ns1:AckTargetMessage>
+         <!--Optional:-->
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:AckRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:Ack"/></con:call></con:operation><con:operation id="58750f0d-6e41-4e09-8d83-e1a4dde14e57" isOneWay="false" action="urn:GetIncomingQueueStatistics" name="GetIncomingQueueStatistics" bindingOperationName="GetIncomingQueueStatistics" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="bc81afeb-ca24-4219-be21-0d299b92ed5f" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetIncomingQueueStatisticsRequest>
+         <!--Optional:-->
+         <ns:NodeID>?</ns:NodeID>
+         <ns1:Timestamp Id="?">?</ns1:Timestamp>
+         <!--Optional:-->
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:GetIncomingQueueStatisticsRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:GetIncomingQueueStatistics"/></con:call></con:operation><con:operation id="b0859afd-6626-4b39-bebd-db64b9bb7421" isOneWay="false" action="urn:GetRequest" name="GetRequest" bindingOperationName="GetRequest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="3d47c210-cbe8-4600-b972-4d93110df795" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetRequestRequest>
+         <ns1:MessageTypeSelector Id="?">
+            <ns1:NamespaceURI>?</ns1:NamespaceURI>
+            <ns1:RootElementLocalName>?</ns1:RootElementLocalName>
+            <ns1:Timestamp>?</ns1:Timestamp>
+            <!--Optional:-->
+            <ns1:NodeID>?</ns1:NodeID>
+         </ns1:MessageTypeSelector>
+         <!--Optional:-->
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:GetRequestRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:GetRequest"/></con:call></con:operation><con:operation id="4f7c566d-e2e7-48be-96a1-e91d38b2fb29" isOneWay="false" action="urn:GetResponse" name="GetResponse" bindingOperationName="GetResponse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="02302800-c82f-4394-b304-53326e251d31" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetResponseRequest>
+         <ns1:MessageTypeSelector Id="?">
+            <ns1:NamespaceURI>?</ns1:NamespaceURI>
+            <ns1:RootElementLocalName>?</ns1:RootElementLocalName>
+            <ns1:Timestamp>?</ns1:Timestamp>
+            <!--Optional:-->
+            <ns1:NodeID>?</ns1:NodeID>
+         </ns1:MessageTypeSelector>
+         <!--Optional:-->
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:GetResponseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:GetResponse"/></con:call></con:operation><con:operation id="aeee99b1-c035-4f6d-8327-362e0822d285" isOneWay="false" action="urn:GetStatus" name="GetStatus" bindingOperationName="GetStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7c686362-8e40-41bb-8a13-e9c26cde5920" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:GetStatusRequest>
+         <ns1:Timestamp Id="?">?</ns1:Timestamp>
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:GetStatusRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:GetStatus"/></con:call></con:operation><con:operation id="d0b01732-9605-4913-8af3-cd1c455a6779" isOneWay="false" action="urn:SendRequest" name="SendRequest" bindingOperationName="SendRequest" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="faa1d0d6-5559-423e-b0af-eb7da712e45b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendRequestRequest>
+         <ns:SenderProvidedRequestData Id="?">
+            <ns:MessageID>?</ns:MessageID>
+            <!--Optional:-->
+            <ns:ReferenceMessageID>?</ns:ReferenceMessageID>
+            <!--Optional:-->
+            <ns:TransactionCode>?</ns:TransactionCode>
+            <!--Optional:-->
+            <ns:NodeID>?</ns:NodeID>
+            <!--Optional:-->
+            <ns:EOL>?</ns:EOL>
+            <ns1:MessagePrimaryContent>
+               <!--You may enter ANY elements at this point-->
+            </ns1:MessagePrimaryContent>
+            <!--Optional:-->
+            <ns:PersonalSignature>
+               <!--You may enter ANY elements at this point-->
+            </ns:PersonalSignature>
+            <!--Optional:-->
+            <ns1:AttachmentHeaderList>
+               <!--1 or more repetitions:-->
+               <ns1:AttachmentHeader>
+                  <ns1:contentId>?</ns1:contentId>
+                  <ns1:MimeType>?</ns1:MimeType>
+                  <!--Optional:-->
+                  <ns1:SignaturePKCS7>cid:1482394258869</ns1:SignaturePKCS7>
+               </ns1:AttachmentHeader>
+            </ns1:AttachmentHeaderList>
+            <!--Optional:-->
+            <ns1:RefAttachmentHeaderList>
+               <!--1 or more repetitions:-->
+               <ns1:RefAttachmentHeader>
+                  <ns1:uuid>?</ns1:uuid>
+                  <ns1:Hash>?</ns1:Hash>
+                  <ns1:MimeType>?</ns1:MimeType>
+                  <!--Optional:-->
+                  <ns1:SignaturePKCS7>cid:1136592458945</ns1:SignaturePKCS7>
+               </ns1:RefAttachmentHeader>
+            </ns1:RefAttachmentHeaderList>
+            <!--Optional:-->
+            <ns:BusinessProcessMetadata>
+               <!--You may enter ANY elements at this point-->
+            </ns:BusinessProcessMetadata>
+            <!--Optional:-->
+            <ns:TestMessage/>
+         </ns:SenderProvidedRequestData>
+         <!--Optional:-->
+         <ns1:AttachmentContentList>
+            <!--1 or more repetitions:-->
+            <ns1:AttachmentContent>
+               <ns1:Id>?</ns1:Id>
+               <ns1:Content>cid:413763032430</ns1:Content>
+            </ns1:AttachmentContent>
+         </ns1:AttachmentContentList>
+         <!--Optional:-->
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:SendRequestRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:SendRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="046b2990-7002-4ed9-8e2a-81853b543489" isOneWay="false" action="urn:SendResponse" name="SendResponse" bindingOperationName="SendResponse" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="372e2a45-8ee7-444a-a72d-c7b4347b2f40" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://smev3-d.test.gosuslugi.ru:7500/smev/v1.1/ws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <ns:SendResponseRequest>
+         <ns:SenderProvidedResponseData Id="?">
+            <ns:MessageID>?</ns:MessageID>
+            <ns:To>?</ns:To>
+            <!--You have a CHOICE of the next 4 items at this level-->
+            <ns1:MessagePrimaryContent>
+               <!--You may enter ANY elements at this point-->
+            </ns1:MessagePrimaryContent>
+            <!--Optional:-->
+            <ns:PersonalSignature>
+               <!--You may enter ANY elements at this point-->
+            </ns:PersonalSignature>
+            <!--Optional:-->
+            <ns1:AttachmentHeaderList>
+               <!--1 or more repetitions:-->
+               <ns1:AttachmentHeader>
+                  <ns1:contentId>?</ns1:contentId>
+                  <ns1:MimeType>?</ns1:MimeType>
+                  <!--Optional:-->
+                  <ns1:SignaturePKCS7>cid:633738832161</ns1:SignaturePKCS7>
+               </ns1:AttachmentHeader>
+            </ns1:AttachmentHeaderList>
+            <!--Optional:-->
+            <ns1:RefAttachmentHeaderList>
+               <!--1 or more repetitions:-->
+               <ns1:RefAttachmentHeader>
+                  <ns1:uuid>?</ns1:uuid>
+                  <ns1:Hash>?</ns1:Hash>
+                  <ns1:MimeType>?</ns1:MimeType>
+                  <!--Optional:-->
+                  <ns1:SignaturePKCS7>cid:203487510173</ns1:SignaturePKCS7>
+               </ns1:RefAttachmentHeader>
+            </ns1:RefAttachmentHeaderList>
+            <!--1 or more repetitions:-->
+            <ns:RequestRejected>
+               <ns:RejectionReasonCode>?</ns:RejectionReasonCode>
+               <ns:RejectionReasonDescription>?</ns:RejectionReasonDescription>
+            </ns:RequestRejected>
+            <ns:RequestStatus>
+               <ns:StatusCode>?</ns:StatusCode>
+               <!--Zero or more repetitions:-->
+               <ns:StatusParameter>
+                  <ns:Key>?</ns:Key>
+                  <ns:Value>?</ns:Value>
+               </ns:StatusParameter>
+               <ns:StatusDescription>?</ns:StatusDescription>
+            </ns:RequestStatus>
+            <ns:AsyncProcessingStatus>
+               <ns:OriginalMessageId>?</ns:OriginalMessageId>
+               <ns:StatusCategory>?</ns:StatusCategory>
+               <!--Optional:-->
+               <ns:StatusDetails>?</ns:StatusDetails>
+               <!--Optional:-->
+               <ns:SmevFault>
+                  <!--Optional:-->
+                  <ns1:Code>?</ns1:Code>
+                  <!--Optional:-->
+                  <ns1:Description>?</ns1:Description>
+               </ns:SmevFault>
+            </ns:AsyncProcessingStatus>
+         </ns:SenderProvidedResponseData>
+         <!--Optional:-->
+         <ns1:AttachmentContentList>
+            <!--1 or more repetitions:-->
+            <ns1:AttachmentContent>
+               <ns1:Id>?</ns1:Id>
+               <ns1:Content>cid:860653058998</ns1:Content>
+            </ns1:AttachmentContent>
+         </ns1:AttachmentContentList>
+         <!--Optional:-->
+         <ns:CallerInformationSystemSignature>
+            <!--You may enter ANY elements at this point-->
+         </ns:CallerInformationSystemSignature>
+      </ns:SendResponseRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:SendResponse"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

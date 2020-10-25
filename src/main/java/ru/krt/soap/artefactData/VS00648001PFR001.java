@@ -3,6 +3,7 @@ package ru.krt.soap.artefactData;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerFactory;
 
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
@@ -41,7 +42,7 @@ public class VS00648001PFR001 extends ArtefactData {
             ,qualifiedName = "xmlns"
             ;
     PlainNamespacePrefix[] namespaces;
-    private void  generateWsdl_1_1(String ...prefixExternal){
+    private void wsdl_1_1_requestTemplateDomGenerator(String ...prefixExternal){
         PlainNamespacePrefix soapenv = new PlainNamespacePrefix("soapenv");
         soapenv.setNamespace("http://schemas.xmlsoap.org/soap/envelope/");
         //PlainNamespacePrefix[]
@@ -172,11 +173,14 @@ public class VS00648001PFR001 extends ArtefactData {
 
     private void fillDocument(){
         messageId = new MessageId();
-        generateWsdl_1_1();
+        wsdl_1_1_requestTemplateDomGenerator();
         Element _MessageID
                 = (Element) document.getElementsByTagName(namespaces[0].getPrefix()+delimeter+"MessageID")
-                    .item(0);
-        _MessageID.setTextContent(messageId.generate());
+                    .item(0)
+                ,_SendRequestRequest
+                ,_SenderProvidedRequestData;
+        _MessageID.setTextContent( messageId.generate() );
+        TransformerFactory transformerFactory;
     }
 
     @Override
