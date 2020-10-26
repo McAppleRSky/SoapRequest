@@ -188,8 +188,9 @@ public class VS00648001PFR001 extends ArtefactData {
         Element _MessageID
                 = (Element) documentTemplate.getElementsByTagName(namespaces[0].getPrefix()+delimeter+"MessageID")
                     .item(0)
-                ,_SendRequestRequest
-                ,_SenderProvidedRequestData;
+//                ,_SendRequestRequest
+//                ,_SenderProvidedRequestData
+                ;
         _MessageID.setTextContent( messageId.generate() );
 
         StreamSource stylesheetSource = new StreamSource("xslt.xsl");
@@ -200,7 +201,7 @@ public class VS00648001PFR001 extends ArtefactData {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        //Document sourceXMLDoc = documentBuilder.parse("src/test1/Sample1.xml");
+        /*Document sourceXMLDoc = documentBuilder.parse("src/test1/Sample1.xml");*/
         DOMSource documentSource = new DOMSource(documentTemplate);
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = null;
@@ -217,22 +218,6 @@ public class VS00648001PFR001 extends ArtefactData {
             e.printStackTrace();
         }
         documentRequest = (Document) documentResult.getNode();
-
-        //System.out.println();
-
-/*
-        TransformerFactory transformerFactory = TransformerFactory.newInstance();
-        Transformer transformer;
-        try {
-            transformer = transformerFactory.newTransformer();
-        } catch (TransformerConfigurationException e) {
-            e.printStackTrace();
-        }
-        Transformer source = new DOMSource(document);
-        StreamResult result =  new StreamResult(System.out);
-        transformer.transform(source, result);
-*/
-
     }
 
     @Override
