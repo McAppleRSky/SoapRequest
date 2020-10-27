@@ -1,9 +1,9 @@
-package ru.krt.soap;
+package ru.krt.soap.plain;
 
-public class PlainNamespacePrefix {
+public class NamespacePrefix {
     private String prefix, namespace;
 
-    public PlainNamespacePrefix(String prefix//, String namespace
+    public NamespacePrefix(String prefix//, String namespace
                                             ) {
 //        this.namespace = namespace;
         this.prefix = prefix;

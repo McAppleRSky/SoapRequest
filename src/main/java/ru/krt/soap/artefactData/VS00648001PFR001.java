@@ -9,7 +9,6 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.w3c.dom.DOMImplementation;
@@ -19,21 +18,24 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import ru.krt.soap.MessageId;
-import ru.krt.soap.PlainNamespacePrefix;
+import ru.krt.soap.plain.DocumentTemplatePhase;
+import ru.krt.soap.plain.NamespacePrefix;
 
 import java.io.ByteArrayOutputStream;
 
 public class VS00648001PFR001 extends ArtefactData {
 
-    //private DocumentBuilderFactory documentBuilderFactory;
-    //private DocumentBuilder documentBuilder;
+/*
     private DOMImplementation DOMImpl;
     private Document documentStylesheet
             ,documentTemplate
             ,documentRequest
             ;
+*/
 
     private MessageId messageId;
+
+    DocumentTemplatePhase documentTemplatePhase;
 
     public VS00648001PFR001() {
         namespace_uri = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
@@ -51,15 +53,18 @@ public class VS00648001PFR001 extends ArtefactData {
             ,delimeter = ":"
             ,qualifiedName = "xmlns"
             ;
-    PlainNamespacePrefix[] namespaces;
+
+    private DOMImplementation DOMImpl;
+    NamespacePrefix[] namespaces;
+
 
     private void wsdl_1_1_requestTemplateDomGenerator(String ...prefixExternal){
-        PlainNamespacePrefix soapenv = new PlainNamespacePrefix("soapenv");
+        NamespacePrefix soapenv = new NamespacePrefix("soapenv");
         soapenv.setNamespace("http://schemas.xmlsoap.org/soap/envelope/");
-        //PlainNamespacePrefix[]
-                namespaces = new PlainNamespacePrefix[prefixTip.length];
+        //NamespacePrefix[]
+                namespaces = new NamespacePrefix[prefixTip.length];
         for(int i=0;i<prefixTip.length;i++)
-            namespaces[i]=new PlainNamespacePrefix(prefixTip[i]);
+            namespaces[i]=new NamespacePrefix(prefixTip[i]);
         for(int i=0;i< prefixExternal.length;i++)
             namespaces[i].setPrefix(prefixExternal[i]);
         for(int i=0;i< nsTip.length;i++)
@@ -72,11 +77,17 @@ public class VS00648001PFR001 extends ArtefactData {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        DOMImpl = documentBuilder.getDOMImplementation();
 
-        documentTemplate = DOMImpl.createDocument(soapenv.getNamespace(),
-                soapenv.getPrefix()+delimeter+"Envelope"
-                , null);
+        documentTemplatePhase = new DocumentTemplatePhase();
+
+        DOMImpl =
+        DOMImpl(documentBuilder.getDOMImplementation());
+
+        documentTemplatePhase.setDocumentTemplate(
+                documentTemplatePhase.getDOMImpl().createDocument(soapenv.getNamespace()
+                        ,soapenv.getPrefix()+delimeter+"Envelope"
+                        , null)
+        );
         Element _Envelope = documentTemplate.getDocumentElement()
                 ,_Header = documentTemplate.createElement(soapenv.getPrefix()+delimeter+"Header")
                 ,_Body = documentTemplate.createElement(soapenv.getPrefix()+delimeter+"Body");
