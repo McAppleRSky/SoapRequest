@@ -11,31 +11,22 @@ import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamSource;
 
-import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import ru.krt.soap.MessageId;
-import ru.krt.soap.plain.DocumentTemplatePhase;
+import ru.krt.soap.DocumentTemplatePhaseHolder;
 import ru.krt.soap.plain.NamespacePrefix;
 
 import java.io.ByteArrayOutputStream;
 
 public class VS00648001PFR001 extends ArtefactData {
 
-/*
-    private DOMImplementation DOMImpl;
-    private Document documentStylesheet
-            ,documentTemplate
-            ,documentRequest
-            ;
-*/
-
     private MessageId messageId;
 
-    DocumentTemplatePhase documentTemplatePhase;
+    DocumentTemplatePhaseHolder phaseHolder;
 
     public VS00648001PFR001() {
         namespace_uri = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
@@ -54,7 +45,7 @@ public class VS00648001PFR001 extends ArtefactData {
             ,qualifiedName = "xmlns"
             ;
 
-    private DOMImplementation DOMImpl;
+    //private DOMImplementation DOMImpl;
     NamespacePrefix[] namespaces;
 
 
@@ -78,38 +69,30 @@ public class VS00648001PFR001 extends ArtefactData {
             e.printStackTrace();
         }
 
-        documentTemplatePhase = new DocumentTemplatePhase();
-
-        DOMImpl =
-        DOMImpl(documentBuilder.getDOMImplementation());
-
-        documentTemplatePhase.setDocumentTemplate(
-                documentTemplatePhase.getDOMImpl().createDocument(soapenv.getNamespace()
-                        ,soapenv.getPrefix()+delimeter+"Envelope"
-                        , null)
-        );
-        Element _Envelope = documentTemplate.getDocumentElement()
-                ,_Header = documentTemplate.createElement(soapenv.getPrefix()+delimeter+"Header")
-                ,_Body = documentTemplate.createElement(soapenv.getPrefix()+delimeter+"Body");
+        phaseHolder = new DocumentTemplatePhaseHolder();
+        phaseHolder.createDocumentTemplateWithRootPrefix(soapenv.getNamespace(),soapenv.getPrefix()+delimeter+"Envelope", null);
+        Element _Envelope = phaseHolder.getDocumentTemplate().getDocumentElement()
+                ,_Header = phaseHolder.getDocumentTemplate().createElement(soapenv.getPrefix()+delimeter+"Header")
+                ,_Body = phaseHolder.getDocumentTemplate().createElement(soapenv.getPrefix()+delimeter+"Body");
         _Envelope.setAttribute(qualifiedName+delimeter+namespaces[0].getPrefix(), namespaces[0].getNamespace());
         _Envelope.setAttribute(qualifiedName+delimeter+namespaces[1].getPrefix(), namespaces[1].getNamespace());
         _Envelope.appendChild(_Header);
         _Envelope.appendChild(_Body);
         prefix = namespaces[0].getPrefix();
         Element _SendRequestRequest
-                    = documentTemplate.createElement(prefix+delimeter+"SendRequestRequest")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SendRequestRequest")
                 ,_SenderProvidedRequestData
-                    = documentTemplate.createElement(prefix+delimeter+"SendRequestRequestData")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SendRequestRequestData")
                 ,_MessageID
-                    = documentTemplate.createElement(prefix+delimeter+"MessageID")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"MessageID")
                 ,_ReferenceMessageID
-                    = documentTemplate.createElement(prefix+delimeter+"ReferenceMessageID")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"ReferenceMessageID")
                 ,_TransactionCode
-                    = documentTemplate.createElement(prefix+delimeter+"TransactionCode")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"TransactionCode")
                 ,_NodeID
-                    = documentTemplate.createElement(prefix+delimeter+"NodeID")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"NodeID")
                 ,_EOL
-                    = documentTemplate.createElement(prefix+delimeter+"EOL")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"EOL")
                 ;
         _Body.appendChild(_SendRequestRequest)
             .appendChild(_SenderProvidedRequestData)
@@ -122,25 +105,25 @@ public class VS00648001PFR001 extends ArtefactData {
         _SenderProvidedRequestData.appendChild(_EOL);
         prefix=namespaces[1].getPrefix();
         Element _MessagePrimaryContent
-                = documentTemplate.createElement(prefix+delimeter+"MessagePrimaryContent")
+                = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"MessagePrimaryContent")
                 ;
         _SenderProvidedRequestData.appendChild(_MessagePrimaryContent);
         prefix=namespaces[0].getPrefix();
         Element _PersonalSignature
-                = documentTemplate.createElement(prefix+delimeter+"PersonalSignature")
+                = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"PersonalSignature")
                 ;
         _SenderProvidedRequestData.appendChild(_PersonalSignature);
         prefix=namespaces[1].getPrefix();
         Element _AttachmentHeaderList
-                    = documentTemplate.createElement(prefix+delimeter+"AttachmentHeaderList")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentHeaderList")
                 ,_AttachmentHeader
-                    = documentTemplate.createElement(prefix+delimeter+"AttachmentHeader")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentHeader")
                 ,_contentId
-                    = documentTemplate.createElement(prefix+delimeter+"contentId")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"contentId")
                 ,_MimeType
-                    = documentTemplate.createElement(prefix+delimeter+"MimeType")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"MimeType")
                 ,_SignaturePKCS7
-                    = documentTemplate.createElement(prefix+delimeter+"SignaturePKCS7");
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SignaturePKCS7");
         _SenderProvidedRequestData.appendChild(_AttachmentHeaderList)
                 .appendChild(_AttachmentHeader)
                 .appendChild(_contentId);
@@ -148,17 +131,17 @@ public class VS00648001PFR001 extends ArtefactData {
         _AttachmentHeader.appendChild(_SignaturePKCS7);
 
         Element _RefAttachmentHeaderList
-                    = documentTemplate.createElement(prefix+delimeter+"RefAttachmentHeaderList")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeaderList")
                 ,_RefAttachmentHeader
-                    = documentTemplate.createElement(prefix+delimeter+"RefAttachmentHeader")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
                 ,_uuid
-                    = documentTemplate.createElement(prefix+delimeter+"RefAttachmentHeader")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
                 ,_Hash
-                    = documentTemplate.createElement(prefix+delimeter+"RefAttachmentHeader")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
                 ,_MimeType_ref
-                    = documentTemplate.createElement(prefix+delimeter+"RefAttachmentHeader")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
                 ,_SignaturePKCS7_ref
-                    = documentTemplate.createElement(prefix+delimeter+"SignaturePKCS7")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SignaturePKCS7")
                 ;
         _SenderProvidedRequestData.appendChild(_RefAttachmentHeaderList)
                 .appendChild(_RefAttachmentHeader)
@@ -168,20 +151,20 @@ public class VS00648001PFR001 extends ArtefactData {
         _RefAttachmentHeader.appendChild(_SignaturePKCS7_ref);
         prefix = namespaces[0].getPrefix();
         Element _BusinessProcessMetadata
-                    = documentTemplate.createElement(prefix+delimeter+"BusinessProcessMetadata")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"BusinessProcessMetadata")
                 ,_TestMessage
-                    = documentTemplate.createElement(prefix+delimeter+"TestMessage");
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"TestMessage");
         _SenderProvidedRequestData.appendChild(_BusinessProcessMetadata);
         _SenderProvidedRequestData.appendChild(_TestMessage);
         prefix = namespaces[1].getPrefix();
         Element _AttachmentContentList
-                    = documentTemplate.createElement(prefix+delimeter+"AttachmentContentList")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentContentList")
                 ,_AttachmentContent
-                    = documentTemplate.createElement(prefix+delimeter+"AttachmentContent")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentContent")
                 ,_Id
-                    = documentTemplate.createElement(prefix+delimeter+"Id")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"Id")
                 ,_Content
-                    = documentTemplate.createElement(prefix+delimeter+"Content")
+                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"Content")
                 ;
         _SendRequestRequest.appendChild(_AttachmentContentList)
                 .appendChild(_AttachmentContent)
@@ -189,7 +172,7 @@ public class VS00648001PFR001 extends ArtefactData {
         _AttachmentContent.appendChild(_Content);
         prefix = namespaces[0].getPrefix();
         Element _CallerInformationSystemSignature
-                = documentTemplate.createElement(prefix+delimeter+"CallerInformationSystemSignature");
+                = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"CallerInformationSystemSignature");
         _SendRequestRequest.appendChild(_CallerInformationSystemSignature);
     }
 
@@ -197,10 +180,8 @@ public class VS00648001PFR001 extends ArtefactData {
         messageId = new MessageId();
         wsdl_1_1_requestTemplateDomGenerator();
         Element _MessageID
-                = (Element) documentTemplate.getElementsByTagName(namespaces[0].getPrefix()+delimeter+"MessageID")
+                = (Element) phaseHolder.getDocumentTemplate().getElementsByTagName(namespaces[0].getPrefix()+delimeter+"MessageID")
                     .item(0)
-//                ,_SendRequestRequest
-//                ,_SenderProvidedRequestData
                 ;
         _MessageID.setTextContent( messageId.generate() );
 
@@ -213,7 +194,7 @@ public class VS00648001PFR001 extends ArtefactData {
             e.printStackTrace();
         }
         /*Document sourceXMLDoc = documentBuilder.parse("src/test1/Sample1.xml");*/
-        DOMSource documentSource = new DOMSource(documentTemplate);
+        DOMSource documentSource = new DOMSource(phaseHolder.getDocumentTemplate());
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = null;
         try {
@@ -228,20 +209,20 @@ public class VS00648001PFR001 extends ArtefactData {
         } catch (TransformerException e) {
             e.printStackTrace();
         }
-        documentRequest = (Document) documentResult.getNode();
+        phaseHolder.setDocumentRequest((Document) documentResult.getNode());
     }
 
     @Override
     public ByteArrayOutputStream returnRequest(//int... operands
                                         ) {
         fillDocument();
-        DOMImplementationLS domSaver = (DOMImplementationLS) DOMImpl;
+        DOMImplementationLS domSaver = (DOMImplementationLS) phaseHolder.getDOMImpl();
 
         LSSerializer serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         load_save_outer.setByteStream(byteArrayOutputStream);
-        serializer.write(documentRequest, load_save_outer);
+        serializer.write(phaseHolder.getDocumentRequest(), load_save_outer);
         //serializer.write(documentTemplate, load_save_outer);
 
         System.out.println();
