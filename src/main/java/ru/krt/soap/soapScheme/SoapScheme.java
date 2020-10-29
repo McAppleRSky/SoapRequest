@@ -1,8 +1,7 @@
 package ru.krt.soap.soapScheme;
 
-import org.w3c.dom.Document;
+import ru.krt.soap.plainTypes.DocumentDomimpl;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public abstract class SoapScheme {
@@ -25,6 +24,6 @@ public abstract class SoapScheme {
         return soapSchemeMnemonic;
     }
 
-    public abstract Document returnRequestTemplate();
+    public abstract DocumentDomimpl returnRequestTemplate();
 
 }

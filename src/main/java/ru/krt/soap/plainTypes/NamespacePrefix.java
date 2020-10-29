@@ -1,4 +1,4 @@
-package ru.krt.soap.plain;
+package ru.krt.soap.plainTypes;
 
 public class NamespacePrefix {
     private String prefix, namespace;

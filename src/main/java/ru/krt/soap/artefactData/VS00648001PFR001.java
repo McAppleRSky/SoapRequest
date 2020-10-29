@@ -18,7 +18,9 @@ import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import ru.krt.soap.MessageId;
 import ru.krt.soap.DocumentTemplatePhaseHolder;
-import ru.krt.soap.plain.NamespacePrefix;
+import ru.krt.soap.plainTypes.DocumentDomimpl;
+import ru.krt.soap.plainTypes.NamespacePrefix;
+import ru.krt.soap.soapScheme.Wsdl1Testenv;
 
 import java.io.ByteArrayOutputStream;
 
@@ -26,7 +28,7 @@ public class VS00648001PFR001 extends ArtefactData {
 
     private MessageId messageId;
 
-    DocumentTemplatePhaseHolder phaseHolder;
+    //DocumentTemplatePhaseHolder phaseHolder;
 
     public VS00648001PFR001() {
         namespace_uri = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
@@ -45,143 +47,16 @@ public class VS00648001PFR001 extends ArtefactData {
             ,qualifiedName = "xmlns"
             ;
 
-    //private DOMImplementation DOMImpl;
     NamespacePrefix[] namespaces;
-
-
-    private void wsdl_1_1_requestTemplateDomGenerator(String ...prefixExternal){
-        NamespacePrefix soapenv = new NamespacePrefix("soapenv");
-        soapenv.setNamespace("http://schemas.xmlsoap.org/soap/envelope/");
-        //NamespacePrefix[]
-                namespaces = new NamespacePrefix[prefixTip.length];
-        for(int i=0;i<prefixTip.length;i++)
-            namespaces[i]=new NamespacePrefix(prefixTip[i]);
-        for(int i=0;i< prefixExternal.length;i++)
-            namespaces[i].setPrefix(prefixExternal[i]);
-        for(int i=0;i< nsTip.length;i++)
-            namespaces[i].setNamespace(nsTip[i]);
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setNamespaceAware(true);
-        DocumentBuilder documentBuilder = null;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        }
-
-        phaseHolder = new DocumentTemplatePhaseHolder();
-        phaseHolder.createDocumentTemplateWithRootPrefix(soapenv.getNamespace(),soapenv.getPrefix()+delimeter+"Envelope", null);
-        Element _Envelope = phaseHolder.getDocumentTemplate().getDocumentElement()
-                ,_Header = phaseHolder.getDocumentTemplate().createElement(soapenv.getPrefix()+delimeter+"Header")
-                ,_Body = phaseHolder.getDocumentTemplate().createElement(soapenv.getPrefix()+delimeter+"Body");
-        _Envelope.setAttribute(qualifiedName+delimeter+namespaces[0].getPrefix(), namespaces[0].getNamespace());
-        _Envelope.setAttribute(qualifiedName+delimeter+namespaces[1].getPrefix(), namespaces[1].getNamespace());
-        _Envelope.appendChild(_Header);
-        _Envelope.appendChild(_Body);
-        prefix = namespaces[0].getPrefix();
-        Element _SendRequestRequest
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SendRequestRequest")
-                ,_SenderProvidedRequestData
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SendRequestRequestData")
-                ,_MessageID
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"MessageID")
-                ,_ReferenceMessageID
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"ReferenceMessageID")
-                ,_TransactionCode
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"TransactionCode")
-                ,_NodeID
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"NodeID")
-                ,_EOL
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"EOL")
-                ;
-        _Body.appendChild(_SendRequestRequest)
-            .appendChild(_SenderProvidedRequestData)
-            .appendChild(_MessageID);
-        _SenderProvidedRequestData.setAttribute("Id", empty);
-        _SenderProvidedRequestData.appendChild(_ReferenceMessageID);
-        _SenderProvidedRequestData.appendChild(_TransactionCode);
-        _SenderProvidedRequestData.appendChild(_NodeID);
-        _SenderProvidedRequestData.appendChild(_EOL);
-        _SenderProvidedRequestData.appendChild(_EOL);
-        prefix=namespaces[1].getPrefix();
-        Element _MessagePrimaryContent
-                = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"MessagePrimaryContent")
-                ;
-        _SenderProvidedRequestData.appendChild(_MessagePrimaryContent);
-        prefix=namespaces[0].getPrefix();
-        Element _PersonalSignature
-                = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"PersonalSignature")
-                ;
-        _SenderProvidedRequestData.appendChild(_PersonalSignature);
-        prefix=namespaces[1].getPrefix();
-        Element _AttachmentHeaderList
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentHeaderList")
-                ,_AttachmentHeader
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentHeader")
-                ,_contentId
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"contentId")
-                ,_MimeType
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"MimeType")
-                ,_SignaturePKCS7
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SignaturePKCS7");
-        _SenderProvidedRequestData.appendChild(_AttachmentHeaderList)
-                .appendChild(_AttachmentHeader)
-                .appendChild(_contentId);
-        _AttachmentHeader.appendChild(_MimeType);
-        _AttachmentHeader.appendChild(_SignaturePKCS7);
-
-        Element _RefAttachmentHeaderList
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeaderList")
-                ,_RefAttachmentHeader
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
-                ,_uuid
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
-                ,_Hash
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
-                ,_MimeType_ref
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"RefAttachmentHeader")
-                ,_SignaturePKCS7_ref
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"SignaturePKCS7")
-                ;
-        _SenderProvidedRequestData.appendChild(_RefAttachmentHeaderList)
-                .appendChild(_RefAttachmentHeader)
-                .appendChild(_uuid);
-        _RefAttachmentHeader.appendChild(_Hash);
-        _RefAttachmentHeader.appendChild(_MimeType_ref);
-        _RefAttachmentHeader.appendChild(_SignaturePKCS7_ref);
-        prefix = namespaces[0].getPrefix();
-        Element _BusinessProcessMetadata
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"BusinessProcessMetadata")
-                ,_TestMessage
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"TestMessage");
-        _SenderProvidedRequestData.appendChild(_BusinessProcessMetadata);
-        _SenderProvidedRequestData.appendChild(_TestMessage);
-        prefix = namespaces[1].getPrefix();
-        Element _AttachmentContentList
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentContentList")
-                ,_AttachmentContent
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"AttachmentContent")
-                ,_Id
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"Id")
-                ,_Content
-                    = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"Content")
-                ;
-        _SendRequestRequest.appendChild(_AttachmentContentList)
-                .appendChild(_AttachmentContent)
-                .appendChild(_Id);
-        _AttachmentContent.appendChild(_Content);
-        prefix = namespaces[0].getPrefix();
-        Element _CallerInformationSystemSignature
-                = phaseHolder.getDocumentTemplate().createElement(prefix+delimeter+"CallerInformationSystemSignature");
-        _SendRequestRequest.appendChild(_CallerInformationSystemSignature);
-    }
 
     private void fillDocument(){
         messageId = new MessageId();
-        wsdl_1_1_requestTemplateDomGenerator();
+        Wsdl1Testenv wsdl1testenv = new Wsdl1Testenv();
+        DocumentDomimpl plainDocTemplate = wsdl1testenv.returnRequestTemplate();
         Element _MessageID
-                = (Element) phaseHolder.getDocumentTemplate().getElementsByTagName(namespaces[0].getPrefix()+delimeter+"MessageID")
-                    .item(0)
+                = (Element) plainDocTemplate.getDocumentTemplate()
+                    .getElementsByTagName(namespaces[0].getPrefix()+delimeter+"MessageID")
+                .item(0)
                 ;
         _MessageID.setTextContent( messageId.generate() );
 
@@ -193,8 +68,12 @@ public class VS00648001PFR001 extends ArtefactData {
         } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
+        documentTransformation( new DOMSource( plainDocTemplate.getDocumentTemplate() );
+    }
+
+    private void documentTransformation(DOMSource documentSource) {
         /*Document sourceXMLDoc = documentBuilder.parse("src/test1/Sample1.xml");*/
-        DOMSource documentSource = new DOMSource(phaseHolder.getDocumentTemplate());
+
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = null;
         try {
@@ -209,7 +88,7 @@ public class VS00648001PFR001 extends ArtefactData {
         } catch (TransformerException e) {
             e.printStackTrace();
         }
-        phaseHolder.setDocumentRequest((Document) documentResult.getNode());
+        Document documentRequest = (Document) documentResult.getNode();
     }
 
     @Override
