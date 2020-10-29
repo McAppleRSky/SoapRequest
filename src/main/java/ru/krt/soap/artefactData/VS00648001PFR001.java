@@ -71,8 +71,11 @@ public class VS00648001PFR001 extends ArtefactData {
         documentTransformation( new DOMSource( plainDocTemplate.getDocumentTemplate() );
     }
 
+/*
     private void documentTransformation(DOMSource documentSource) {
-        /*Document sourceXMLDoc = documentBuilder.parse("src/test1/Sample1.xml");*/
+        */
+/*Document sourceXMLDoc = documentBuilder.parse("src/test1/Sample1.xml");*//*
+
 
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = null;
@@ -90,6 +93,7 @@ public class VS00648001PFR001 extends ArtefactData {
         }
         Document documentRequest = (Document) documentResult.getNode();
     }
+*/
 
     @Override
     public ByteArrayOutputStream returnRequest(//int... operands

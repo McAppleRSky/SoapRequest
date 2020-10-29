@@ -16,12 +16,10 @@ import java.util.logging.Logger;
 public class RequestGenerator {
     private static final java.util.logging.Logger logger;
     static {
-        System.setProperty("java.util.logging.SimpleFormatter.format",
-                "[%1$tF %1$tT] [%4$-7s] %5$s %n");
+        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
         logger = Logger.getLogger(RequestGenerator.class.getName());
         logger.setLevel(Level.WARNING);
     }
-
     protected String prefixPackage = "ru.krt.soap.artefactData";
     protected Class<?> artefactClass = null;
 //    protected Object artefactInstance = null;
@@ -58,7 +56,6 @@ public class RequestGenerator {
                                                         .invoke(forReflectArtefact.getInstance(), param),
                                                     forReflectArtefact );
             }
-
             //param = new Object[]{}; // дубль
             listNamespaces = (ArrayList<String>)
                     artefactClass
