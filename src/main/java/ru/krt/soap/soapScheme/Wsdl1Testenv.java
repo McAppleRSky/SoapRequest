@@ -4,6 +4,7 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 //import ru.krt.soap.DocumentTemplatePhaseHolder;
+import ru.krt.packageInvoker.PackageEnumerator;
 import ru.krt.soap.plainTypes.DocumentDomimpl;
 import ru.krt.soap.plainTypes.NamespacePrefix;
 
@@ -14,9 +15,13 @@ import javax.xml.parsers.ParserConfigurationException;
 public class Wsdl1Testenv extends SoapScheme {
 
     public Wsdl1Testenv() {
-        soapScheme_uri = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl";
-        soapSchemeMnemonic = "testenv-1.1";
-        addSoapScheme(soapSchemeMnemonic, soapScheme_uri);
+        objectId = new String[]{
+                //soapScheme_uri
+                "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl",
+                //soapSchemeMnemonic
+                "testenv-1.1"
+        };
+        addObject(objectId[0]);
     }
 
     private DocumentBuilderFactory documentBuilderFactory;
@@ -146,9 +151,8 @@ public class Wsdl1Testenv extends SoapScheme {
         _SendRequestRequest.appendChild(_CallerInformationSystemSignature);
     }
 
-
     @Override
-    public DocumentDomimpl returnRequestTemplate() {
+    public DocumentDomimpl mainMethod() {
         DomGenerator();
         return new DocumentDomimpl(DOMImpl, documentTemplate);
     }

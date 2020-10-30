@@ -2,6 +2,7 @@ package ru.krt.soap;
 
 import ru.krt.soap.artefactData.ArtefactData;
 import org.reflections.Reflections;
+import ru.krt.soap.plainTypes.ForReflectArtefact;
 
 import java.io.ByteArrayOutputStream;
 import java.lang.reflect.InvocationTargetException;

@@ -1,12 +1,12 @@
-package ru.krt.soap;
+package ru.krt.packageInvoker;
 
 import java.lang.reflect.Method;
 
-public class ForReflectArtefact {
+public class PlainObject {
     private Object instance;
     private Method method;
 
-    public ForReflectArtefact(Object instance) {
+    public PlainObject(Object instance) {
         this.instance = instance;
     }
 

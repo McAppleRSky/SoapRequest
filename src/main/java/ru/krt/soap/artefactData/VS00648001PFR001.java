@@ -16,10 +16,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
+import ru.krt.packageInvoker.PackageEnumerator;
+import ru.krt.packageInvoker.PackageInvoker;
 import ru.krt.soap.MessageId;
-import ru.krt.soap.DocumentTemplatePhaseHolder;
 import ru.krt.soap.plainTypes.DocumentDomimpl;
 import ru.krt.soap.plainTypes.NamespacePrefix;
+import ru.krt.soap.soapScheme.SoapScheme;
 import ru.krt.soap.soapScheme.Wsdl1Testenv;
 
 import java.io.ByteArrayOutputStream;
@@ -49,9 +51,11 @@ public class VS00648001PFR001 extends ArtefactData {
 
     NamespacePrefix[] namespaces;
 
+/*
     private void fillDocument(){
         messageId = new MessageId();
-        Wsdl1Testenv wsdl1testenv = new Wsdl1Testenv();
+        //Wsdl1Testenv wsdl1testenv = new Wsdl1Testenv();
+        PackageInvoker soapScheme = new PackageInvoker("ru.krt.soap.soapScheme", SoapScheme.class)
         DocumentDomimpl plainDocTemplate = wsdl1testenv.returnRequestTemplate();
         Element _MessageID
                 = (Element) plainDocTemplate.getDocumentTemplate()
@@ -70,6 +74,7 @@ public class VS00648001PFR001 extends ArtefactData {
         }
         documentTransformation( new DOMSource( plainDocTemplate.getDocumentTemplate() );
     }
+*/
 
 /*
     private void documentTransformation(DOMSource documentSource) {
@@ -98,14 +103,16 @@ public class VS00648001PFR001 extends ArtefactData {
     @Override
     public ByteArrayOutputStream returnRequest(//int... operands
                                         ) {
-        fillDocument();
-        DOMImplementationLS domSaver = (DOMImplementationLS) phaseHolder.getDOMImpl();
+        //fillDocument();
+                DocumentDomimpl documentDomimpl = null;
+        DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
 
         LSSerializer serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         load_save_outer.setByteStream(byteArrayOutputStream);
-        serializer.write(phaseHolder.getDocumentRequest(), load_save_outer);
+        serializer.write(documentDomimpl.getDocumentTemplate(), //.getDocumentRequest(),
+                load_save_outer);
         //serializer.write(documentTemplate, load_save_outer);
 
         System.out.println();
