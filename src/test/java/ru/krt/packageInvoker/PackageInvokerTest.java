@@ -10,7 +10,7 @@ public class PackageInvokerTest {
     @Test
     public void testList (){
         PackageInvoker packageInvoker = new PackageInvoker("ru.krt.soap.soapScheme", SoapScheme.class);
-        assertEquals(1,packageInvoker.listObject.size());
+        assertEquals(2, packageInvoker.listObject.size());
     }
 
 }

@@ -3,8 +3,6 @@ package ru.krt.soap.soapScheme;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-//import ru.krt.soap.DocumentTemplatePhaseHolder;
-import ru.krt.packageInvoker.PackageEnumerator;
 import ru.krt.soap.plainTypes.DocumentDomimpl;
 import ru.krt.soap.plainTypes.NamespacePrefix;
 
@@ -16,10 +14,8 @@ public class Wsdl1Testenv extends SoapScheme {
 
     public Wsdl1Testenv() {
         objectId = new String[]{
-                //soapScheme_uri
-                "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl",
-                //soapSchemeMnemonic
-                "testenv-1.1"
+                "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl"
+                ,"testenv-1.1"
         };
         addObject(objectId[0]);
     }
@@ -36,7 +32,7 @@ public class Wsdl1Testenv extends SoapScheme {
             "ns", "ns1", "ns2", "ns3", "ns4", "ns5", "ns6", "ns7", "ns8", "ns9"
     }, nsTip = new String[]{
             "urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1"
-            , "urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1"
+            ,"urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1"
     };
 
     private String prefix, empty = "", delimeter = ":", qualifiedName = "xmlns";
@@ -46,7 +42,6 @@ public class Wsdl1Testenv extends SoapScheme {
     private void DomGenerator(String... prefixExternal) {
         NamespacePrefix soapenv = new NamespacePrefix("soapenv");
         soapenv.setNamespace("http://schemas.xmlsoap.org/soap/envelope/");
-        //NamespacePrefix[]
         namespaces = new NamespacePrefix[prefixTip.length];
         for (int i = 0; i < prefixTip.length; i++)
             namespaces[i] = new NamespacePrefix(prefixTip[i]);
