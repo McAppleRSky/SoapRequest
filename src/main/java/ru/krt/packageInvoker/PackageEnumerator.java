@@ -1,5 +1,7 @@
 package ru.krt.packageInvoker;
 
+import ru.krt.packageInvoker.back.IPackageEnumerator;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

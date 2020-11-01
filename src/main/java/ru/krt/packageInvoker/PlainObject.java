@@ -21,4 +21,5 @@ public class PlainObject {
     public Method getMethod() {
         return method;
     }
+
 }

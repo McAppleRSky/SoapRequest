@@ -1,5 +1,9 @@
 package ru.krt.soap;
 
+import ru.krt.packageInvoker.PackageInvoker;
+import ru.krt.packageInvoker.PlainObject;
+import ru.krt.soap.soapScheme.SoapScheme;
+
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -42,19 +46,34 @@ public class Cli{
     }
 
     public static void main(String[] args) {
+/*
         RequestGenerator requestGenerator = null;
         try {
             requestGenerator = new RequestGenerator();
         } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
             e.printStackTrace();
         }
+*/
         if (args.length==0) {
-            args = new String[1];
-            args[0] = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
+            args = new String[2];
+            args[0] = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl";
+            args[1] = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
         }
+        PackageInvoker
+            soapScheme
+                = new PackageInvoker("ru.krt.soap.soapScheme", SoapScheme.class);
+        soapScheme.invokeMain(args[0]);
+        //        PlainObject wsdlRequestTemplate
+//            = (PlainObject)
+        (ByteArrayOutputStream) forReflectArtefact.getMethod().invoke(forReflectArtefact.getInstance(), param);
+
+        soapScheme.listObject.get("")
+
+                packageInvoker
+/*
         requestGenerator.setArtefactData(args[0]);
         toFile("request.xml", requestGenerator.generate());
+*/
     }
-
 
 }

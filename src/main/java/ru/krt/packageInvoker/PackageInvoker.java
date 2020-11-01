@@ -10,13 +10,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class PackageInvoker {
-//    private String prefixPackage;
     protected String mainMethod = "mainMethod"
             ,getObjectId = "getObjectId"
             ,getObjects = "getObjects"
-//            ,prefixPackage
             ;
-//    private Class clazz;
     protected Class<?> clazzClass = null;
     protected PlainObject plainObject = null;
     protected HashMap<String, PlainObject> listObject = new HashMap<>();
@@ -27,7 +24,6 @@ public class PackageInvoker {
              = new Object[]{};
 
     public PackageInvoker(String prefixPackage, Class classType) {
-        //this.prefixPackage = prefixPackage;
         Set < Class < ? extends SoapScheme> >
                 classes = new Reflections(prefixPackage).getSubTypesOf(classType);
         Iterator < Class <? extends SoapScheme> >
@@ -70,4 +66,21 @@ public class PackageInvoker {
             }
         }
     }
+
+    public Object invokeMain(String objectId) {
+        PlainObject plainObject = null;
+        Object result = null;
+        if ( !listObjectId.contains(objectId) ) throw new NullPointerException("Absent " + objectId);
+        else
+            try {
+                result = plainObject.getMethod().invoke(
+                        plainObject.getInstance(), param
+                );
+            } catch (IllegalAccessException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        if (result==null) throw new NullPointerException("invokeMain return null for " + objectId + " " + this.getClass() );
+        return result;
+    }
+
 }

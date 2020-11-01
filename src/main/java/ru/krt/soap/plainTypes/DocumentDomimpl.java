@@ -27,4 +27,5 @@ public class DocumentDomimpl {
     public void setDocumentTemplate(Document documentTemplate) {
         this.documentTemplate = documentTemplate;
     }
+
 }

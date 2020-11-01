@@ -1,10 +1,18 @@
 package ru.krt.soap.artefactData;
 
+import ru.krt.packageInvoker.PackageEnumerator;
+
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class ArtefactData {
+public abstract class ArtefactData extends PackageEnumerator {
+
+    public ArtefactData() {
+        packageObjects = new ArrayList<>();
+    }
+
+/*
     protected String namespace_uri, id;
 
 //    protected static HashMap<String, String> artefactsData = new HashMap<>();
@@ -23,5 +31,6 @@ public abstract class ArtefactData {
     }
 
     public abstract ByteArrayOutputStream returnRequest();
+*/
 
 }

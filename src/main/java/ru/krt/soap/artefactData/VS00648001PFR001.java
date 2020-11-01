@@ -28,15 +28,54 @@ import java.io.ByteArrayOutputStream;
 
 public class VS00648001PFR001 extends ArtefactData {
 
-    private MessageId messageId;
-
-    //DocumentTemplatePhaseHolder phaseHolder;
-
     public VS00648001PFR001() {
-        namespace_uri = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
-        id = "VS00648001PFR001";
-        addArtefactData(id, namespace_uri);
+        objectId = new String[]{
+                "http://kvs.pfr.com/snils-by-additionalData/1.0.1"
+                ,"VS00648001PFR001"
+        };
+        addObject(objectId[0]);
     }
+
+    @Override
+    public ByteArrayOutputStream mainMethod() {
+        //fillDocument();
+        DocumentDomimpl documentDomimpl = null;
+        DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
+        LSSerializer serializer = domSaver.createLSSerializer();
+        LSOutput load_save_outer = domSaver.createLSOutput();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        load_save_outer.setByteStream(byteArrayOutputStream);
+        serializer.write(documentDomimpl.getDocumentTemplate(), //.getDocumentRequest(),
+                load_save_outer);
+        //serializer.write(documentTemplate, load_save_outer);
+        System.out.println();
+        return byteArrayOutputStream;
+    }
+
+/*
+//    private MessageId messageId;
+//    public VS00648001PFR001() {
+//        namespace_uri = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
+//        id = "VS00648001PFR001";
+//        addArtefactData(id, namespace_uri);
+//    }
+//    @Override
+//    public ByteArrayOutputStream returnRequest(//int... operands
+//                                        ) {
+//        //fillDocument();
+//                DocumentDomimpl documentDomimpl = null;
+//        DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
+//
+//        LSSerializer serializer = domSaver.createLSSerializer();
+//        LSOutput load_save_outer = domSaver.createLSOutput();
+//        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//        load_save_outer.setByteStream(byteArrayOutputStream);
+//        serializer.write(documentDomimpl.getDocumentTemplate(), //.getDocumentRequest(),
+//                load_save_outer);
+//        //serializer.write(documentTemplate, load_save_outer);
+//
+//        System.out.println();
+//        return byteArrayOutputStream;}
 
     private final String[] prefixTip = new String[]{"ns","ns1","ns2","ns3","ns4","ns5","ns6","ns7","ns8","ns9"}
         ,nsTip = new String[]{
@@ -51,6 +90,7 @@ public class VS00648001PFR001 extends ArtefactData {
 
     NamespacePrefix[] namespaces;
 
+*/
 /*
     private void fillDocument(){
         messageId = new MessageId();
@@ -74,14 +114,12 @@ public class VS00648001PFR001 extends ArtefactData {
         }
         documentTransformation( new DOMSource( plainDocTemplate.getDocumentTemplate() );
     }
-*/
-
-/*
+*//*
     private void documentTransformation(DOMSource documentSource) {
         */
 /*Document sourceXMLDoc = documentBuilder.parse("src/test1/Sample1.xml");*//*
-
-
+*/
+/*
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = null;
         try {
@@ -96,26 +134,5 @@ public class VS00648001PFR001 extends ArtefactData {
         } catch (TransformerException e) {
             e.printStackTrace();
         }
-        Document documentRequest = (Document) documentResult.getNode();
-    }
-*/
-
-    @Override
-    public ByteArrayOutputStream returnRequest(//int... operands
-                                        ) {
-        //fillDocument();
-                DocumentDomimpl documentDomimpl = null;
-        DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
-
-        LSSerializer serializer = domSaver.createLSSerializer();
-        LSOutput load_save_outer = domSaver.createLSOutput();
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        load_save_outer.setByteStream(byteArrayOutputStream);
-        serializer.write(documentDomimpl.getDocumentTemplate(), //.getDocumentRequest(),
-                load_save_outer);
-        //serializer.write(documentTemplate, load_save_outer);
-
-        System.out.println();
-        return byteArrayOutputStream;
-    }
+        Document documentRequest = (Document) documentResult.getNode();}*/
 }
