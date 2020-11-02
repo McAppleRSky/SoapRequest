@@ -4,20 +4,20 @@ import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 
 public class DocumentDomimpl {
-    private DOMImplementation DOMImpl;
+    private DOMImplementation domImpl;
     private Document documentTemplate;
 
-    public DocumentDomimpl(DOMImplementation DOMImpl, Document documentTemplate) {
-        this.DOMImpl = DOMImpl;
+    public DocumentDomimpl(DOMImplementation domImpl, Document documentTemplate) {
+        this.domImpl = domImpl;
         this.documentTemplate = documentTemplate;
     }
 
     public DOMImplementation getDOMImpl() {
-        return DOMImpl;
+        return domImpl;
     }
 
-    public void setDOMImpl(DOMImplementation DOMImpl) {
-        this.DOMImpl = DOMImpl;
+    public void setDOMImpl(DOMImplementation domImpl) {
+        this.domImpl = domImpl;
     }
 
     public Document getDocumentTemplate() {

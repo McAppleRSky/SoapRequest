@@ -1,4 +1,4 @@
-package ru.krt.packageInvoker;
+package ru.krt.packageInvoker.back;
 
 import java.lang.reflect.Method;
 

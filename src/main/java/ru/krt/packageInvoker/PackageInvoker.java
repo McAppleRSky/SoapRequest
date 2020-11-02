@@ -1,6 +1,7 @@
 package ru.krt.packageInvoker;
 
 import org.reflections.Reflections;
+import ru.krt.packageInvoker.back.PlainObject;
 import ru.krt.soap.soapScheme.SoapScheme;
 
 import java.lang.reflect.InvocationTargetException;
@@ -15,7 +16,7 @@ public class PackageInvoker {
             ,getObjects = "getObjects"
             ;
     protected Class<?> clazzClass = null;
-    protected PlainObject plainObject = null;
+//    protected PlainObject plainObject = null;
     protected HashMap<String, PlainObject> listObject = new HashMap<>();
     protected ArrayList<String> listObjectId = null;
     protected Class[] paramTypes //= null;
@@ -23,7 +24,13 @@ public class PackageInvoker {
     protected Object[] param //= null;
              = new Object[]{};
 
-    public PackageInvoker(String prefixPackage, Class classType) {
+    public PackageInvoker(Class classType) {
+        if(classType == null) throw new NullPointerException("absent class - type of object");
+        else packageEnum(classType.getPackageName(), classType);
+    }
+
+    private void packageEnum(String prefixPackage, Class classType){
+        PlainObject plainObject = null;
         Set < Class < ? extends SoapScheme> >
                 classes = new Reflections(prefixPackage).getSubTypesOf(classType);
         Iterator < Class <? extends SoapScheme> >
@@ -49,9 +56,9 @@ public class PackageInvoker {
             //param = new Object[]{}; // дубль
             try {
                 listObject.put( (String) clazzClass
-                                    .getMethod(getObjectId, paramTypes)
-                                    .invoke(plainObject.getInstance(), param),
-                                plainObject );
+                                .getMethod(getObjectId, paramTypes)
+                                .invoke(plainObject.getInstance(), param),
+                        plainObject );
             } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
@@ -65,7 +72,7 @@ public class PackageInvoker {
                 e.printStackTrace();
             }
         }
-    }
+    };
 
     public Object invokeMain(String objectId) {
         PlainObject plainObject = null;
@@ -73,13 +80,14 @@ public class PackageInvoker {
         if ( !listObjectId.contains(objectId) ) throw new NullPointerException("Absent " + objectId);
         else
             try {
+                plainObject = listObject.get(objectId);
                 result = plainObject.getMethod().invoke(
                         plainObject.getInstance(), param
                 );
             } catch (IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
-        if (result==null) throw new NullPointerException("invokeMain return null for " + objectId + " " + this.getClass() );
+        if (result==null) throw new NullPointerException("invokeMain return null for: " + objectId + " caller:" + this.getClass() );
         return result;
     }
 
