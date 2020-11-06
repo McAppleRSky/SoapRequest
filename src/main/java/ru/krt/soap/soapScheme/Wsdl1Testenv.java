@@ -10,14 +10,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class Wsdl1Testenv extends SoapScheme {
+public class Wsdl1Testenv extends AbstractSoapScheme {
 
     public Wsdl1Testenv() {
-        objectId = new String[]{
+        objectId = //new String[]{
                 "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl"
-                ,"testenv-1.1"
-        };
-        addObject(objectId[0]);
+//                ,"testenv-1.1"}
+        ;
+//        addObject(objectId[0]);
     }
 
     private final String[] prefixTip = new String[]{
@@ -157,8 +157,12 @@ public class Wsdl1Testenv extends SoapScheme {
     }
 
     @Override
-    public DocumentDomimpl mainMethod() {
+    public Object mainMethod(Object... argument) {
         return generateTemplateFormRequest();
     }
 
+    @Override
+    public String getObjectId() {
+        return objectId;
+    }
 }

@@ -21,23 +21,23 @@ import ru.krt.packageInvoker.PackageInvoker;
 import ru.krt.soap.MessageId;
 import ru.krt.soap.plainTypes.DocumentDomimpl;
 import ru.krt.soap.plainTypes.NamespacePrefix;
-import ru.krt.soap.soapScheme.SoapScheme;
+import ru.krt.soap.soapScheme.AbstractSoapScheme;
 import ru.krt.soap.soapScheme.Wsdl1Testenv;
 
 import java.io.ByteArrayOutputStream;
 
-public class VS00648001PFR001 extends ArtefactData {
+public class VS00648001PFR001 extends AbstractSoapScheme {
 
     public VS00648001PFR001() {
-        objectId = new String[]{
+        objectId = //new String[]{
                 "http://kvs.pfr.com/snils-by-additionalData/1.0.1"
-                ,"VS00648001PFR001"
-        };
-        addObject(objectId[0]);
+                //,"VS00648001PFR001"}
+        ;
+//        addObject(objectId[0]);
     }
 
     @Override
-    public ByteArrayOutputStream mainMethod() {
+    public ByteArrayOutputStream mainMethod(Object... object) {
         //fillDocument();
         DocumentDomimpl documentDomimpl = null;
         DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
@@ -50,6 +50,11 @@ public class VS00648001PFR001 extends ArtefactData {
         //serializer.write(documentTemplate, load_save_outer);
         System.out.println();
         return byteArrayOutputStream;
+    }
+
+    @Override
+    public String getObjectId() {
+        return objectId;
     }
 
 /*

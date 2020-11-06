@@ -1,11 +1,12 @@
 package ru.krt.packageInvoker;
 
+
 import org.reflections.Reflections;
 import ru.krt.packageInvoker.back.PlainObject;
-import ru.krt.soap.soapScheme.SoapScheme;
+import ru.krt.soap.artefactData.AbstractArtefactData;
+import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
@@ -13,27 +14,33 @@ import java.util.Set;
 public class PackageInvoker {
     protected String mainMethod = "mainMethod"
             ,getObjectId = "getObjectId"
-            ,getObjects = "getObjects"
             ;
-    protected Class<?> clazzClass = null;
-//    protected PlainObject plainObject = null;
+    protected Class<?>
+            clazzClass = null;
     protected HashMap<String, PlainObject> listObject = new HashMap<>();
-    protected ArrayList<String> listObjectId = null;
-    protected Class[] paramTypes //= null;
-             = (Class<?>[]) null;
-    protected Object[] param //= null;
-             = new Object[]{};
+    private Class[] mainMethodParamTypes = new Class[]{Object[].class}
+            ,emptyParamTypes = (Class<?>[]) null
+            ;
+    protected Class[] paramTypes = null;
+    private Object[] emptyParam = new Object[]{}
+            ;
+    protected Object[] param = null;
 
     public PackageInvoker(Class classType) {
-        if(classType == null) throw new NullPointerException("absent class - type of object");
-        else packageEnum(classType.getPackageName(), classType);
+        if(classType == null) throw new NullPointerException("Absent class - type of object");
+        else packageEnumUnoStatic(classType.getPackageName(), classType);
     }
-
-    private void packageEnum(String prefixPackage, Class classType){
+    private void packageEnumUnoStatic(String prefixPackage, Class classType){
         PlainObject plainObject = null;
-        Set < Class < ? extends SoapScheme> >
+        Set< Class < ?
+                extends AbstractSoapScheme
+                >
+                >
                 classes = new Reflections(prefixPackage).getSubTypesOf(classType);
-        Iterator < Class <? extends SoapScheme> >
+        Iterator< Class <?
+                extends AbstractSoapScheme
+                >
+                >
                 clazz = classes.iterator();
         while (clazz.hasNext()) {
             try {
@@ -46,41 +53,143 @@ public class PackageInvoker {
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
-            //paramTypes = (Class<?>[]) null; // дубль
+            paramTypes = mainMethodParamTypes;
             try {
                 plainObject.setMethod(clazzClass.getMethod(mainMethod, paramTypes));
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             }
-            //paramTypes = (Class<?>[]) null; // дубль
-            //param = new Object[]{}; // дубль
+            paramTypes = emptyParamTypes;
+            param = emptyParam;
             try {
-                listObject.put( (String) clazzClass
+                listObject.put(
+                        (String) clazzClass
                                 .getMethod(getObjectId, paramTypes)
-                                .invoke(plainObject.getInstance(), param),
-                        plainObject );
-            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-            //param = new Object[]{}; // дубль
-            try {
-                listObjectId = (ArrayList<String>)
-                        clazzClass
-                                .getMethod(getObjects, paramTypes)
-                                .invoke(plainObject.getInstance(), param);
+                                .invoke(plainObject.getInstance(), param )
+                        ,plainObject
+                );
             } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 e.printStackTrace();
             }
         }
     };
 
-    public Object invokeMain(String objectId) {
+    public PackageInvoker(Iterator //< Class <? extends AbstractSoapScheme
+            //>>
+                                  clazz, String[] classNames,
+                          Module modele) {
+        PlainObject plainObject = null;
+        for (String className : classNames){
+            try {
+                clazzClass = Class.forName(modele, className);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                plainObject = new PlainObject( clazzClass.getDeclaredConstructor().newInstance() );
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            paramTypes = mainMethodParamTypes;
+            try {
+                plainObject.setMethod(clazzClass.getMethod(mainMethod, paramTypes));
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            paramTypes = emptyParamTypes;
+            param = emptyParam;
+            try {
+                listObject.put(
+                        (String) clazzClass
+                                .getMethod(getObjectId, paramTypes)
+                                .invoke(plainObject.getInstance(), param )
+                        ,plainObject
+                );
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+
+        }
+/*
+        while (clazz.hasNext()) {
+            try {
+                clazzClass = Class.forName( //clazz.next().getName()
+                        className
+                );
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                plainObject = new PlainObject( clazzClass.getDeclaredConstructor().newInstance() );
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            paramTypes = mainMethodParamTypes;
+            try {
+                plainObject.setMethod(clazzClass.getMethod(mainMethod, paramTypes));
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            paramTypes = emptyParamTypes;
+            param = emptyParam;
+            try {
+                listObject.put(
+                        (String) clazzClass
+                                .getMethod(getObjectId, paramTypes)
+                                .invoke(plainObject.getInstance(), param )
+                        ,plainObject
+                );
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
+*/
+    }
+
+/*  public PackageInvoker(Iterator < Class <? extends AbstractArtefactData
+            >> clazz ) {
+        PlainObject plainObject = null;
+        while (clazz.hasNext()) {
+            try {
+                clazzClass = Class.forName( clazz.next().getName() );
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                plainObject = new PlainObject( clazzClass.getDeclaredConstructor().newInstance() );
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            paramTypes = mainMethodParamTypes;
+            try {
+                plainObject.setMethod(clazzClass.getMethod(mainMethod, paramTypes));
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+            paramTypes = emptyParamTypes;
+            param = emptyParam;
+            try {
+                listObject.put(
+                        (String) clazzClass
+                                .getMethod(getObjectId, paramTypes)
+                                .invoke(plainObject.getInstance(), param )
+                        ,plainObject
+                );
+            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+*/
+
+    public Object invokeMain(String objectId, Object... argument) {
         PlainObject plainObject = null;
         Object result = null;
-        if ( !listObjectId.contains(objectId) ) throw new NullPointerException("Absent " + objectId);
+        if ( !listObject.containsKey(objectId) ) throw new NullPointerException("Absent object (id : " + objectId + ")");
         else
             try {
                 plainObject = listObject.get(objectId);
+                param = new Object[]{argument};
                 result = plainObject.getMethod().invoke(
                         plainObject.getInstance(), param
                 );

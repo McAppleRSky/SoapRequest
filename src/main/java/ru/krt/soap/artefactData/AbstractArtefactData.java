@@ -6,11 +6,9 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class ArtefactData extends PackageEnumerator {
+public abstract class AbstractArtefactData extends PackageEnumerator {
 
-    public ArtefactData() {
-        packageObjects = new ArrayList<>();
-    }
+    //public ArtefactData() {packageObjects = new ArrayList<>();}
 
 /*
     protected String namespace_uri, id;

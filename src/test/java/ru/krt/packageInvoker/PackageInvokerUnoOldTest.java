@@ -12,9 +12,9 @@ import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.DefaultNodeMatcher;
 import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.ElementSelectors;
-import ru.krt.soap.artefactData.ArtefactData;
+import ru.krt.soap.artefactData.AbstractArtefactData;
 import ru.krt.soap.plainTypes.DocumentDomimpl;
-import ru.krt.soap.soapScheme.SoapScheme;
+import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,21 +29,18 @@ import java.io.*;
 
 import static org.junit.Assert.*;
 
-public class PackageInvokerTest {
+public class PackageInvokerUnoOldTest {
 
     @Test
     public void testList (){
-        PackageInvoker
-                packageInvoker = new PackageInvoker(SoapScheme.class)
-                ,packageInvoker1 = new PackageInvoker(ArtefactData.class);
+        PackageInvoker packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
         assertEquals(2, packageInvoker.listObject.size());
-        assertEquals(1, packageInvoker1.listObject.size());
     }
 
     @Test
     public void testInvoke (){
         PackageInvoker
-                packageInvoker = new PackageInvoker(SoapScheme.class);
+                packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
         assertEquals(new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain( "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
     }
 
@@ -51,7 +48,7 @@ public class PackageInvokerTest {
     @Ignore
     public void testInvoke1 (){
         PackageInvoker
-                packageInvoker = new PackageInvoker(SoapScheme.class);
+                packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
         DocumentDomimpl documentDomimpl = (DocumentDomimpl)packageInvoker.invokeMain( "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
         DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
         LSSerializer load_save_serializer = domSaver.createLSSerializer();

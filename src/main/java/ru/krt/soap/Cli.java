@@ -1,7 +1,7 @@
 package ru.krt.soap;
 
 import ru.krt.packageInvoker.PackageInvoker;
-import ru.krt.soap.soapScheme.SoapScheme;
+import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -60,7 +60,7 @@ public class Cli{
         PackageInvoker
             soapScheme
                 = new PackageInvoker(//"ru.krt.soap.soapScheme",
-                                        SoapScheme.class);
+                                        AbstractSoapScheme.class);
         soapScheme.invokeMain(args[0]);
         //        PlainObject wsdlRequestTemplate
 //            = (PlainObject)
