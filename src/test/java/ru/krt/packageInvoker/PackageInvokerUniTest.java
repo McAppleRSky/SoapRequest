@@ -35,33 +35,6 @@ import static org.junit.Assert.assertEquals;
 public class PackageInvokerUniTest {
 
     @Test
-    public void testList (){
-        Set < Class < ? extends AbstractSoapScheme
-                > >
-            classes = new Reflections( AbstractSoapScheme.class.getPackageName() )
-                .getSubTypesOf(AbstractSoapScheme.class);
-        Iterator< Class <? extends AbstractSoapScheme
-                > >
-            clazz = classes.iterator();
-        StringBuilder stringBuilder = new StringBuilder();
-        while (clazz.hasNext()) {
-            try {
-                stringBuilder.append( Class.forName( clazz.next().getName() ) )
-                        .append(" ");
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        ClassLoader classLoader = null;
-        classLoader 
-        Module module = new Module(classLoader);
-        PackageInvoker
-            packageInvoker
-                = new PackageInvoker( clazz, stringBuilder.toString().split(" "), module);
-        assertEquals(2, packageInvoker.listObject.size());
-    }
-
-    @Test
     public void testInvoke (){
         PackageInvoker
                 packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
