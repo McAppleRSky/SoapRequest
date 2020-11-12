@@ -1,10 +1,8 @@
 package ru.krt.soap.soapScheme;
 
-import ru.krt.packageInvoker.PackageEnumerator;
+import ru.krt.packageInvoker.AbstractPackageEnumerator;
 
-import java.util.ArrayList;
-
-public abstract class AbstractSoapScheme extends PackageEnumerator {
+public abstract class AbstractSoapScheme extends AbstractPackageEnumerator {
 
     //public SoapScheme() {packageObjects = new ArrayList<>();}
 

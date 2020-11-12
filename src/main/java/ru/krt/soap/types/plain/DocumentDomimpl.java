@@ -1,4 +1,4 @@
-package ru.krt.soap.plainTypes;
+package ru.krt.soap.types.plain;
 
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;

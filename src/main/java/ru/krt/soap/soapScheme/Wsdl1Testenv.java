@@ -3,8 +3,8 @@ package ru.krt.soap.soapScheme;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import ru.krt.soap.plainTypes.DocumentDomimpl;
-import ru.krt.soap.plainTypes.NamespacePrefix;
+import ru.krt.soap.types.plain.DocumentDomimpl;
+import ru.krt.soap.types.plain.NamespacePrefix;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

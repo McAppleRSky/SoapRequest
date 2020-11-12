@@ -1,12 +1,8 @@
 package ru.krt.soap.artefactData;
 
-import ru.krt.packageInvoker.PackageEnumerator;
+import ru.krt.packageInvoker.AbstractPackageEnumerator;
 
-import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-
-public abstract class AbstractArtefactData extends PackageEnumerator {
+public abstract class AbstractArtefactData extends AbstractPackageEnumerator {
 
     //public ArtefactData() {packageObjects = new ArrayList<>();}
 

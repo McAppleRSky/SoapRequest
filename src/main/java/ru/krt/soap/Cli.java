@@ -60,8 +60,9 @@ public class Cli{
         PackageInvoker
             soapScheme
                 = new PackageInvoker(//"ru.krt.soap.soapScheme",
-                                        AbstractSoapScheme.class);
-        soapScheme.invokeMain(args[0]);
+                                        //AbstractSoapScheme.class
+        );
+        soapScheme.invokeMain("",args[0]);
         //        PlainObject wsdlRequestTemplate
 //            = (PlainObject)
 /*

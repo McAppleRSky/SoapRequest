@@ -13,8 +13,7 @@ import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.DefaultNodeMatcher;
 import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.ElementSelectors;
-import ru.krt.soap.artefactData.AbstractArtefactData;
-import ru.krt.soap.plainTypes.DocumentDomimpl;
+import ru.krt.soap.types.plain.DocumentDomimpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -27,7 +26,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -35,18 +34,54 @@ import static org.junit.Assert.assertEquals;
 public class PackageInvokerUniTest {
 
     @Test
+    public void testSoapSchemePackage (){
+        PackageInvoker packageInvoker = new PackageInvoker();
+        packageInvoker
+                .enumSoapScheme("soapScheme", new StringBuilder(),
+                        new Reflections("ru.krt.soap.soapScheme" )
+                .getSubTypesOf(AbstractSoapScheme.class) );
+        assertEquals(2, packageInvoker.listPackageObject.get("soapScheme").size());
+    }
+    @Test
+    public void testArtefactDataPackage (){
+        PackageInvoker packageInvoker = new PackageInvoker();
+        packageInvoker
+                .enumSoapScheme("artefactData", new StringBuilder(),
+                        new Reflections("ru.krt.soap.artefactData" )
+                                .getSubTypesOf(AbstractSoapScheme.class) );
+        assertEquals(1, packageInvoker.listPackageObject.get("artefactData").size());
+    }
+    @Test
+    public void testSoapSchemeArtefactDataPackage (){
+        PackageInvoker packageInvoker = new PackageInvoker();
+        packageInvoker
+                .enumSoapScheme("soapScheme", new StringBuilder(),
+                        new Reflections("ru.krt.soap.soapScheme" )
+                                .getSubTypesOf(AbstractSoapScheme.class) );
+        packageInvoker
+                .enumSoapScheme("artefactData", new StringBuilder(),
+                        new Reflections("ru.krt.soap.artefactData" )
+                                .getSubTypesOf(AbstractSoapScheme.class) );
+        assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("artefactData", "http://kvs.pfr.com/snils-by-additionalData/1.0.1").getClass() );
+        assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("soapScheme", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
+    }
+
+    @Test
+    @Ignore
     public void testInvoke (){
         PackageInvoker
-                packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
-        assertEquals(new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain( "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
+                packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
+        );
+        assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
     }
 
     @Test
     @Ignore
     public void testInvoke1 (){
         PackageInvoker
-                packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
-        DocumentDomimpl documentDomimpl = (DocumentDomimpl)packageInvoker.invokeMain( "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
+                packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
+        );
+        DocumentDomimpl documentDomimpl = (DocumentDomimpl)packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
         DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
         LSSerializer load_save_serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();

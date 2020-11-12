@@ -12,8 +12,7 @@ import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.DefaultNodeMatcher;
 import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.ElementSelectors;
-import ru.krt.soap.artefactData.AbstractArtefactData;
-import ru.krt.soap.plainTypes.DocumentDomimpl;
+import ru.krt.soap.types.plain.DocumentDomimpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -33,23 +32,27 @@ public class PackageInvokerUnoOldTest {
 
     @Test
     public void testList (){
-        PackageInvoker packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
-        assertEquals(2, packageInvoker.listObject.size());
+        PackageInvoker packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
+        );
+        assertEquals(2, packageInvoker.listPackageObject.size());
     }
 
     @Test
     public void testInvoke (){
+        String objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl";
         PackageInvoker
-                packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
-        assertEquals(new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain( "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
+                packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
+        );
+        assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("",objectId).getClass() );
     }
 
     @Test
     @Ignore
     public void testInvoke1 (){
         PackageInvoker
-                packageInvoker = new PackageInvoker(AbstractSoapScheme.class);
-        DocumentDomimpl documentDomimpl = (DocumentDomimpl)packageInvoker.invokeMain( "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
+                packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
+        );
+        DocumentDomimpl documentDomimpl = (DocumentDomimpl)packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
         DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
         LSSerializer load_save_serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();

@@ -1,28 +1,10 @@
 package ru.krt.soap.artefactData;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamSource;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
-import ru.krt.packageInvoker.PackageEnumerator;
-import ru.krt.packageInvoker.PackageInvoker;
-import ru.krt.soap.MessageId;
-import ru.krt.soap.plainTypes.DocumentDomimpl;
-import ru.krt.soap.plainTypes.NamespacePrefix;
+import ru.krt.soap.types.plain.DocumentDomimpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
-import ru.krt.soap.soapScheme.Wsdl1Testenv;
 
 import java.io.ByteArrayOutputStream;
 

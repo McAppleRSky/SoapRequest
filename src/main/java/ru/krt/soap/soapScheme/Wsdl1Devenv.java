@@ -1,6 +1,6 @@
 package ru.krt.soap.soapScheme;
 
-import ru.krt.soap.plainTypes.DocumentDomimpl;
+import ru.krt.soap.types.plain.DocumentDomimpl;
 
 public class Wsdl1Devenv extends AbstractSoapScheme {
 
