@@ -26,15 +26,21 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.net.MalformedURLException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.text.MessageFormat;
-import java.util.Arrays;
-import java.util.Iterator;
+
+import javax.xml.XMLConstants;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.*;
+import java.net.URL;
+import org.xml.sax.SAXException;
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
-public class PackageInvokerUniTest {
+public class PackageInvokerUniTest extends XsdValidator{
 
     @Test
     public void testSoapSchemePackage (){
@@ -71,7 +77,14 @@ public class PackageInvokerUniTest {
 
     @Test
     public void testSoapSchemeInvoke (){
+        String etolonRequest = "request1.xml";
+        assertTrue( tryValid("schemas.xmlsoap.org.xml", etolonRequest) );
+        assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-basic-1.1.xsd", etolonRequest) );
+        assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-types-1.1.xsd", etolonRequest) );
+        assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-faults-1.1.xsd", etolonRequest) );
+
         // https://turreta.com/2016/11/11/java-compare-xml-files-using-xmlunit/
+
         PackageInvoker packageInvoker = new PackageInvoker();
         packageInvoker
                 .enumSoapScheme("soapScheme", new StringBuilder(),
