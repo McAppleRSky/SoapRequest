@@ -8,12 +8,7 @@ import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import org.xmlunit.builder.DiffBuilder;
-import org.xmlunit.diff.DefaultNodeMatcher;
-import org.xmlunit.diff.Diff;
-import org.xmlunit.diff.ElementSelectors;
 import ru.krt.soap.types.plain.DocumentDomimpl;
-import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -214,6 +209,7 @@ public class PackageInvokerUnoOldTest {
 */
 
         // note https://stackoverflow.com/questions/139076/how-to-pretty-print-xml-from-java
+/*
         DefaultNodeMatcher nodeMatcher = new DefaultNodeMatcher(ElementSelectors//.byNameAndText
                                                                     .Default
                                                                         );
@@ -226,6 +222,7 @@ public class PackageInvokerUnoOldTest {
                 .ignoreWhitespace()
                 .ignoreComments()
                 .build();
+*/
           // https://m.habr.com/ru/post/127473/
     }
 

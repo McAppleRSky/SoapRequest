@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.krt.packageInvoker.PackageInvokerUniTest" tests="6" skipped="2" failures="0" errors="0" timestamp="2020-11-13T13:57:10" hostname="e.borisov.dc.rk" time="413.912">
+  <properties/>
+  <testcase name="testArtefactDataPackage" classname="ru.krt.packageInvoker.PackageInvokerUniTest" time="0.086"/>
+  <testcase name="testSoapSchemePackage" classname="ru.krt.packageInvoker.PackageInvokerUniTest" time="0.009"/>
+  <testcase name="testSoapSchemeArtefactDataEnumInvoke" classname="ru.krt.packageInvoker.PackageInvokerUniTest" time="0.108"/>
+  <testcase name="testActualFiles" classname="ru.krt.packageInvoker.PackageInvokerUniTest" time="0.131"/>
+  <testcase name="testInvoke1" classname="ru.krt.packageInvoker.PackageInvokerUniTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testSoapSchemeInvoke" classname="ru.krt.packageInvoker.PackageInvokerUniTest" time="413.574">
+    <skipped/>
+  </testcase>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

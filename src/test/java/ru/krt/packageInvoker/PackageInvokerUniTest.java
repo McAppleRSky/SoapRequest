@@ -1,5 +1,9 @@
 package ru.krt.packageInvoker;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.input.BOMInputStream;
+import org.custommonkey.xmlunit.Diff;
+import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.reflections.Reflections;
@@ -9,10 +13,6 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.SAXException;
-import org.xmlunit.builder.DiffBuilder;
-import org.xmlunit.diff.DefaultNodeMatcher;
-import org.xmlunit.diff.Diff;
-import org.xmlunit.diff.ElementSelectors;
 import ru.krt.soap.types.plain.DocumentDomimpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
@@ -26,10 +26,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.util.Arrays;
-import java.util.Set;
+import java.util.Iterator;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class PackageInvokerUniTest {
 
@@ -52,7 +55,7 @@ public class PackageInvokerUniTest {
         assertEquals(1, packageInvoker.listPackageObject.get("artefactData").size());
     }
     @Test
-    public void testSoapSchemeArtefactDataPackage (){
+    public void testSoapSchemeArtefactDataEnumInvoke (){
         PackageInvoker packageInvoker = new PackageInvoker();
         packageInvoker
                 .enumSoapScheme("soapScheme", new StringBuilder(),
@@ -62,17 +65,99 @@ public class PackageInvokerUniTest {
                 .enumSoapScheme("artefactData", new StringBuilder(),
                         new Reflections("ru.krt.soap.artefactData" )
                                 .getSubTypesOf(AbstractSoapScheme.class) );
-        assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("artefactData", "http://kvs.pfr.com/snils-by-additionalData/1.0.1").getClass() );
         assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("soapScheme", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
+        //assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("artefactData", "http://kvs.pfr.com/snils-by-additionalData/1.0.1").getClass() );
     }
 
     @Test
-    @Ignore
-    public void testInvoke (){
-        PackageInvoker
-                packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
+    public void testSoapSchemeInvoke (){
+        // https://turreta.com/2016/11/11/java-compare-xml-files-using-xmlunit/
+        PackageInvoker packageInvoker = new PackageInvoker();
+        packageInvoker
+                .enumSoapScheme("soapScheme", new StringBuilder(),
+                        new Reflections("ru.krt.soap.soapScheme" )
+                                .getSubTypesOf(AbstractSoapScheme.class) );
+        DocumentDomimpl wsdlTemplate = (DocumentDomimpl) packageInvoker.invokeMain("soapScheme", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
+
+        DOMImplementationLS domSaver = (DOMImplementationLS) wsdlTemplate.getDOMImpl();
+        LSSerializer serializer = domSaver.createLSSerializer();
+        LSOutput load_save_outer = domSaver.createLSOutput();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        load_save_outer.setByteStream(byteArrayOutputStream);
+        serializer.write(wsdlTemplate.getDocumentTemplate(), load_save_outer);
+        byte[] actualBytes = byteArrayOutputStream.toByteArray();
+
+        //load_save_outer.getByteStream().write(actualBytes);
+
+        Reader expectedReader = null;
+        String expectedString = null, actualString = null;
+        Diff diff = null;
+        try {
+            expectedReader = new InputStreamReader(
+                    new BOMInputStream(
+                            new FileInputStream(
+                                    ClassLoader
+                                            .getSystemClassLoader()
+                                            .getResource("request1.xml")
+                                            .getFile()
+                            ) ), Charset.forName("UTF-8") );
+            XMLUnit.setIgnoreComments(true);
+            XMLUnit.setIgnoreWhitespace(true);
+            XMLUnit.setNormalize(true);
+            XMLUnit.setIgnoreAttributeOrder(true);
+            expectedString = IOUtils.toString(expectedReader);
+            actualString = new String(actualBytes, StandardCharsets.UTF_8);
+            diff = XMLUnit.compareXML(expectedString, actualString);
+        } catch (IOException | SAXException e) {
+            e.printStackTrace();
+        }
+
+        StringBuffer sb = new StringBuffer();
+        diff.appendMessage(sb);
+        assertTrue(sb.toString(), diff.identical());
+
+        File bytesFile = new File(
+                ClassLoader
+                        .getSystemClassLoader()
+                        .getResource("actualFormRequest3.xml")
+                        .getFile()
         );
-        assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
+        byte[] expectedBytes = new byte[(int) bytesFile.length()];
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(bytesFile);
+            fileInputStream.read(expectedBytes);
+            fileInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //StringMaker stringMaker = new StringMaker( expectedBytes.toString() );
+        String expectedXML = new String(expectedBytes, StandardCharsets.UTF_8)
+//                stringMaker.removeWhitespace().toString();
+                //StringUtils.deleteWhitespace(  )
+                ;
+        //stringMaker.setString( actualBytes.toString() );
+        //String actualXML =
+//                stringMaker.removeWhitespace().getString();
+//                StringUtils.deleteWhitespace(
+//                        new String(actualBytes, StandardCharsets.UTF_8)
+                ;
+
+/*
+        Diff diff = DiffBuilder.compare(Input.fromString(expectedXML)).withTest(Input.fromString(actualXML))
+                .checkForSimilar()
+                .ignoreWhitespace()
+                .build();
+        assertFalse("XML similar " + myDiff.toString(), myDiff.hasDifferences());
+*/
+        //assertTrue(MessageFormat.format("XML must be simular: {0}\nActual XML:\n{1}\n", diff, actualXML), myDiff.similar());
+
+        //assertArrayEquals();
+        //assertEquals(expectedBytes.toString(), bytes.toString());
+        //assertTrue(bytes.toString().equals(expectedBytes.toString()));
+        //assertTrue(Arrays.equals(expectedBytes, bytes));
+        System.out.println();
     }
 
     @Test
@@ -81,15 +166,15 @@ public class PackageInvokerUniTest {
         PackageInvoker
                 packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
         );
-        DocumentDomimpl documentDomimpl = (DocumentDomimpl)packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
-        DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
+        DocumentDomimpl documentDomImpl = (DocumentDomimpl)packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
+        DOMImplementationLS domSaver = (DOMImplementationLS) documentDomImpl.getDOMImpl();
         LSSerializer load_save_serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         load_save_outer.setByteStream(byteArrayOutputStream);
-        load_save_serializer.write(documentDomimpl.getDocumentTemplate(), load_save_outer);
+        load_save_serializer.write(documentDomImpl.getDocumentTemplate(), load_save_outer);
 
-        File file = new File("actualFormRequest.xml");
+        File file = new File("actualFormRequest3.xml");
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file);
@@ -243,6 +328,7 @@ public class PackageInvokerUniTest {
 */
 
         // note https://stackoverflow.com/questions/139076/how-to-pretty-print-xml-from-java
+/*
         DefaultNodeMatcher nodeMatcher = new DefaultNodeMatcher(ElementSelectors//.byNameAndText
                                                                     .Default
                                                                         );
@@ -255,6 +341,7 @@ public class PackageInvokerUniTest {
                 .ignoreWhitespace()
                 .ignoreComments()
                 .build();
+*/
           // https://m.habr.com/ru/post/127473/
     }
 

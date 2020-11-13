@@ -43,13 +43,13 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
             namespaces[i].setNamespace(nsTip[i]);
 
         //private
-        DocumentBuilderFactory documentBuilderFactory;
+        DocumentBuilderFactory documentBuilderFactory = null;
         //private
         DocumentBuilder documentBuilder = null;
         //private
         DOMImplementation domImpl = null;
         //private
-        Document documentTemplateFormRequest
+        Document documentTemplateFormRequest = null
                 //,documentStylesheet
                 //,documentRequest
                 ;
