@@ -8,7 +8,7 @@ import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
-import ru.krt.soap.types.plain.DocumentDomimpl;
+import ru.krt.soap.types.plain.DocumentDomImpl;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -38,7 +38,7 @@ public class PackageInvokerUnoOldTest {
         PackageInvoker
                 packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
         );
-        assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("",objectId).getClass() );
+        assertEquals( new DocumentDomImpl(null,null).getClass(), packageInvoker.invokeMain("",objectId).getClass() );
     }
 
     @Test
@@ -47,7 +47,7 @@ public class PackageInvokerUnoOldTest {
         PackageInvoker
                 packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
         );
-        DocumentDomimpl documentDomimpl = (DocumentDomimpl)packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
+        DocumentDomImpl documentDomimpl = (DocumentDomImpl)packageInvoker.invokeMain("", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
         DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
         LSSerializer load_save_serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();

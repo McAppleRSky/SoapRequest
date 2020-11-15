@@ -3,7 +3,7 @@ package ru.krt.soap.artefactData;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
-import ru.krt.soap.types.plain.DocumentDomimpl;
+import ru.krt.soap.types.plain.DocumentDomImpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import java.io.ByteArrayOutputStream;
@@ -21,7 +21,7 @@ public class VS00648001PFR001 extends AbstractSoapScheme {
     @Override
     public ByteArrayOutputStream mainMethod(Object... object) {
         //fillDocument();
-        DocumentDomimpl documentDomimpl = null;
+        DocumentDomImpl documentDomimpl = null;
         DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
         LSSerializer serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();

@@ -80,10 +80,7 @@ public class PackageInvoker implements EnumeratedSoapScheme, EnumeratedArtefactD
 
     public PackageInvoker(String[] classNames) {
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        */
-/*//*
-/ ИЛИ
-        ClassLoader c = this.getClassLoader();*//*
+        ClassLoader c = this.getClassLoader();
 
         PlainObject plainObject = null;
         for (String className : classNames){
@@ -184,7 +181,7 @@ public class PackageInvoker implements EnumeratedSoapScheme, EnumeratedArtefactD
                 .toArray(String[]::new)
         ;
         ClassLoader classLoader = ClassLoader.getSystemClassLoader();
-        // ИЛИ ClassLoader c = this.getClassLoader();
+        // or ClassLoader c = this.getClassLoader();
         PlainObject plainObject = null;
         for (String className : classNames){
             try {

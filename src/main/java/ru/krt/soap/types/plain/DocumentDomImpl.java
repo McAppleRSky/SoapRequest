@@ -3,11 +3,11 @@ package ru.krt.soap.types.plain;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 
-public class DocumentDomimpl {
+public class DocumentDomImpl {
     private DOMImplementation domImpl;
     private Document documentTemplate;
 
-    public DocumentDomimpl(DOMImplementation domImpl, Document documentTemplate) {
+    public DocumentDomImpl(DOMImplementation domImpl, Document documentTemplate) {
         this.domImpl = domImpl;
         this.documentTemplate = documentTemplate;
     }
