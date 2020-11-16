@@ -1,7 +1,5 @@
 package ru.krt.packageInvoker;
 
-//import org.custommonkey.xmlunit.Diff;
-//import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.reflections.Reflections;
@@ -12,15 +10,12 @@ import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.SAXException;
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.builder.Input;
-import org.xmlunit.diff.ComparisonType;
 import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.Difference;
-import org.xmlunit.diff.DifferenceEvaluators;
 import org.xmlunit.util.Convert;
 import ru.krt.soap.PackageInvokerWrap;
 import ru.krt.soap.types.plain.DocumentDomImpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -31,17 +26,15 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-
 import java.io.IOException;
 import java.util.Iterator;
 
 import static junitx.framework.FileAssert.assertBinaryEquals;
-import static junitx.util.ResourceManager.getResource;
 import static org.junit.Assert.*;
 
 public class PackageInvokerUniTest extends xmlTestAssist {
+
+    // http://khpi-iip.mipk.kharkiv.edu/library/extent/prog/iipXML/x-udom.html
 
     @Test
     public void testSoapSchemePackage (){
@@ -114,18 +107,25 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         actualBytes = packageInvokerWrap.soapSchemeReturnBytes("soapScheme", "ru.krt.soap.soapScheme");
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        Document control = Convert.toDocument(Input.fromByteArray(expectedBytes).build(), documentBuilderFactory);
-        Document test = Convert.toDocument(Input.fromByteArray(actualBytes).build(), documentBuilderFactory);
+        Document expectedDocument = Convert.toDocument(Input.fromByteArray(expectedBytes).build(), documentBuilderFactory);
+        Document actualDocument = Convert.toDocument(Input.fromByteArray(actualBytes).build(), documentBuilderFactory);
 
-        diff = DiffBuilder.compare(control).withTest(test).build();
+        //DOMConfiguration domConfiguration = expectedDocument.getDomConfig();
+        //DOMStringList domStringList = domConfiguration.getParameterNames();
 
+        diff = DiffBuilder.compare(expectedDocument).withTest(actualDocument)
+                .checkForSimilar()
+                .ignoreComments()
+                .ignoreWhitespace()
+                .build();
+/*
         DifferenceEvaluators.chain(
                 DifferenceEvaluators.Default,
                 DifferenceEvaluators.downgradeDifferencesToEqual(
                         ComparisonType.XML_STANDALONE, ComparisonType.XML_ENCODING
                 )
         );
-
+*/
         //assertThat( Input.from( actualReader ), isSimilarTo(expectedReader);
 
         Iterator<Difference> iter = diff.getDifferences().iterator();

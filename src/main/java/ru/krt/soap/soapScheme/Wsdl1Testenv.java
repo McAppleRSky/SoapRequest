@@ -32,9 +32,10 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
             ,"urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1"
     };
     private String xmlns = "xmlns"
+            ,delimeter = ":"
             ,empty = ""
-            , delimeter = ":"
-            ;
+            ,question = "?"
+    ;
     private DocumentDomImpl generateTemplateFormRequest(String... prefixExternal) {
         for(int i=0;i<prefixExternal.length;i++)prefixTip[i] = prefixExternal[i];
         DocumentBuilderFactory documentBuilderFactory = null;
@@ -72,29 +73,36 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
         Element _SendRequestRequest
                 = document.createElement(prefixTip[nsi] + delimeter + "SendRequestRequest");
         Element _SenderProvidedRequestData
-                        = document.createElement(prefixTip[nsi] + delimeter + "SendRequestRequestData");
+                        = document.createElement(prefixTip[nsi] + delimeter + "SenderProvidedRequestData");
         Element _MessageID
                         = document.createElement(prefixTip[nsi] + delimeter + "MessageID");
+        _MessageID.setTextContent(question);
         Element _ReferenceMessageID
                         = document.createElement(prefixTip[nsi] + delimeter + "ReferenceMessageID");
+        _ReferenceMessageID.setTextContent(question);
         Element _TransactionCode
                         = document.createElement(prefixTip[nsi] + delimeter + "TransactionCode");
+        _TransactionCode.setTextContent(question);
         Element _NodeID
                         = document.createElement(prefixTip[nsi] + delimeter + "NodeID");
+        _NodeID.setTextContent(question);
         Element _EOL
                         = document.createElement(prefixTip[nsi] + delimeter + "EOL");
+        _EOL.setTextContent(question);
         _Body.appendChild(_SendRequestRequest)
                 .appendChild(_SenderProvidedRequestData)
                 .appendChild(_MessageID);
-        _SenderProvidedRequestData.setAttribute("Id", empty);
+        _SenderProvidedRequestData.setAttribute("Id", "?");
         _SenderProvidedRequestData.appendChild(_ReferenceMessageID);
         _SenderProvidedRequestData.appendChild(_TransactionCode);
         _SenderProvidedRequestData.appendChild(_NodeID);
         _SenderProvidedRequestData.appendChild(_EOL);
         _SenderProvidedRequestData.appendChild(_EOL);
+        nsi=2;
         Element _MessagePrimaryContent
                 = document.createElement(prefixTip[nsi] + delimeter + "MessagePrimaryContent");
         _SenderProvidedRequestData.appendChild(_MessagePrimaryContent);
+        nsi=1;
         Element _PersonalSignature
                 = document.createElement(prefixTip[nsi] + delimeter + "PersonalSignature");
         _SenderProvidedRequestData.appendChild(_PersonalSignature);
@@ -109,6 +117,9 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
                     = document.createElement(prefixTip[nsi] + delimeter + "MimeType")
                 , _SignaturePKCS7
                     = document.createElement(prefixTip[nsi] + delimeter + "SignaturePKCS7");
+        _contentId.setTextContent(question);
+        _MimeType.setTextContent(question);
+        _SignaturePKCS7.setTextContent("cid:1202495970287");
         _AttachmentHeaderList.appendChild(_AttachmentHeader);
         _SenderProvidedRequestData.appendChild(_AttachmentHeaderList)
                 .appendChild(_AttachmentHeader)
@@ -123,6 +134,10 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
                 , _MimeType_ref = document.createElement(prefixTip[nsi] + delimeter + "MimeType")
                 , _SignaturePKCS7_ref = document.createElement(prefixTip[nsi] + delimeter + "SignaturePKCS7")
                 ;
+        _uuid.setTextContent(question);
+        _Hash.setTextContent(question);
+        _MimeType_ref.setTextContent(question);
+        _SignaturePKCS7_ref.setTextContent("cid:1048540585166");
         nsi = 1;
         Element _BusinessProcessMetadata
                     = document.createElement(prefixTip[nsi] + delimeter + "BusinessProcessMetadata")
@@ -152,6 +167,8 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
                     = document.createElement(prefixTip[nsi] + delimeter + "Id")
                 , _Content
                     = document.createElement(prefixTip[nsi] + delimeter + "Content");
+        _Id.setTextContent(question);
+        _Content.setTextContent("cid:1527896676542");
         _SendRequestRequest.appendChild(_AttachmentContentList)
                 .appendChild(_AttachmentContent)
                 .appendChild(_Id);
