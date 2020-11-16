@@ -1,7 +1,7 @@
 package ru.krt.packageInvoker;
 
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.XMLUnit;
+//import org.custommonkey.xmlunit.Diff;
+//import org.custommonkey.xmlunit.XMLUnit;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.reflections.Reflections;
@@ -10,6 +10,13 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.SAXException;
+import org.xmlunit.builder.DiffBuilder;
+import org.xmlunit.builder.Input;
+import org.xmlunit.diff.ComparisonType;
+import org.xmlunit.diff.Diff;
+import org.xmlunit.diff.Difference;
+import org.xmlunit.diff.DifferenceEvaluators;
+import org.xmlunit.util.Convert;
 import ru.krt.soap.PackageInvokerWrap;
 import ru.krt.soap.types.plain.DocumentDomImpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
@@ -24,11 +31,14 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import static junitx.framework.FileAssert.assertBinaryEquals;
+import static junitx.util.ResourceManager.getResource;
 import static org.junit.Assert.*;
 
 public class PackageInvokerUniTest extends xmlTestAssist {
@@ -67,11 +77,15 @@ public class PackageInvokerUniTest extends xmlTestAssist {
     }
     @Test
     public void testUseXml (){
-        String etolonRequest = "request1.xml";
+        String etolonRequest = "wsdlRequest1.xml";
         assertTrue( tryValid("schemas.xmlsoap.org.xml", etolonRequest) );
-//        assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-basic-1.1.xsd", etolonRequest) );
-//        assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-types-1.1.xsd", etolonRequest) );
-//        assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-faults-1.1.xsd", etolonRequest) );
+        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-basic-1.1.xsd", etolonRequest) );
+        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-types-1.1.xsd", etolonRequest) );
+        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-faults-1.1.xsd", etolonRequest) );
+        assertTrue( tryValid("schemas.xmlsoap.org.xml", "prevOutput.xml") );
+        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-basic-1.1.xsd", "prevOutput.xml") );
+        // cvc-elt.1.a: Cannot find the declaration of element
+        assertTrue( tryValid("schemas.xmlsoap.org.xml", "wsdlRequest1.xml") );
     }
     @Test
     @Ignore
@@ -89,7 +103,51 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         assertBinaryEquals(fileExpect, file);
     }
     @Test
-    //@Ignore
+    public void testSoapSchemeDiff2 (){
+        PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
+        //Reader expectedReader = null, actualReader = null;
+        byte[] expectedBytes, actualBytes;
+        Diff diff = null;
+        /*actualReader = packageInvokerWrap.soapSchemeReturnReader("soapScheme", "ru.krt.soap.soapScheme");
+        expectedReader = packageInvokerWrap.fromFileReader("SendRequestRequest.xml"//"wsdlRequest1.xml"*/
+        expectedBytes = packageInvokerWrap.fromFileReturnBytes("wsdlRequest1.xml");
+        actualBytes = packageInvokerWrap.soapSchemeReturnBytes("soapScheme", "ru.krt.soap.soapScheme");
+
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        Document control = Convert.toDocument(Input.fromByteArray(expectedBytes).build(), documentBuilderFactory);
+        Document test = Convert.toDocument(Input.fromByteArray(actualBytes).build(), documentBuilderFactory);
+
+        diff = DiffBuilder.compare(control).withTest(test).build();
+
+        DifferenceEvaluators.chain(
+                DifferenceEvaluators.Default,
+                DifferenceEvaluators.downgradeDifferencesToEqual(
+                        ComparisonType.XML_STANDALONE, ComparisonType.XML_ENCODING
+                )
+        );
+
+        //assertThat( Input.from( actualReader ), isSimilarTo(expectedReader);
+
+        Iterator<Difference> iter = diff.getDifferences().iterator();
+/*
+        int size = 0;
+        while (iter.hasNext()) {
+            iter.next().toString();
+            size++;
+        }
+        assertFalse(size>1);
+*/
+        //diff = DiffBuilder.compare(expectedBytes).withTest(actualBytes)
+                //.withNodeFilter( node -> !( node.getNodeName().equals("?xml") ) ).build();
+        //assertThat( Input.from( actualReader ), isSimilarTo(expectedReader);
+        assertFalse( diff.hasDifferences() );
+
+        System.out.println();
+    }
+
+/*
+    @Test
+    @Ignore
     public void testSomeXmlGeneration() throws IOException, SAXException {
 
         XMLUnit.setIgnoreComments(true);
@@ -104,7 +162,8 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         assertTrue("XML результат не совпал", diff.similar());
     }
     @Test
-    public void testSoapSchemeInvoke (){
+    @Ignore
+    public void testSoapSchemeDiff1 (){
         PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
         //String expectedString = null, actualString = null;
         Diff diff = null;
@@ -160,13 +219,13 @@ public class PackageInvokerUniTest extends xmlTestAssist {
 //                        new String(actualBytes, StandardCharsets.UTF_8)
                 ;
 
+*/
 /*
         Diff diff = DiffBuilder.compare(Input.fromString(expectedXML)).withTest(Input.fromString(actualXML))
                 .checkForSimilar()
                 .ignoreWhitespace()
                 .build();
         assertFalse("XML similar " + myDiff.toString(), myDiff.hasDifferences());
-*/
         //assertTrue(MessageFormat.format("XML must be simular: {0}\nActual XML:\n{1}\n", diff, actualXML), myDiff.similar());
 
         //assertArrayEquals();
@@ -175,6 +234,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         //assertTrue(Arrays.equals(expectedBytes, bytes));
         System.out.println();
     }
+*/
 
     @Test
     @Ignore
@@ -194,7 +254,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         save_outer.setByteStream(byteArrayOutputStream);
         save_serializer.write(documentDomImpl.getDocumentTemplate(), save_outer);
 
-        File file = new File("domOutput.xml");
+        File file = new File("prevOutput.xml");
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file);
@@ -239,6 +299,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         File expectedFile = new File(classLoader.getResource("actualFormRequest3.xml").getFile())
                 ,actualFile = new File(classLoader.getResource("actualFormRequest2.xml").getFile())
                 ;
+        //URL url = PackageInvokerUniTest.class.getResource("actualFormRequest2.xml");
         FileInputStream expectedFileInputStream = null
                 ,actualFileInputStream = null
                 ;

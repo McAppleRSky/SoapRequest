@@ -1,8 +1,8 @@
 package ru.krt.packageInvoker;
 
-import org.custommonkey.xmlunit.DetailedDiff;
-import org.custommonkey.xmlunit.Diff;
-import org.custommonkey.xmlunit.Difference;
+//import org.custommonkey.xmlunit.DetailedDiff;
+//import org.custommonkey.xmlunit.Diff;
+//import org.custommonkey.xmlunit.Difference;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -18,6 +18,7 @@ import java.util.List;
 
 public class xmlTestAssist {
 
+/*
     public static void showXmlDiff(Diff diff) {
         DetailedDiff detailedDiff = new DetailedDiff(diff);
         List differences = detailedDiff.getAllDifferences();
@@ -29,6 +30,7 @@ public class xmlTestAssist {
             System.out.println("***********************");
         }
     }
+*/
 
     public boolean tryValid(String xsdFileName, String xmlFileName){
         boolean result = false;

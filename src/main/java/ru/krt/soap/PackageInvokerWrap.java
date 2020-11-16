@@ -11,8 +11,14 @@ import ru.krt.soap.soapScheme.AbstractSoapScheme;
 import ru.krt.soap.types.plain.DocumentDomImpl;
 
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class PackageInvokerWrap {
 
@@ -32,7 +38,7 @@ public class PackageInvokerWrap {
         load_save_outer.setByteStream(byteArrayOutputStream);
         serializer.write(wsdlTemplate.getDocumentTemplate(), load_save_outer);
         result = byteArrayOutputStream.toByteArray();
-        if(result==null)throw new NullPointerException("Can't return bytes");
+        if(result==null)throw new NullPointerException("Can't return bytes from dom");
         return result;
     }
 
@@ -50,6 +56,13 @@ public class PackageInvokerWrap {
 
     public Reader fromFileReader(String name) throws IOException {
         Reader reader = null;
+/*
+        String fileName = ClassLoader.getSystemClassLoader().getResource(name).getFile();
+        File file = new File(fileName);
+        InputStream inputStream = new DataInputStream( new FileInputStream(file) );
+        reader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+*/
+
         reader = new InputStreamReader(
                 new BOMInputStream(
                         new FileInputStream(
@@ -57,8 +70,9 @@ public class PackageInvokerWrap {
                                         .getSystemClassLoader()
                                         .getResource(name)
                                         .getFile()
-                        ) ), Charset.forName("UTF-8") );
-
+                        )
+                )
+                , Charset.forName("UTF-8") );
         return reader;
     }
 
@@ -66,6 +80,22 @@ public class PackageInvokerWrap {
         String result = IOUtils.toString(
                 fromFileReader(name) );
         if(result==null)throw new NullPointerException("Can't return bytes");
+        return result;
+    }
+
+    public byte[] fromFileReturnBytes(String name) {
+        byte [] result = null;
+        try {
+            result = Files.readAllBytes(Paths.get( ClassLoader
+                    .getSystemClassLoader()
+                    .getResource(name)
+                    //.getFile()
+                    .toURI() ))
+            ;
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+        }
+        if(result==null) throw new NullPointerException("Can't return bytes from file");
         return result;
     }
 
