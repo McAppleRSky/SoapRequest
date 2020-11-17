@@ -61,13 +61,22 @@ public class Cli{
             args[1] = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
         }
         String wsdlId = args[0], wsdlPrefix = "ru.krt.soap.soapScheme", wsdlPackage = "soapScheme",
-                artefactId = args[1];
-        ;
+                artefactId = args[1],
+                artefactPackage = "artefactData",
+                artefactPrefix = "ru.krt.soap.artefactData";
+
         //byte[] wsdlBytes = null;
         PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
-        SoapRequestBulder soapRequestBulder = new SoapRequestBulder(
-                packageInvokerWrap.soapSchemeReturn(wsdlPackage, wsdlPrefix, wsdlId),
-                artefactId
+        Object wsdlTemplate = packageInvokerWrap.soapSchemeReturn(
+                wsdlPackage,
+                wsdlPrefix,
+                wsdlId
+        );
+        Object requestDocument = packageInvokerWrap.artefactDataReturn(
+                artefactPackage,
+                artefactPrefix,
+                artefactId,
+                wsdlTemplate
         );
 
 

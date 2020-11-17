@@ -19,7 +19,7 @@ dependencies {
         exclude group: "org.javassist", module: "javassist"
     }
 // https://mvnrepository.com/artifact/org.javassist/javassist
-    testCompile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
+    compile group: 'org.javassist', name: 'javassist', version: '3.27.0-GA'
 // https://mvnrepository.com/artifact/junit-addons/junit-addons
     testCompile group: 'junit-addons', name: 'junit-addons', version: '1.4'
 // https://mvnrepository.com/artifact/org.testng/testng

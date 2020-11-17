@@ -22,24 +22,36 @@ import java.nio.file.Paths;
 
 public class PackageInvokerWrap {
 
-    public DocumentDomImpl soapSchemeReturn(String packageName, String prefix, String objectId) {
+    PackageInvoker packageInvoker = null;
+
+    public Object artefactDataReturn(String packageName, String prefix, String objectId, Object... argument) {
+        Object result = null;
+        packageInvoker
+                .enumSoapScheme( packageName, new StringBuilder(),
+                        new Reflections(prefix)
+                                .getSubTypesOf(AbstractSoapScheme.class) );
+        result = packageInvoker.invokeMain(packageName, objectId, argument);
+        return result;
+    }
+
+    public Object soapSchemeReturn(String packageName, String prefix, String objectId) {
 
         // https://turreta.com/2016/11/11/java-compare-xml-files-using-xmlunit/
 
-        DocumentDomImpl result = null;
-        PackageInvoker packageInvoker = new PackageInvoker();
+        Object result = null;
+        packageInvoker = new PackageInvoker();
         packageInvoker
-                .enumSoapScheme(packageName, new StringBuilder(),
+                .enumSoapScheme( packageName, new StringBuilder(),
                         new Reflections(prefix)
                                 .getSubTypesOf(AbstractSoapScheme.class) );
-        result = (DocumentDomImpl) packageInvoker.invokeMain(packageName, objectId);
+        result = packageInvoker.invokeMain(packageName, objectId);
         return result;
     }
 
     public byte[] soapSchemeReturnBytes(String packageName, String prefix, String objectId){
         byte[] result = null;
         DocumentDomImpl wsdlTemplate = null;
-        wsdlTemplate = soapSchemeReturn(packageName, prefix, objectId);
+        wsdlTemplate = (DocumentDomImpl)soapSchemeReturn(packageName, prefix, objectId);
 /*
         PackageInvoker packageInvoker = new PackageInvoker();
         packageInvoker

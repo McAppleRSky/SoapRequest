@@ -3,7 +3,8 @@ package ru.krt.packageInvoker;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.reflections.Reflections;
-import org.w3c.dom.*;
+import org.w3c.dom.DOMImplementation;
+import org.w3c.dom.Document;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
@@ -14,8 +15,8 @@ import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.Difference;
 import org.xmlunit.util.Convert;
 import ru.krt.soap.PackageInvokerWrap;
-import ru.krt.soap.types.plain.DocumentDomImpl;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
+import ru.krt.soap.types.plain.DocumentDomImpl;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -26,7 +27,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.io.IOException;
 import java.util.Iterator;
 
 import static junitx.framework.FileAssert.assertBinaryEquals;
@@ -72,11 +72,11 @@ public class PackageInvokerUniTest extends xmlTestAssist {
     public void testUseXml (){
         String etolonRequest = "wsdlRequest1.xml";
         assertTrue( tryValid("schemas.xmlsoap.org.xml", etolonRequest) );
-        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-basic-1.1.xsd", etolonRequest) );
-        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-types-1.1.xsd", etolonRequest) );
-        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-faults-1.1.xsd", etolonRequest) );
+        //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-basic-1.1.xsd", etolonRequest) );
+        //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-types-1.1.xsd", etolonRequest) );
+        //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-faults-1.1.xsd", etolonRequest) );
         assertTrue( tryValid("schemas.xmlsoap.org.xml", "prevOutput.xml") );
-        //assertTrue( tryValid("xml-artefacts/1/smev-message-exchange-basic-1.1.xsd", "prevOutput.xml") );
+        //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-basic-1.1.xsd", "prevOutput.xml") );
         // cvc-elt.1.a: Cannot find the declaration of element
         assertTrue( tryValid("schemas.xmlsoap.org.xml", "wsdlRequest1.xml") );
     }
