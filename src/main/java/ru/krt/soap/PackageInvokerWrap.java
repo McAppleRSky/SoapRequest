@@ -22,15 +22,32 @@ import java.nio.file.Paths;
 
 public class PackageInvokerWrap {
 
-    public byte[] soapSchemeReturnBytes(String packageName, String prefix){
-        byte[] result = null;
+    public DocumentDomImpl soapSchemeReturn(String packageName, String prefix, String objectId) {
+
         // https://turreta.com/2016/11/11/java-compare-xml-files-using-xmlunit/
+
+        DocumentDomImpl result = null;
+        PackageInvoker packageInvoker = new PackageInvoker();
+        packageInvoker
+                .enumSoapScheme(packageName, new StringBuilder(),
+                        new Reflections(prefix)
+                                .getSubTypesOf(AbstractSoapScheme.class) );
+        result = (DocumentDomImpl) packageInvoker.invokeMain(packageName, objectId);
+        return result;
+    }
+
+    public byte[] soapSchemeReturnBytes(String packageName, String prefix, String objectId){
+        byte[] result = null;
+        DocumentDomImpl wsdlTemplate = null;
+        wsdlTemplate = soapSchemeReturn(packageName, prefix, objectId);
+/*
         PackageInvoker packageInvoker = new PackageInvoker();
         packageInvoker
                 .enumSoapScheme(packageName, new StringBuilder(),
                         new Reflections(prefix)
                                 .getSubTypesOf(AbstractSoapScheme.class) );
         DocumentDomImpl wsdlTemplate = (DocumentDomImpl) packageInvoker.invokeMain("soapScheme", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl");
+*/
         DOMImplementationLS domSaver = (DOMImplementationLS) wsdlTemplate.getDOMImpl();
         LSSerializer serializer = domSaver.createLSSerializer();
         LSOutput load_save_outer = domSaver.createLSOutput();
@@ -42,16 +59,16 @@ public class PackageInvokerWrap {
         return result;
     }
 
-    public Reader soapSchemeReturnReader (String packageName, String prefix){
+    public Reader soapSchemeReturnReader (String packageName, String prefix, String objectId){
         Reader reader = null;
         reader = new InputStreamReader(
                 new ByteArrayInputStream(
-                        soapSchemeReturnBytes(packageName, prefix) ) );
+                        soapSchemeReturnBytes(packageName, prefix, objectId) ) );
         return reader;
     }
 
-    public String soapSchemeReturnString(String packageName, String prefix){
-        return new String(soapSchemeReturnBytes(packageName, prefix), StandardCharsets.UTF_8);
+    public String soapSchemeReturnString(String packageName, String prefix, String objectId){
+        return new String(soapSchemeReturnBytes(packageName, prefix, objectId), StandardCharsets.UTF_8);
     }
 
     public Reader fromFileReader(String name) throws IOException {

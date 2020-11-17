@@ -41,7 +41,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         PackageInvoker packageInvoker = new PackageInvoker();
         packageInvoker
                 .enumSoapScheme("soapScheme", new StringBuilder(),
-                        new Reflections("ru.krt.soap.soapScheme" )
+                        new Reflections("ru.krt.soap.soapScheme")
                 .getSubTypesOf(AbstractSoapScheme.class) );
         assertEquals(2, packageInvoker.listPackageObject.get("soapScheme").size());
     }
@@ -97,6 +97,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
     }
     @Test
     public void testSoapSchemeDiff2 (){
+        String objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl";
         PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
         //Reader expectedReader = null, actualReader = null;
         byte[] expectedBytes, actualBytes;
@@ -104,7 +105,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         /*actualReader = packageInvokerWrap.soapSchemeReturnReader("soapScheme", "ru.krt.soap.soapScheme");
         expectedReader = packageInvokerWrap.fromFileReader("SendRequestRequest.xml"//"wsdlRequest1.xml"*/
         expectedBytes = packageInvokerWrap.fromFileReturnBytes("wsdlRequest1.xml");
-        actualBytes = packageInvokerWrap.soapSchemeReturnBytes("soapScheme", "ru.krt.soap.soapScheme");
+        actualBytes = packageInvokerWrap.soapSchemeReturnBytes("soapScheme", "ru.krt.soap.soapScheme", objectId);
 
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         Document expectedDocument = Convert.toDocument(Input.fromByteArray(expectedBytes).build(), documentBuilderFactory);

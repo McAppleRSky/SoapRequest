@@ -2,6 +2,7 @@ package ru.krt.soap;
 
 import ru.krt.packageInvoker.PackageInvoker;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
+import ru.krt.soap.types.plain.DocumentDomImpl;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -16,6 +17,7 @@ public class Cli{
         logger.setLevel(Level.WARNING);
     }
 
+/*
     private static String toString(ByteArrayOutputStream byteArrayOutputStream){
         String result = null;
         try {
@@ -42,6 +44,7 @@ public class Cli{
             }
         }
     }
+*/
 
     public static void main(String[] args) {
 /*
@@ -57,12 +60,25 @@ public class Cli{
             args[0] = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl";
             args[1] = "http://kvs.pfr.com/snils-by-additionalData/1.0.1";
         }
+        String wsdlId = args[0], wsdlPrefix = "ru.krt.soap.soapScheme", wsdlPackage = "soapScheme",
+                artefactId = args[1];
+        ;
+        //byte[] wsdlBytes = null;
+        PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
+        SoapRequestBulder soapRequestBulder = new SoapRequestBulder(
+                packageInvokerWrap.soapSchemeReturn(wsdlPackage, wsdlPrefix, wsdlId),
+                artefactId
+        );
+
+
+/*
         PackageInvoker
             soapScheme
                 = new PackageInvoker(//"ru.krt.soap.soapScheme",
                                         //AbstractSoapScheme.class
         );
         soapScheme.invokeMain("",args[0]);
+*/
         //        PlainObject wsdlRequestTemplate
 //            = (PlainObject)
 /*
