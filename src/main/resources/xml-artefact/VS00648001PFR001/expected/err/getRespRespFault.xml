@@ -1,0 +1,14 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <soap:Fault>
+         <faultcode>soap:Server</faultcode>
+         <faultstring>Входящая очередь запрошенного типа сообщений, принадлежащая пользователю CN=Мининформ, C=RU, ST=91 Республика Крым, L=г. Симферополь, STREET="пр. Кирова, д. 13", O=Мининформ, OID.1.2.643.100.1=#120D31313439313032303135353839, OID.1.2.643.3.131.1.1=#120C303039313032303130393530, OID.1.2.840.113549.1.9.1=delo@minfo.rk.gov.ru не зарегистрирована в СМЭВ</faultstring>
+         <detail>
+            <ns3:UnknownMessageType xsi:type="SmevFault" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ns3="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/faults/1.1" xmlns:ns2="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1">
+               <Code>LOCAL:PRODUCTION_AREA:localhost : TR:SYNC:PP:12</Code>
+               <Description>SMEV-402:Входящая очередь запрошенного типа сообщений, принадлежащая пользователю CN=Мининформ, C=RU, ST=91 Республика Крым, L=г. Симферополь, STREET="пр. Кирова, д. 13", O=Мининформ, OID.1.2.643.100.1=#120D31313439313032303135353839, OID.1.2.643.3.131.1.1=#120C303039313032303130393530, OID.1.2.840.113549.1.9.1=delo@minfo.rk.gov.ru не зарегистрирована в СМЭВ</Description>
+            </ns3:UnknownMessageType>
+         </detail>
+      </soap:Fault>
+   </soap:Body>
+</soap:Envelope>

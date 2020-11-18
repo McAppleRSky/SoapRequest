@@ -1,6 +1,8 @@
 package ru.krt.soap.artefactData;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
@@ -15,6 +17,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import org.xml.sax.InputSource;
 
 public class VS00648001PFR001 extends AbstractSoapScheme {
 
@@ -29,21 +32,41 @@ public class VS00648001PFR001 extends AbstractSoapScheme {
     @Override
     public DocumentDomImpl mainMethod(Object... object) {
         DocumentDomImpl wsdlTemplate = (DocumentDomImpl)object[0];
-        Document documentTemplate = wsdlTemplate.getDocumentTemplate();
+        Document soapEnvelopeTemplate = wsdlTemplate.getDocumentTemplate();
+/*
+        byte[] wsdlTemplateBytes = null;
+        DOMImplementationLS domSaver = (DOMImplementationLS) wsdlTemplate.getDOMImpl();
+        LSSerializer serializer = domSaver.createLSSerializer();
+        LSOutput load_save_outer = domSaver.createLSOutput();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        load_save_outer.setByteStream(byteArrayOutputStream);
+        serializer.write(wsdlTemplate.getDocumentTemplate(), load_save_outer);
+        wsdlTemplateBytes = byteArrayOutputStream.toByteArray();
+*/
         PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
-//        expectedBytes = packageInvokerWrap.fromFileReturnBytes("wsdlRequest1.xml");
         byte[] requestSampleBytes = null;
         requestSampleBytes = packageInvokerWrap.fromFileReturnBytes("xml-artefact/VS00648001PFR001/Request0.xml");
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         documentBuilderFactory.setNamespaceAware(true);
         DocumentBuilder documentBuilder = null;
-        Document requestSampleDocument = null;
+        Document soapSnilsSample = null;
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            requestSampleDocument = documentBuilder.parse(new ByteArrayInputStream(requestSampleBytes));
+            //requestSampleDocument = documentBuilder.parse(new ByteArrayInputStream(requestSampleBytes));
+            soapSnilsSample = documentBuilder.parse(
+                    new InputSource(new ByteArrayInputStream(requestSampleBytes))
+                    //new ByteArrayInputStream(requestSampleBytes)
+            );
         } catch (ParserConfigurationException | SAXException | IOException e) {
             e.printStackTrace();
         }
+        NodeList nodeList = soapEnvelopeTemplate.getElementsByTagNameNS(
+                //"urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1",
+                "http://schemas.xmlsoap.org/soap/envelope/",
+                "MessagePrimaryContent");
+        Node _MessagePrimaryContent = nodeList.item(0);
+        Node _SnilsByAdditionalDataRequest = soapSnilsSample.getElementsByTagNameNS(objectId, "SnilsByAdditionalDataRequest").item(0);
+        _MessagePrimaryContent.appendChild(_SnilsByAdditionalDataRequest);
         System.out.println();
 /*
         DocumentDomImpl documentDomimpl = null;
