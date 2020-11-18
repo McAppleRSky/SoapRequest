@@ -16,9 +16,7 @@ public class DocumentDomImpl {
         return domImpl;
     }
 
-    public void setDOMImpl(DOMImplementation domImpl) {
-        this.domImpl = domImpl;
-    }
+//    public void setDOMImpl(DOMImplementation domImpl) {this.domImpl = domImpl;}
 
     public Document getDocumentTemplate() {
         return documentTemplate;

@@ -124,7 +124,7 @@ public class PackageInvokerWrap {
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
-        if(result==null) throw new NullPointerException("Can't return bytes from file");
+        if(result==null) throw new NullPointerException();
         return result;
     }
 

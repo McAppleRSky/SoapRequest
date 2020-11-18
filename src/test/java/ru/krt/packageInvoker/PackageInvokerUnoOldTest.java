@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 public class PackageInvokerUnoOldTest {
 
     @Test
+    @Ignore
     public void testList (){
         PackageInvoker packageInvoker = new PackageInvoker(//AbstractSoapScheme.class
         );
@@ -33,6 +34,7 @@ public class PackageInvokerUnoOldTest {
     }
 
     @Test
+    @Ignore
     public void testInvoke (){
         String objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl";
         PackageInvoker
@@ -93,7 +95,7 @@ public class PackageInvokerUnoOldTest {
 //    }
 
     @Test
-    //@Ignore
+    @Ignore
     public void testActualFiles (){
         ClassLoader classLoader = this.getClass().getClassLoader();
 //        File file = new File(classLoader.getResource("file.name").getFile());

@@ -238,7 +238,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
 */
 
     @Test
-    @Ignore
+    //@Ignore
     public void testDomSoapSchemeOutFile (){
         String packageName = "soapScheme", objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl",
                 prefix = "ru.krt.soap.soapScheme";
