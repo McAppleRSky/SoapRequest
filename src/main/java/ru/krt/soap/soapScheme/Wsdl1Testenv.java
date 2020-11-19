@@ -3,25 +3,9 @@ package ru.krt.soap.soapScheme;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import ru.krt.soap.PackageInvokerWrap;
-import ru.krt.soap.types.plain.DocumentDomImpl;
-import ru.krt.soap.types.plain.NamespacePrefix;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import ru.krt.soap.types.plain.ImplDomDocument;
 
 public class Wsdl1Testenv extends AbstractSoapScheme {
-
-    // https://www.jitendrazaa.com/blog/java/create-soap-message-using-java/
-    // http://khpi-iip.mipk.kharkiv.edu/library/sotii/labs/lab_soap_create.html
-    // http://java-online.ru/web-service-soap-client.xhtml
-    // https://dev64.wordpress.com/2012/04/12/format-and-compare-xml-docs/
-    // https://dev64.wordpress.com/2012/04/20/create-and-modify-xml-documents-using-java-dom/
 
     public Wsdl1Testenv() {
         objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl"
@@ -29,134 +13,171 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
 //        addObject(objectId[0]);
     }
 
+    @Override
+    public Object mainMethod(Object... argument) {
+        ImplDomDocument wsdlRequestPlainTemplate = templateRequestFormEnvelopeSample();
+
+        return templateRequestFormEnvelopeSample();
+    }
+
+    @Override
+    public String getObjectId() {
+        return objectId;
+    }
+
+    // https://www.jitendrazaa.com/blog/java/create-soap-message-using-java/
+    // http://khpi-iip.mipk.kharkiv.edu/library/sotii/labs/lab_soap_create.html
+    // http://khpi-iip.mipk.kharkiv.edu/library/extent/prog/iipXML/x-udom.html
+    // http://java-online.ru/web-service-soap-client.xhtml
+    // https://dev64.wordpress.com/2012/04/12/format-and-compare-xml-docs/
+    // https://dev64.wordpress.com/2012/04/20/create-and-modify-xml-documents-using-java-dom/
+
     private String[] prefixTip = new String[]{
-            "soapenv", "ns", "ns1", "ns2", "ns3", "ns4", "ns5", "ns6", "ns7", "ns8", "ns9"
-    }, nsUriTip = new String[]{
+            "ns", "ns1", "ns2", "ns3", "ns4", "ns5", "ns6", "ns7", "ns8", "ns9"
+    }
+        ,nsUriTip = new String[]{
             //"http://schemas.xmlsoap.org/soap/envelope/",
             "urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1"
             ,"urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1"
+    }
+        ,tag = new String[]{"Body"
+            ,"SendRequestRequest"
+            ,"SenderProvidedRequestData"
+            ,"MessageID"
+            ,"ReferenceMessageID"
+            ,"TransactionCode"
+            ,"NodeID"
+            ,"EOL"
+            ,"Id"
+            ,"MessagePrimaryContent"
+            ,"PersonalSignature"
+            ,"AttachmentHeaderList"
+            ,"AttachmentHeader"
+            ,"contentId"
+            ,"MimeType"
+            ,"SignaturePKCS7"
+            ,"RefAttachmentHeaderList"
+            ,"RefAttachmentHeader"
+            ,"uuid"
+            ,"Hash"
+            ,"BusinessProcessMetadata"
+            ,"TestMessage"
+            ,"AttachmentContentList"
+            ,"AttachmentContent"
+            ,"Content"
+            ,"CallerInformationSystemSignature"
     };
-    private String xmlns = "xmlns"
+    int body = 0
+        ,sendRequestRequest = 1
+        ,senderProvidedRequestData = 2
+        ,messageID = 3
+        ,referenceMessageID = 4
+        ,transactionCode = 5
+        ,nodeID = 6
+        ,eol = 7
+        ,id = 8
+        ,messagePrimaryContent = 9
+        ,personalSignature = 10
+        ,attachmentHeaderList = 11
+        ,attachmentHeader = 12
+        ,contentId = 13
+        ,mimeType = 14
+        ,signaturePKCS7 = 15
+        ,refAttachmentHeaderList = 16
+        ,refAttachmentHeader = 17
+        ,uuid = 18
+        ,hash = 19
+        ,businessProcessMetadata = 20
+        ,testMessage = 21
+        ,attachmentContentList = 22
+        ,attachmentContent = 23
+        ,content = 24
+        ,callerInformationSystemSignature = 25;
+
+    private String nsUriRoot = "http://schemas.xmlsoap.org/soap/envelope/"
+            ,prefixRoot = "soapenv"
+            ,xmlns = "xmlns"
             ,delimeter = ":"
             ,empty = ""
             ,question = "?"
+            ,resourcesNameEnvelopeSample = "xml-samples/envelope.xml"
     ;
-    private DocumentDomImpl generateTemplateFormRequest(String... prefixExternal) {
+    protected ImplDomDocument templateRequestFormEnvelopeSample(String... prefixExternal) {
         for(int i=0;i<prefixExternal.length;i++)prefixTip[i] = prefixExternal[i];
 
-        PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
-        byte[] envelopeChildBytes = null;
-        envelopeChildBytes = packageInvokerWrap.fromFileReturnBytes("xml-samples/envelope_child.xml");
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setNamespaceAware(true);
-        DocumentBuilder documentBuilder = null;
-        DOMImplementation domImpl = null;
-        Document envelopeSample = null;
-        try {
-            documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            //requestSampleDocument = documentBuilder.parse(new ByteArrayInputStream(requestSampleBytes));
-            envelopeSample = documentBuilder.parse(
-                    new InputSource(new ByteArrayInputStream(envelopeChildBytes))
-                    //new ByteArrayInputStream(requestSampleBytes)
-            );
-        } catch (ParserConfigurationException | SAXException | IOException e) {
-            e.printStackTrace();
-        }
-        domImpl = documentBuilder.getDOMImplementation();
+        ImplDomDocument envelopeTemplate =
+                implDomDocumentFromBytes(
+                        bytesFromResources(resourcesNameEnvelopeSample)
+        );
+        DOMImplementation domImpl = envelopeTemplate.getImplDom();
+        Document requestTemplate = envelopeTemplate.getDocument();
         if (domImpl == null) throw new NullPointerException("Nullable DOM implementation of Form Request");
-
-/*
-*/
-        int nsi //= 0
+        int nsi;
+        Element _Body
+                = (Element) requestTemplate.getElementsByTagNameNS(nsUriRoot,tag[body]).item(0)
+                //requestTemplate.getDocumentElement();
                 ;
-//        String  rootElementName = "Envelope"
-//                ,namespaceURI = nsUriTip[nsi]
-//                ,qualifiedName = prefixTip[nsi] + delimeter + rootElementName
-//                ;
-/*
-        document = domImpl.createDocument(namespaceURI, qualifiedName, null);
-        if (document == null) throw new NullPointerException("Nullable document of Form Request");
-*/
-
-/*
-        Element _Envelope = (Element) document.getElementsByTagNameNS(namespaceURI, rootElementName).item(0)
-                ,_SendRequestRequesteader = document.createElement(prefixTip[nsi]+ delimeter + "Header")
-                ,_Body = document.createElement(prefixTip[nsi]+ delimeter + "Body")
-                ;
-*/
-        String nsUriRoot = "http://schemas.xmlsoap.org/soap/envelope/";
-        Element _envelope = (Element) envelopeSample.getElementsByTagNameNS(nsUriRoot,"Envelope").item(0);
-        //_envelope.ns
-
-        Element _Body = (Element) envelopeSample.getElementsByTagNameNS(nsUriRoot,"Body").item(0);
-//        nsi = 1;
-//        _Envelope.setAttribute(xmlns + delimeter + prefixTip[nsi], nsUriTip[nsi]);
-//        nsi = 2;
-//        _Envelope.setAttribute(xmlns + delimeter + prefixTip[nsi], nsUriTip[nsi]);
-//        _Envelope.appendChild(_Header);
-//        _Envelope.appendChild(_Body);
-        nsi = 1-1;
+        nsi = 0;
         Element _SendRequestRequest
-                = envelopeSample.createElementNS(nsUriTip[nsi], "SendRequestRequest")// .createElement(prefixTip[nsi] + delimeter + )
-                ;
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[sendRequestRequest] );
         Element _SenderProvidedRequestData
-                        = envelopeSample.createElementNS(nsUriTip[nsi], // + delimeter +
-                                                            "SenderProvidedRequestData");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[senderProvidedRequestData] );
         Element _MessageID
-                        = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "MessageID");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[messageID] );
         _MessageID.setTextContent(question);
         Element _ReferenceMessageID
-                        = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "ReferenceMessageID");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[referenceMessageID]);
         _ReferenceMessageID.setTextContent(question);
         Element _TransactionCode
-                        = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "TransactionCode");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[transactionCode] );
         _TransactionCode.setTextContent(question);
         Element _NodeID
-                        = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "NodeID");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[nodeID] );
         _NodeID.setTextContent(question);
-        Element _EOL
-                        = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "EOL");
+        Element _EOL = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[eol] );
         _EOL.setTextContent(question);
         _Body.appendChild(_SendRequestRequest)
                 .appendChild(_SenderProvidedRequestData)
                 .appendChild(_MessageID);
-        _SenderProvidedRequestData.setAttribute("Id", "?");
+        _SenderProvidedRequestData.setAttribute("Id", question);
         _SenderProvidedRequestData.appendChild(_ReferenceMessageID);
         _SenderProvidedRequestData.appendChild(_TransactionCode);
         _SenderProvidedRequestData.appendChild(_NodeID);
         _SenderProvidedRequestData.appendChild(_EOL);
         _SenderProvidedRequestData.appendChild(_EOL);
-        nsi=2-1;
+        nsi=1;
         Element _MessagePrimaryContent
-                = envelopeSample.createElementNS(nsUriTip[nsi],//+ delimeter +
-                "MessagePrimaryContent");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[messagePrimaryContent] );
         _SenderProvidedRequestData.appendChild(_MessagePrimaryContent);
-        nsi=1-1;
+        nsi=0;
         Element _PersonalSignature
-                = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "PersonalSignature");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[personalSignature] );
         _SenderProvidedRequestData.appendChild(_PersonalSignature);
-        nsi=2-1;
+        nsi=1;
         Element _AttachmentHeaderList
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "AttachmentHeaderList")
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[attachmentHeaderList] )
                 , _AttachmentHeader
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "AttachmentHeader")
+                    = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[attachmentHeader] )
                 , _contentId
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "contentId")
+                    = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[contentId] )
                 , _MimeType
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "MimeType")
+                    = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[mimeType] )
                 , _SignaturePKCS7
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "SignaturePKCS7");
+                    = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[signaturePKCS7] );
         _contentId.setTextContent(question);
         _MimeType.setTextContent(question);
         _SignaturePKCS7.setTextContent("cid:1202495970287");
@@ -167,30 +188,30 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
         _AttachmentHeader.appendChild(_MimeType);
         _AttachmentHeader.appendChild(_SignaturePKCS7);
 
-        Element _RefAttachmentHeaderList = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                                        "RefAttachmentHeaderList")
-                , _RefAttachmentHeader = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                                        "RefAttachmentHeader")
-                , _uuid = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                                        "uuid")
-                , _Hash = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                                        "Hash")
-                , _MimeType_ref = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                                        "MimeType")
-                , _SignaturePKCS7_ref = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                                        "SignaturePKCS7")
+        Element _RefAttachmentHeaderList
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[refAttachmentHeaderList] )
+                , _RefAttachmentHeader = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[refAttachmentHeader] )
+                , _uuid = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[uuid] )
+                , _Hash = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[hash] )
+                , _MimeType_ref = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[mimeType] )
+                , _SignaturePKCS7_ref = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[signaturePKCS7] )
                 ;
         _uuid.setTextContent(question);
         _Hash.setTextContent(question);
         _MimeType_ref.setTextContent(question);
         _SignaturePKCS7_ref.setTextContent("cid:1048540585166");
-        nsi = 1-1;
+        nsi = 0;
         Element _BusinessProcessMetadata
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "BusinessProcessMetadata")
-                , _TestMessage
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                        "TestMessage")
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[businessProcessMetadata] )
+                , _TestMessage = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[testMessage] )
                 ;
         _RefAttachmentHeader
                 .appendChild(_uuid)
@@ -206,40 +227,31 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
         _SenderProvidedRequestData.appendChild(_RefAttachmentHeaderList);
         _SenderProvidedRequestData.appendChild(_BusinessProcessMetadata);
         _SenderProvidedRequestData.appendChild(_TestMessage);
-        nsi=2-1;
+        nsi=1;
         Element _AttachmentContentList
-                = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "AttachmentContentList")
-                , _AttachmentContent
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "AttachmentContent")
-                , _Id
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "Id")
-                , _Content
-                    = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                                                            "Content");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[attachmentContentList] )
+                ,_AttachmentContent = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[attachmentContent] )
+                ,_Id = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[id])
+                , _Content = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[content] );
         _Id.setTextContent(question);
         _Content.setTextContent("cid:1527896676542");
         _SendRequestRequest.appendChild(_AttachmentContentList)
                 .appendChild(_AttachmentContent)
                 .appendChild(_Id);
         _AttachmentContent.appendChild(_Content);
-        nsi=1-1;
+        nsi=0;
         Element _CallerInformationSystemSignature
-                = envelopeSample.createElementNS(nsUriTip[nsi],// + delimeter +
-                "CallerInformationSystemSignature");
+                = requestTemplate.createElement(
+                prefixTip[nsi] + delimeter + tag[callerInformationSystemSignature] );
         _SendRequestRequest.appendChild(_CallerInformationSystemSignature);
-        return new DocumentDomImpl(domImpl, envelopeSample);
+
+        return implDomDocumentFromBytes(
+                implDomDocumentToBytes(requestTemplate, domImpl)
+        );
     }
 
-    @Override
-    public Object mainMethod(Object... argument) {
-        return generateTemplateFormRequest();
-    }
-
-    @Override
-    public String getObjectId() {
-        return objectId;
-    }
 }

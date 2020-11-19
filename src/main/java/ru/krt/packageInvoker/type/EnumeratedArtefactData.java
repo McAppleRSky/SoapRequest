@@ -1,7 +1,6 @@
 package ru.krt.packageInvoker.type;
 
 import ru.krt.soap.artefactData.AbstractArtefactData;
-import ru.krt.soap.soapScheme.AbstractSoapScheme;
 
 import java.util.Set;
 

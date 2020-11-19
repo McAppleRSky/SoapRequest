@@ -1,16 +1,12 @@
 package ru.krt.soap;
 
-import ru.krt.packageInvoker.PackageInvoker;
-import ru.krt.soap.soapScheme.AbstractSoapScheme;
-import ru.krt.soap.types.plain.DocumentDomImpl;
-
-import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Cli{
 
     // https://www.ibm.com/developerworks/ru/library/x-jaxmsoap/
+    // https://turreta.com/2016/11/11/java-compare-xml-files-using-xmlunit/
 
     private static final Logger logger;
     static {

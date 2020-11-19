@@ -1,7 +1,6 @@
 package ru.krt.packageInvoker;
 
 
-import org.reflections.Reflections;
 import ru.krt.packageInvoker.type.EnumeratedArtefactData;
 import ru.krt.packageInvoker.type.plain.PlainObject;
 import ru.krt.packageInvoker.type.EnumeratedSoapScheme;
@@ -215,9 +214,10 @@ public class PackageInvoker implements EnumeratedSoapScheme, EnumeratedArtefactD
             }
         }
     }
+
     private final String regexClass = " class ", regexClassPrefix = " ", msgClassEnumException = "No classes package enum";
     @Override
-    public void enumSoapScheme(String packageName, StringBuilder classNamesBuilder, Set<Class<? extends AbstractSoapScheme>> classes) {
+    public void enumSoapScheme(String packageName, StringBuilder classNamesBuilder, Set < Class<? extends AbstractSoapScheme> > classes) {
         classes.forEach( c -> {
             try {classNamesBuilder.append(regexClassPrefix).append( Class.forName( c.getName() ) );
             } catch (ClassNotFoundException e) {e.printStackTrace();}
@@ -226,7 +226,7 @@ public class PackageInvoker implements EnumeratedSoapScheme, EnumeratedArtefactD
     }
 
     @Override
-    public void enumArtefactData(String packageName, StringBuilder classNamesBuilder, Set<Class<? extends AbstractArtefactData>> classes) {
+    public void enumArtefactData(String packageName, StringBuilder classNamesBuilder, Set < Class<? extends AbstractArtefactData> > classes) {
         classes.forEach( c -> {
             try {classNamesBuilder.append(regexClassPrefix).append( Class.forName( c.getName() ) );
             } catch (ClassNotFoundException e) {e.printStackTrace();}

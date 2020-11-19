@@ -1,6 +1,6 @@
 package ru.krt.soap.soapScheme;
 
-import ru.krt.soap.types.plain.DocumentDomImpl;
+import ru.krt.soap.types.plain.ImplDomDocument;
 
 public class Wsdl1Devenv extends AbstractSoapScheme {
 
@@ -15,8 +15,8 @@ public class Wsdl1Devenv extends AbstractSoapScheme {
     }
 
     @Override
-    public DocumentDomImpl mainMethod(Object... argument) {
-        return new DocumentDomImpl(null, null);
+    public ImplDomDocument mainMethod(Object... argument) {
+        return new ImplDomDocument(null, null);
     }
     @Override
     public String getObjectId() {

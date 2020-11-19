@@ -15,8 +15,12 @@ import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.Difference;
 import org.xmlunit.util.Convert;
 import ru.krt.soap.PackageInvokerWrap;
+import ru.krt.soap.artefactData.AbstractArtefactData;
+import ru.krt.soap.saxhandler.AbstractPackageEnumeratorAndSaxHandler;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
-import ru.krt.soap.types.plain.DocumentDomImpl;
+import ru.krt.soap.soapScheme.Wsdl1Testenv;
+import ru.krt.soap.types.plain.ImplDomDocument;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,8 +38,6 @@ import static org.junit.Assert.*;
 
 public class PackageInvokerUniTest extends xmlTestAssist {
 
-    // http://khpi-iip.mipk.kharkiv.edu/library/extent/prog/iipXML/x-udom.html
-
     @Test
     public void testSoapSchemePackage (){
         PackageInvoker packageInvoker = new PackageInvoker();
@@ -43,16 +45,16 @@ public class PackageInvokerUniTest extends xmlTestAssist {
                 .enumSoapScheme("soapScheme", new StringBuilder(),
                         new Reflections("ru.krt.soap.soapScheme")
                 .getSubTypesOf(AbstractSoapScheme.class) );
-        assertEquals(2, packageInvoker.listPackageObject.get("soapScheme").size());
+        assertEquals(2, packageInvoker.listPackageObject.get("soapScheme").size() );
     }
     @Test
     public void testArtefactDataPackage (){
         PackageInvoker packageInvoker = new PackageInvoker();
         packageInvoker
-                .enumSoapScheme("artefactData", new StringBuilder(),
-                        new Reflections("ru.krt.soap.artefactData" )
-                                .getSubTypesOf(AbstractSoapScheme.class) );
-        assertEquals(1, packageInvoker.listPackageObject.get("artefactData").size());
+                .enumArtefactData("artefactData", new StringBuilder(),
+                        new Reflections("ru.krt.soap.artefactData")
+                .getSubTypesOf(AbstractArtefactData.class) );
+        assertEquals(1, packageInvoker.listPackageObject.get("artefactData").size() );
     }
     @Test
     public void testSoapSchemeArtefactDataEnumInvoke (){
@@ -65,11 +67,11 @@ public class PackageInvokerUniTest extends xmlTestAssist {
                 .enumSoapScheme("artefactData", new StringBuilder(),
                         new Reflections("ru.krt.soap.artefactData" )
                                 .getSubTypesOf(AbstractSoapScheme.class) );
-        assertEquals( new DocumentDomImpl(null,null).getClass(), packageInvoker.invokeMain("soapScheme", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
+        assertEquals( new ImplDomDocument(null,null).getClass(), packageInvoker.invokeMain("soapScheme", "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl").getClass() );
         //assertEquals( new DocumentDomimpl(null,null).getClass(), packageInvoker.invokeMain("artefactData", "http://kvs.pfr.com/snils-by-additionalData/1.0.1").getClass() );
     }
     @Test
-    public void testUseXml (){
+    public void testValidUseXml (){
         String etolonRequest = "wsdlRequest1.xml";
         assertTrue( tryValid("schemas.xmlsoap.org.xml", etolonRequest) );
         //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-basic-1.1.xsd", etolonRequest) );
@@ -94,56 +96,6 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         File fileExpect = new File(this.getClass().getResource("/expected_data.xml").getFile());
         //FileAssert.
         assertBinaryEquals(fileExpect, file);
-    }
-    @Test
-    public void testSoapSchemeDiff2 (){
-        String objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl";
-        PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
-        //Reader expectedReader = null, actualReader = null;
-        byte[] expectedBytes, actualBytes;
-        Diff diff = null;
-        /*actualReader = packageInvokerWrap.soapSchemeReturnReader("soapScheme", "ru.krt.soap.soapScheme");
-        expectedReader = packageInvokerWrap.fromFileReader("SendRequestRequest.xml"//"wsdlRequest1.xml"*/
-        expectedBytes = packageInvokerWrap.fromFileReturnBytes("wsdlRequest1.xml");
-        actualBytes = packageInvokerWrap.soapSchemeReturnBytes("soapScheme", "ru.krt.soap.soapScheme", objectId);
-
-        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        Document expectedDocument = Convert.toDocument(Input.fromByteArray(expectedBytes).build(), documentBuilderFactory);
-        Document actualDocument = Convert.toDocument(Input.fromByteArray(actualBytes).build(), documentBuilderFactory);
-
-        //DOMConfiguration domConfiguration = expectedDocument.getDomConfig();
-        //DOMStringList domStringList = domConfiguration.getParameterNames();
-
-        diff = DiffBuilder.compare(expectedDocument).withTest(actualDocument)
-                .checkForSimilar()
-                .ignoreComments()
-                .ignoreWhitespace()
-                .build();
-/*
-        DifferenceEvaluators.chain(
-                DifferenceEvaluators.Default,
-                DifferenceEvaluators.downgradeDifferencesToEqual(
-                        ComparisonType.XML_STANDALONE, ComparisonType.XML_ENCODING
-                )
-        );
-*/
-        //assertThat( Input.from( actualReader ), isSimilarTo(expectedReader);
-
-        Iterator<Difference> iter = diff.getDifferences().iterator();
-/*
-        int size = 0;
-        while (iter.hasNext()) {
-            iter.next().toString();
-            size++;
-        }
-        assertFalse(size>1);
-*/
-        //diff = DiffBuilder.compare(expectedBytes).withTest(actualBytes)
-                //.withNodeFilter( node -> !( node.getNodeName().equals("?xml") ) ).build();
-        //assertThat( Input.from( actualReader ), isSimilarTo(expectedReader);
-        assertFalse( diff.hasDifferences() );
-
-        System.out.println();
     }
 
 /*
@@ -238,7 +190,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
 */
 
     @Test
-    //@Ignore
+    @Ignore
     public void testDomSoapSchemeOutFile (){
         String packageName = "soapScheme", objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl",
                 prefix = "ru.krt.soap.soapScheme";
@@ -247,13 +199,13 @@ public class PackageInvokerUniTest extends xmlTestAssist {
                 .enumSoapScheme(packageName, new StringBuilder(),
                         new Reflections(prefix)
                                 .getSubTypesOf(AbstractSoapScheme.class) );
-        DocumentDomImpl documentDomImpl = (DocumentDomImpl)packageInvoker.invokeMain(packageName, objectId);
-        DOMImplementationLS domSaver = (DOMImplementationLS) documentDomImpl.getDOMImpl();
+        ImplDomDocument documentImplementated = (ImplDomDocument)packageInvoker.invokeMain(packageName, objectId);
+        DOMImplementationLS domSaver = (DOMImplementationLS) documentImplementated.getImplDom();
         LSSerializer save_serializer = domSaver.createLSSerializer();
         LSOutput save_outer = domSaver.createLSOutput();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         save_outer.setByteStream(byteArrayOutputStream);
-        save_serializer.write(documentDomImpl.getDocumentTemplate(), save_outer);
+        save_serializer.write(documentImplementated.getDocument(), save_outer);
 
         File file = new File("prevOutput.xml");
         FileOutputStream fileOutputStream = null;
