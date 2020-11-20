@@ -1,5 +1,6 @@
 package ru.krt.soap.saxhandler;
 
+import org.reflections.Reflections;
 import org.w3c.dom.DOMImplementation;
 import org.w3c.dom.Document;
 import org.w3c.dom.ls.DOMImplementationLS;
@@ -7,21 +8,19 @@ import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-import ru.krt.packageInvoker.AbstractPackageEnumerator;
+import ru.krt.packageInvoker.PackageInvoker;
+import ru.krt.soap.soapScheme.AbstractSoapScheme;
 import ru.krt.soap.types.plain.ImplDomDocument;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class AbstractPackageEnumeratorAndSaxHandler //extends AbstractPackageEnumerator
-                                                                {
+public class AbstractPackageEnumeratorAndSaxHandler implements SaxDatatypeUse {
 
     public byte[] bytesFromResources(String resourceName){
         byte[] result = null;
@@ -42,7 +41,7 @@ public class AbstractPackageEnumeratorAndSaxHandler //extends AbstractPackageEnu
         return result;
     }
 
-    protected ImplDomDocument implDomDocumentFromBytes(byte[] bytes){
+    public ImplDomDocument implDomDocumentFromBytes(byte[] bytes){
         ImplDomDocument result = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         documentBuilderFactory.setNamespaceAware(true);
@@ -78,4 +77,40 @@ public class AbstractPackageEnumeratorAndSaxHandler //extends AbstractPackageEnu
         if(bytes==null) throw new NullPointerException("Cant return bytes from document");
         return bytes;
     }
+
+    protected void implDomDocumentToFile(ImplDomDocument implDomDocument, String pathname){
+
+/*
+        String packageName = "soapScheme", objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl",
+                prefix = "ru.krt.soap.soapScheme";
+        PackageInvoker packageInvoker = new PackageInvoker();
+        packageInvoker
+                .enumSoapScheme(packageName, new StringBuilder(),
+                        new Reflections(prefix)
+                                .getSubTypesOf(AbstractSoapScheme.class) );
+        ImplDomDocument documentImplementated = (ImplDomDocument)packageInvoker.invokeMain(packageName, objectId);
+*/
+        File file = new File(pathname);
+        DOMImplementationLS domSaver = (DOMImplementationLS) implDomDocument.getImplDom();
+        LSSerializer save_serializer = domSaver.createLSSerializer();
+        LSOutput save_outer = domSaver.createLSOutput();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        save_outer.setByteStream(byteArrayOutputStream);
+        save_serializer.write(implDomDocument.getDocument(), save_outer);
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file);
+            byteArrayOutputStream.writeTo(fileOutputStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
 }

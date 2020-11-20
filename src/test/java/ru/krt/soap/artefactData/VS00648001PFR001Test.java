@@ -1,7 +1,6 @@
-package ru.krt.soap.soapScheme;
+package ru.krt.soap.artefactData;
 
 import junit.framework.TestCase;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.xmlunit.builder.DiffBuilder;
@@ -10,6 +9,7 @@ import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.Difference;
 import org.xmlunit.util.Convert;
 import ru.krt.soap.saxhandler.AbstractPackageEnumeratorAndSaxHandler;
+import ru.krt.soap.soapScheme.Wsdl1Testenv;
 import ru.krt.soap.types.plain.ImplDomDocument;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,22 +17,28 @@ import java.util.Iterator;
 
 import static org.junit.Assert.assertFalse;
 
-public class Wsdl1TestenvTest extends AbstractPackageEnumeratorAndSaxHandler {
-
+public class VS00648001PFR001Test extends AbstractPackageEnumeratorAndSaxHandler {
     @Test
-    @Ignore
-    public void testWsdl1Testenv_Diff2 (){
-        Wsdl1Testenv wsdl1Testenv = new Wsdl1Testenv();
-        byte[] expectedBytes;
+    public void testSnilsRequestUno_Diff2 () {
+        VS00648001PFR001 snilsRequestUno = new VS00648001PFR001();
+        byte[] expectedBytes = null, aclualBeforeBytes = null;
         Diff diff = null;
-        AbstractPackageEnumeratorAndSaxHandler saxHandler = new AbstractPackageEnumeratorAndSaxHandler();
         expectedBytes = //packageInvokerWrap.fromFileReturnBytes(
-                saxHandler.bytesFromResources(
+                bytesFromResources(
+                        "expectedSnilsRequesBeforeUuid.xml"
+                );
+        aclualBeforeBytes = //packageInvokerWrap.fromFileReturnBytes(
+                bytesFromResources(
                         "wsdlRequest1.xml"
                 );
+
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         Document expectedDocument = Convert.toDocument(Input.fromByteArray(expectedBytes).build(), documentBuilderFactory);
-        ImplDomDocument aclualPlainDocument = implDomDocumentFromBytes( implDomDocumentToBytes( wsdl1Testenv.templateRequestFormEnvelopeSample() ) );
+
+        ImplDomDocument aclualPlainDocument = snilsRequestUno.fillTemplateBySnilsSample(
+                snilsRequestUno.implDomDocumentFromBytes(aclualBeforeBytes)
+        );
+
         Document actualDocument = aclualPlainDocument.getDocument();
         diff = DiffBuilder.compare(expectedDocument).withTest(actualDocument)
                 .checkForSimilar()
@@ -41,6 +47,6 @@ public class Wsdl1TestenvTest extends AbstractPackageEnumeratorAndSaxHandler {
                 .build();
         Iterator<Difference> iter = diff.getDifferences().iterator();
         assertFalse( diff.hasDifferences() );
+        System.out.println();
     }
-
 }

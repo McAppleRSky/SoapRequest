@@ -98,97 +98,6 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         assertBinaryEquals(fileExpect, file);
     }
 
-/*
-    @Test
-    @Ignore
-    public void testSomeXmlGeneration() throws IOException, SAXException {
-
-        XMLUnit.setIgnoreComments(true);
-        XMLUnit.setIgnoreWhitespace(true);
-        //String expectedXML = new String(expectedBytes,StandardCharsets.UTF_8);
-        Diff diff = new Diff(
-                ""//getResourceAsString("/expeced_data.xml")
-                ,
-                ""//result
-        );
-        showXmlDiff(diff);
-        assertTrue("XML результат не совпал", diff.similar());
-    }
-    @Test
-    @Ignore
-    public void testSoapSchemeDiff1 (){
-        PackageInvokerWrap packageInvokerWrap = new PackageInvokerWrap();
-        //String expectedString = null, actualString = null;
-        Diff diff = null;
-        Reader expectedReader = null, actualReader = null;
-        Document expectedDocument = null, actualDocument = null;
-//        DocumentBuilder documentBuilder = null;
-        actualReader = packageInvokerWrap.soapSchemeReturnReader("soapScheme", "ru.krt.soap.soapScheme");
-        try {
-            expectedReader = packageInvokerWrap.fromFileReader("wsdlRequest1.xml"//"request1.xml"
-            );
-            XMLUnit.setIgnoreComments(true);
-            XMLUnit.setIgnoreWhitespace(true);
-            XMLUnit.setNormalize(true);
-            XMLUnit.setIgnoreAttributeOrder(true);
-//            diff = XMLUnit.compareXML(expectedString, actualString);
-            expectedDocument = XMLUnit.buildDocument(XMLUnit.newControlParser(), expectedReader);
-            actualDocument = XMLUnit.buildDocument(XMLUnit.newTestParser(), actualReader);
-            diff = new Diff(expectedReader, actualReader);
-            showXmlDiff(diff);
-        } catch (IOException | SAXException e) {
-            e.printStackTrace();
-        }
-
-        StringBuffer sb = new StringBuffer();
-        diff.appendMessage(sb);
-        assertTrue(sb.toString(), diff.identical());
-
-        File bytesFile = new File(
-                ClassLoader
-                        .getSystemClassLoader()
-                        .getResource("actualFormRequest3.xml")
-                        .getFile()
-        );
-        byte[] expectedBytes = new byte[(int) bytesFile.length()];
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(bytesFile);
-            fileInputStream.read(expectedBytes);
-            fileInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        //StringMaker stringMaker = new StringMaker( expectedBytes.toString() );
-        String expectedXML = new String(expectedBytes, StandardCharsets.UTF_8)
-//                stringMaker.removeWhitespace().toString();
-                //StringUtils.deleteWhitespace(  )
-                ;
-        //stringMaker.setString( actualBytes.toString() );
-        //String actualXML =
-//                stringMaker.removeWhitespace().getString();
-//                StringUtils.deleteWhitespace(
-//                        new String(actualBytes, StandardCharsets.UTF_8)
-                ;
-
-*/
-/*
-        Diff diff = DiffBuilder.compare(Input.fromString(expectedXML)).withTest(Input.fromString(actualXML))
-                .checkForSimilar()
-                .ignoreWhitespace()
-                .build();
-        assertFalse("XML similar " + myDiff.toString(), myDiff.hasDifferences());
-        //assertTrue(MessageFormat.format("XML must be simular: {0}\nActual XML:\n{1}\n", diff, actualXML), myDiff.similar());
-
-        //assertArrayEquals();
-        //assertEquals(expectedBytes.toString(), bytes.toString());
-        //assertTrue(bytes.toString().equals(expectedBytes.toString()));
-        //assertTrue(Arrays.equals(expectedBytes, bytes));
-        System.out.println();
-    }
-*/
-
     @Test
     @Ignore
     public void testDomSoapSchemeOutFile (){
@@ -222,27 +131,6 @@ public class PackageInvokerUniTest extends xmlTestAssist {
             }
         }
     }
-
-
-
-/*
-    DocumentDomimpl documentDomimpl = null;
-    DOMImplementationLS domSaver = (DOMImplementationLS) documentDomimpl.getDOMImpl();
-    LSSerializer serializer = domSaver.createLSSerializer();
-    LSOutput load_save_outer = domSaver.createLSOutput();
-    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    load_save_outer.setByteStream(byteArrayOutputStream);
-
-        serializer.write(documentDomimpl.getDocumentTemplate(), //.getDocumentRequest(),
-    load_save_outer);
-    //serializer.write(documentTemplate, load_save_outer);
-        System.out.println();
-        return byteArrayOutputStream;
-*/
-//    @Test
-//    public void testActualXml (){
-//
-//    }
 
     @Test
     @Ignore
@@ -316,67 +204,6 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         String expectedString = expectedByteArrayOutputStream.toString()
                 ,actualString = actualByteArrayOutputStream.toString()
                 ;
-/*
-        try {
-            XMLAssert.assertXMLEqual(expectedString, actualString);
-        } catch (SAXException | IOException e) {
-            e.printStackTrace();
-        }
-*/
-
-
-//        expectedDocument.normalizeDocument();
-//        actualDocument.normalizeDocument();
-//        assertTrue(expectedDocument.isEqualNode(actualDocument));
-
-/*
-        DOMImplementationLS domSaver = (DOMImplementationLS) domImpl;
-        LSSerializer load_save_serializer = domSaver.createLSSerializer();
-        LSOutput load_save_outer_forExpected = domSaver.createLSOutput()
-                ,load_save_outer_forActual = domSaver.createLSOutput()
-                ;
-
-        ByteArrayOutputStream expectedByteArrayOutputStream = new ByteArrayOutputStream()
-                ,actualByteArrayOutputStream = new ByteArrayOutputStream()
-                ;
-
-        load_save_outer_forExpected.setByteStream(expectedByteArrayOutputStream);
-        load_save_outer_forActual.setByteStream(actualByteArrayOutputStream);
-
-//        expectedDocument.getDocumentElement().normalize();
-//        actualDocument.getDocumentElement().normalize();
-
-        load_save_serializer.write(expectedDocument, load_save_outer_forExpected);
-        load_save_serializer.write(actualDocument, load_save_outer_forActual);
-
-        byte[] expectedBytes_forWrite = new byte[(int) expectedFile.length()]
-                ,actualBytes_forWrite = new byte[(int) actualFile.length()]
-                ;
-        try {
-            load_save_outer_forExpected.getByteStream().write(expectedBytes_forWrite);
-            load_save_outer_forActual.getByteStream().write(actualBytes_forWrite);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        assertArrayEquals(expectedBytes_forWrite, actualBytes_forWrite);
-*/
-
-        // note https://stackoverflow.com/questions/139076/how-to-pretty-print-xml-from-java
-/*
-        DefaultNodeMatcher nodeMatcher = new DefaultNodeMatcher(ElementSelectors//.byNameAndText
-                                                                    .Default
-                                                                        );
-
-        Diff diff = DiffBuilder//.compare(xmlSource1).withTest(xmlSource2)
-                //.compare(expectedString).withTest(actualString)
-                .compare(expectedDocument).withTest(actualDocument)
-                .checkForSimilar()
-                .withNodeMatcher(nodeMatcher)
-                .ignoreWhitespace()
-                .ignoreComments()
-                .build();
-*/
-          // https://m.habr.com/ru/post/127473/
     }
 
 }

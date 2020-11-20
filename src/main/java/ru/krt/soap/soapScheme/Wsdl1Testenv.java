@@ -17,7 +17,7 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
     public Object mainMethod(Object... argument) {
         ImplDomDocument wsdlRequestPlainTemplate = templateRequestFormEnvelopeSample();
 
-        return templateRequestFormEnvelopeSample();
+        return wsdlRequestPlainTemplate;
     }
 
     @Override
@@ -33,66 +33,8 @@ public class Wsdl1Testenv extends AbstractSoapScheme {
     // https://dev64.wordpress.com/2012/04/20/create-and-modify-xml-documents-using-java-dom/
 
     private String[] prefixTip = new String[]{
-            "ns", "ns1", "ns2", "ns3", "ns4", "ns5", "ns6", "ns7", "ns8", "ns9"
-    }
-        ,nsUriTip = new String[]{
-            //"http://schemas.xmlsoap.org/soap/envelope/",
-            "urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1"
-            ,"urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1"
-    }
-        ,tag = new String[]{"Body"
-            ,"SendRequestRequest"
-            ,"SenderProvidedRequestData"
-            ,"MessageID"
-            ,"ReferenceMessageID"
-            ,"TransactionCode"
-            ,"NodeID"
-            ,"EOL"
-            ,"Id"
-            ,"MessagePrimaryContent"
-            ,"PersonalSignature"
-            ,"AttachmentHeaderList"
-            ,"AttachmentHeader"
-            ,"contentId"
-            ,"MimeType"
-            ,"SignaturePKCS7"
-            ,"RefAttachmentHeaderList"
-            ,"RefAttachmentHeader"
-            ,"uuid"
-            ,"Hash"
-            ,"BusinessProcessMetadata"
-            ,"TestMessage"
-            ,"AttachmentContentList"
-            ,"AttachmentContent"
-            ,"Content"
-            ,"CallerInformationSystemSignature"
-    };
-    int body = 0
-        ,sendRequestRequest = 1
-        ,senderProvidedRequestData = 2
-        ,messageID = 3
-        ,referenceMessageID = 4
-        ,transactionCode = 5
-        ,nodeID = 6
-        ,eol = 7
-        ,id = 8
-        ,messagePrimaryContent = 9
-        ,personalSignature = 10
-        ,attachmentHeaderList = 11
-        ,attachmentHeader = 12
-        ,contentId = 13
-        ,mimeType = 14
-        ,signaturePKCS7 = 15
-        ,refAttachmentHeaderList = 16
-        ,refAttachmentHeader = 17
-        ,uuid = 18
-        ,hash = 19
-        ,businessProcessMetadata = 20
-        ,testMessage = 21
-        ,attachmentContentList = 22
-        ,attachmentContent = 23
-        ,content = 24
-        ,callerInformationSystemSignature = 25;
+            ns, ns+1, ns+2, ns+3, ns+4, ns+5, ns+6, ns+7, ns+8, ns+9
+        };
 
     private String nsUriRoot = "http://schemas.xmlsoap.org/soap/envelope/"
             ,prefixRoot = "soapenv"
