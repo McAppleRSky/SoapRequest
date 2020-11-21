@@ -9,16 +9,9 @@ import org.w3c.dom.ls.DOMImplementationLS;
 import org.w3c.dom.ls.LSOutput;
 import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.SAXException;
-import org.xmlunit.builder.DiffBuilder;
-import org.xmlunit.builder.Input;
-import org.xmlunit.diff.Diff;
-import org.xmlunit.diff.Difference;
-import org.xmlunit.util.Convert;
-import ru.krt.soap.PackageInvokerWrap;
+//import ru.krt.soap.PackageInvokerWrap;
 import ru.krt.soap.artefactData.AbstractArtefactData;
-import ru.krt.soap.saxhandler.AbstractPackageEnumeratorAndSaxHandler;
 import ru.krt.soap.soapScheme.AbstractSoapScheme;
-import ru.krt.soap.soapScheme.Wsdl1Testenv;
 import ru.krt.soap.types.plain.ImplDomDocument;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -31,7 +24,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
-import java.util.Iterator;
 
 import static junitx.framework.FileAssert.assertBinaryEquals;
 import static org.junit.Assert.*;
@@ -45,7 +37,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
                 .enumSoapScheme("soapScheme", new StringBuilder(),
                         new Reflections("ru.krt.soap.soapScheme")
                 .getSubTypesOf(AbstractSoapScheme.class) );
-        assertEquals(2, packageInvoker.listPackageObject.get("soapScheme").size() );
+        assertEquals(1, packageInvoker.listPackageObject.get("soapScheme").size() );
     }
     @Test
     public void testArtefactDataPackage (){
@@ -72,7 +64,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
     }
     @Test
     public void testValidUseXml (){
-        String etolonRequest = "wsdlRequest1.xml";
+        String etolonRequest = "templatesActualMock/wsdlRequest1.xml";
         assertTrue( tryValid("schemas.xmlsoap.org.xml", etolonRequest) );
         //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-basic-1.1.xsd", etolonRequest) );
         //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-types-1.1.xsd", etolonRequest) );
@@ -80,7 +72,7 @@ public class PackageInvokerUniTest extends xmlTestAssist {
         assertTrue( tryValid("schemas.xmlsoap.org.xml", "prevOutput.xml") );
         //assertTrue( tryValid("xml-artefact/1/smev-message-exchange-basic-1.1.xsd", "prevOutput.xml") );
         // cvc-elt.1.a: Cannot find the declaration of element
-        assertTrue( tryValid("schemas.xmlsoap.org.xml", "wsdlRequest1.xml") );
+        assertTrue( tryValid("schemas.xmlsoap.org.xml", "templatesActualMock/wsdlRequest1.xml") );
     }
     @Test
     @Ignore

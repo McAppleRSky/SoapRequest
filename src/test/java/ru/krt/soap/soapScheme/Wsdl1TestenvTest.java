@@ -20,7 +20,7 @@ import static org.junit.Assert.assertFalse;
 public class Wsdl1TestenvTest extends AbstractPackageEnumeratorAndSaxHandler {
 
     @Test
-    @Ignore
+    //@Ignore
     public void testWsdl1Testenv_Diff2 (){
         Wsdl1Testenv wsdl1Testenv = new Wsdl1Testenv();
         byte[] expectedBytes;
@@ -28,7 +28,7 @@ public class Wsdl1TestenvTest extends AbstractPackageEnumeratorAndSaxHandler {
         AbstractPackageEnumeratorAndSaxHandler saxHandler = new AbstractPackageEnumeratorAndSaxHandler();
         expectedBytes = //packageInvokerWrap.fromFileReturnBytes(
                 saxHandler.bytesFromResources(
-                        "wsdlRequest1.xml"
+                        "templatesActualMock/wsdlRequest1.xml"
                 );
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         Document expectedDocument = Convert.toDocument(Input.fromByteArray(expectedBytes).build(), documentBuilderFactory);

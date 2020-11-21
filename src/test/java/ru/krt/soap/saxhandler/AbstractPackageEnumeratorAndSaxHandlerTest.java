@@ -5,17 +5,9 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.xmlunit.builder.DiffBuilder;
-import org.xmlunit.builder.Input;
-import org.xmlunit.diff.Diff;
-import org.xmlunit.diff.Difference;
-import org.xmlunit.util.Convert;
-import ru.krt.soap.soapScheme.Wsdl1Testenv;
 import ru.krt.soap.types.plain.ImplDomDocument;
 
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
 
 import static org.junit.Assert.*;
 

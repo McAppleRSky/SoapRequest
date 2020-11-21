@@ -21,21 +21,60 @@ public class VS00648001PFR001 extends AbstractArtefactData {
 
     @Override
     public Object mainMethod(Object... object) {
-        ImplDomDocument filledTemplateBySnilsSample = fillTemplateBySnilsSample( (ImplDomDocument)object[0] );
-        Document doc = filledTemplateBySnilsSample.getDocument();
-        //Element _MessageId = (Element)doc.getElementsByTagNameNS(nsUriUse[faults], "MessageId");
-        MessageId messageId = new MessageId();
-        //_MessageId.setTextContent( messageId.generate() );
-        implDomDocumentToFile(
-                new ImplDomDocument(
-                        doc,
-                        filledTemplateBySnilsSample.getImplDom()
-                ),
-                "fillRequest.xml"
+        ImplDomDocument wsdlRequestTemplateImportSnilsPlain = wsdlRequestTemplate_importSnils( (ImplDomDocument)object[0] );
+        //implDomDocumentToFile(wsdlRequestTemplateImportSnilsPlain,"wsdlRequestImportSnils.xml");
+        ImplDomDocument wsdlRequestTemplateImportSnilsChengeNsPlain = wsdlRequestTemplateImportSnils_chengeNs(
+                wsdlRequestTemplateImportSnilsPlain
         );
-//        ImplDomDocument docPlain =     implDomDocumentToFile(,"")
+        //implDomDocumentToFile(wsdlRequestTemplateImportSnilsChengeNsPlain,"wsdlRequestImportSnilsChengeNs.xml");
+        ImplDomDocument wsdlRequestTemplateImportSnilsChengeNsFaultsPlain = wsdlRequestTemplateImportSnilsChengeNs_chengeFaults(
+                wsdlRequestTemplateImportSnilsChengeNsPlain
+        );
+        //implDomDocumentToFile(wsdlRequestTemplateImportSnilsChengeNsFaultsPlain,"wsdlRequestImportSnilsChengeNsFaults.xml");
+        ImplDomDocument wsdlRequestTemplateImportSnilsChengeNsFaultsFillMsgIdPlain = wsdlRequestTemplateImportSnilsChengeNsFaults_fillMsgId(
+                wsdlRequestTemplateImportSnilsChengeNsFaultsPlain
+        );
+        implDomDocumentToFile(wsdlRequestTemplateImportSnilsChengeNsFaultsPlain,"wsdlRequestImportSnilsChengeNsFaultsFillMsgId.xml");
 
         return null;
+    }
+
+    protected ImplDomDocument wsdlRequestTemplateImportSnilsChengeNsFaults_fillMsgId(ImplDomDocument wsdlRequestTemplateImportSnilsFillMsgIdPlain) {
+        Document wsdlRequestTemplateImportSnilsChangeNsFaultsFillMsgId = wsdlRequestTemplateImportSnilsFillMsgIdPlain.getDocument();
+        String prefix = ns+faults;
+        Element _SenderProvidedRequestData=(Element)wsdlRequestTemplateImportSnilsChangeNsFaultsFillMsgId.getElementsByTagName(prefix+":"+tag[senderProvidedRequestData]).item(0)
+                ,_MessageID=(Element)wsdlRequestTemplateImportSnilsChangeNsFaultsFillMsgId.getElementsByTagName(prefix+":"+tag[messageID]).item(0)
+                ;
+        MessageId messageId = new MessageId();
+        _MessageID.setTextContent( messageId.generate() );
+        _SenderProvidedRequestData.setAttribute("Id","SIGNED_BY_CALLER");
+
+        return implDomDocumentFromBytes(
+                implDomDocumentToBytes(
+                        wsdlRequestTemplateImportSnilsFillMsgIdPlain.getDocument(),
+                        wsdlRequestTemplateImportSnilsFillMsgIdPlain.getImplDom()
+                )
+        );
+    }
+
+    protected ImplDomDocument wsdlRequestTemplateImportSnils_chengeNs(ImplDomDocument wsdlRequestTemplateImportSnilsPlain) {
+        Document wsdlRequestTemplateImportSnilsChengeNs = wsdlRequestTemplateImportSnilsPlain.getDocument();
+
+        Element _SendRequestRequest=(Element)wsdlRequestTemplateImportSnilsChengeNs.getElementsByTagName(ns+":"+tag[sendRequestRequest]).item(0)
+                ,_SenderProvidedRequestData=(Element)wsdlRequestTemplateImportSnilsChengeNs.getElementsByTagName(ns+":"+tag[senderProvidedRequestData]).item(0)
+                ,_MessageID=(Element)wsdlRequestTemplateImportSnilsChengeNs.getElementsByTagName(ns+":"+tag[messageID]).item(0)
+                ;
+        String prefix = ns+faults;
+            _SendRequestRequest.setPrefix(prefix);
+            _SenderProvidedRequestData.setPrefix(prefix);
+            _MessageID.setPrefix(prefix);
+
+        return implDomDocumentFromBytes(
+                implDomDocumentToBytes(
+                        wsdlRequestTemplateImportSnilsPlain.getDocument(),
+                        wsdlRequestTemplateImportSnilsPlain.getImplDom()
+                ), false
+        );
     }
 
     @Override
@@ -43,12 +82,12 @@ public class VS00648001PFR001 extends AbstractArtefactData {
         return objectId;
     }
 
-    public ImplDomDocument fillTemplateBySnilsSample(ImplDomDocument wsdlTemplate){
+    protected ImplDomDocument wsdlRequestTemplate_importSnils(ImplDomDocument wsdlTemplatePlain){
         ImplDomDocument //wsdlTemplate =null,
                 requestSnilsSample = null;
         //wsdlTemplate = (ImplDomDocument)object[0];
         Document requestTemplateDocument = null, requestSnilsSampleDocument = null;
-        requestTemplateDocument = wsdlTemplate.getDocument();
+        requestTemplateDocument = wsdlTemplatePlain.getDocument();
 
         requestSnilsSample =  implDomDocumentFromBytes(
                 bytesFromResources(resourceNameSnilsSample)
@@ -67,21 +106,39 @@ public class VS00648001PFR001 extends AbstractArtefactData {
         ;
         _MessagePrimaryContent.appendChild(importedNode_SnilsByAdditionalDataRequest);
 
-        Element _SendRequestRequest=(Element)requestTemplateDocument.getElementsByTagNameNS(nsUriUse[0], tag[sendRequestRequest]).item(0)
-                ,_SenderProvidedRequestData=(Element)requestTemplateDocument.getElementsByTagNameNS(nsUriUse[0], tag[senderProvidedRequestData]).item(0)
-                ,_MessageID=(Element)requestTemplateDocument.getElementsByTagNameNS(nsUriUse[0], tag[messageID]).item(0)
-                ;
+        return implDomDocumentFromBytes(
+                implDomDocumentToBytes(
+                        wsdlTemplatePlain.getDocument(),
+                        wsdlTemplatePlain.getImplDom()
+                )
+        );
+    }
+
+    protected ImplDomDocument wsdlRequestTemplateImportSnilsChengeNs_chengeFaults(ImplDomDocument wsdlRequestTemplateImportSnilsPlain) {
+        Document wsdlRequestTemplateImportSnils=wsdlRequestTemplateImportSnilsPlain.getDocument();
         String prefix = ns+faults;
-        _SenderProvidedRequestData.setAttribute("Id","SIGNED_BY_CALLER");
+        Element _SendRequestRequest=(Element)wsdlRequestTemplateImportSnils.getElementsByTagName(prefix+":"+tag[sendRequestRequest]).item(0);
+//        _SenderProvidedRequestData.setAttribute("Id","SIGNED_BY_CALLER");
+        _SendRequestRequest.setAttribute("xmlns:"+prefix, nsUriUse[faults]);
+/*
+        try{
+            _SendRequestRequest.setPrefix(prefix);
+            _SenderProvidedRequestData.setPrefix(prefix);
+            _MessageID.setPrefix(prefix);
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }
+*/
+        //.setAttributeNS("xmlns:"+ prefix, nsUriUse[faults],true);
+
 //        _MessageID.setIdAttributeNS(nsUriUse[faults],true);
-        Attr _fault = requestTemplateDocument.createAttributeNS(nsUriUse[faults], prefix);
+//        Attr _fault = wsdlRequestTemplateImportSnils.createAttributeNS(nsUriUse[faults], prefix);
 
 //        _MessageID.setPrefix(prefix);
 //        _SenderProvidedRequestData.setPrefix(prefix);
 //        _SendRequestRequest.setPrefix(prefix);
 
-        _SendRequestRequest.removeAttribute("xmlns:ns2");
-        //_SendRequestRequest.setIdAttributeNS(nsUriUse[faults],"xmlns:"+prefix,true); //.setAttributeNS("xmlns:"+ prefix, nsUriUse[faults],true);
+//        _SendRequestRequest.removeAttribute("xmlns:ns2");
 //        _SendRequestRequest.removeAttribute(//nsUriUse[type],
 //                "xmlns:" +
 //                                                                prefix);
@@ -90,8 +147,13 @@ public class VS00648001PFR001 extends AbstractArtefactData {
 //        _MessageID.setTextContent( messageId.generate() );
 
         return implDomDocumentFromBytes(
-                implDomDocumentToBytes(wsdlTemplate.getDocument(), wsdlTemplate.getImplDom())
+                implDomDocumentToBytes(
+                        wsdlRequestTemplateImportSnilsPlain.getDocument(),
+                        wsdlRequestTemplateImportSnilsPlain.getImplDom()
+                )
         );
+
     }
+
 
 }

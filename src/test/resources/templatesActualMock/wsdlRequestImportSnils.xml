@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:ns="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/1.1" xmlns:ns1="urn://x-artefacts-smev-gov-ru/services/message-exchange/types/basic/1.1" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <ns:SendRequestRequest>
+      <ns:SenderProvidedRequestData Id="?">
+        <ns:MessageID>?</ns:MessageID>
+        <ns:ReferenceMessageID>?</ns:ReferenceMessageID>
+        <ns:TransactionCode>?</ns:TransactionCode>
+        <ns:NodeID>?</ns:NodeID>
+        <ns:EOL>?</ns:EOL>
+        <ns1:MessagePrimaryContent>
+          <tns:SnilsByAdditionalDataRequest xmlns:pfr="http://common.kvs.pfr.com/1.0.0" xmlns:smev="urn://x-artefacts-smev-gov-ru/supplementary/commons/1.0.1" xmlns:tns="http://kvs.pfr.com/snils-by-additionalData/1.0.1">
+            <smev:FamilyName>ИВАНОВ</smev:FamilyName>
+            <smev:FirstName>ИВАН</smev:FirstName>
+            <smev:Patronymic>ИВАНОВИЧ</smev:Patronymic>
+            <tns:BirthDate>1967-05-21</tns:BirthDate>
+            <tns:Gender>Male</tns:Gender>
+            <tns:BirthPlace>
+              <pfr:PlaceType>ОСОБОЕ</pfr:PlaceType>
+              <pfr:Settlement>ЗАГОРСК</pfr:Settlement>
+              <pfr:District>ЛЕНИНСКИЙ</pfr:District>
+              <pfr:Region>МОСКОВСКАЯ ОБЛАСТЬ</pfr:Region>
+              <pfr:Country>РФ</pfr:Country>
+            </tns:BirthPlace>
+            <smev:PassportRF>
+              <smev:Series>0005</smev:Series>
+              <smev:Number>777777</smev:Number>
+              <smev:IssueDate>1986-06-13</smev:IssueDate>
+              <smev:Issuer>ОВД</smev:Issuer>
+            </smev:PassportRF>
+          </tns:SnilsByAdditionalDataRequest>
+        </ns1:MessagePrimaryContent><ns:PersonalSignature/>
+        <ns1:AttachmentHeaderList>
+          <ns1:AttachmentHeader>
+            <ns1:contentId>?</ns1:contentId>
+            <ns1:MimeType>?</ns1:MimeType>
+            <ns1:SignaturePKCS7>cid:1202495970287</ns1:SignaturePKCS7>
+          </ns1:AttachmentHeader>
+        </ns1:AttachmentHeaderList>
+        <ns1:RefAttachmentHeaderList>
+          <ns1:RefAttachmentHeader>
+            <ns1:uuid>?</ns1:uuid>
+            <ns1:Hash>?</ns1:Hash>
+            <ns1:MimeType>?</ns1:MimeType>
+            <ns1:SignaturePKCS7>cid:1048540585166</ns1:SignaturePKCS7>
+          </ns1:RefAttachmentHeader>
+        </ns1:RefAttachmentHeaderList><ns:BusinessProcessMetadata/><ns:TestMessage/></ns:SenderProvidedRequestData>
+      <ns1:AttachmentContentList>
+        <ns1:AttachmentContent>
+          <ns1:Id>?</ns1:Id>
+          <ns1:Content>cid:1527896676542</ns1:Content>
+        </ns1:AttachmentContent>
+      </ns1:AttachmentContentList><ns:CallerInformationSystemSignature/></ns:SendRequestRequest>
+  </soapenv:Body>
+</soapenv:Envelope>

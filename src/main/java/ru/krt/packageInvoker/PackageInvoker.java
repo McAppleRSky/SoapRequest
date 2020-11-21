@@ -1,6 +1,6 @@
 package ru.krt.packageInvoker;
 
-
+//import ru.krt.packageInvoker.type.EnumeratedArtefactData;
 import ru.krt.packageInvoker.type.EnumeratedArtefactData;
 import ru.krt.packageInvoker.type.plain.PlainObject;
 import ru.krt.packageInvoker.type.EnumeratedSoapScheme;

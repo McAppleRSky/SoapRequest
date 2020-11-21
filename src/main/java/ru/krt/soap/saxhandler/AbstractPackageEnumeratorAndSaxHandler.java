@@ -22,6 +22,8 @@ import java.nio.file.Paths;
 
 public class AbstractPackageEnumeratorAndSaxHandler implements SaxDatatypeUse {
 
+    private boolean namespaceAware = true;
+
     public byte[] bytesFromResources(String resourceName){
         byte[] result = null;
         try {
@@ -41,10 +43,12 @@ public class AbstractPackageEnumeratorAndSaxHandler implements SaxDatatypeUse {
         return result;
     }
 
-    public ImplDomDocument implDomDocumentFromBytes(byte[] bytes){
+    public ImplDomDocument implDomDocumentFromBytes(byte[] bytes, boolean... namespaceAware){
+        if(namespaceAware.length>0) this.namespaceAware = namespaceAware[0];
         ImplDomDocument result = null;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-        documentBuilderFactory.setNamespaceAware(true);
+        documentBuilderFactory.setNamespaceAware(this.namespaceAware);
+        this.namespaceAware = true;
         DocumentBuilder documentBuilder = null;
         DOMImplementation implDom = null;
         Document document = null;
@@ -61,7 +65,7 @@ public class AbstractPackageEnumeratorAndSaxHandler implements SaxDatatypeUse {
         return new ImplDomDocument(document, implDom);
     }
 
-    protected byte[] implDomDocumentToBytes(ImplDomDocument implDomDocument){
+    public byte[] implDomDocumentToBytes(ImplDomDocument implDomDocument){
         return implDomDocumentToBytes( implDomDocument.getDocument(), implDomDocument.getImplDom() );
     }
 
@@ -78,25 +82,18 @@ public class AbstractPackageEnumeratorAndSaxHandler implements SaxDatatypeUse {
         return bytes;
     }
 
-    protected void implDomDocumentToFile(ImplDomDocument implDomDocument, String pathname){
+    public void implDomDocumentToFile(ImplDomDocument implDomDocument, String pathname){
+        implDomDocumentToFile(implDomDocument.getDocument(), implDomDocument.getImplDom(), pathname);
+    }
 
-/*
-        String packageName = "soapScheme", objectId = "http://smev3-n0.test.gosuslugi.ru:7500/smev/v1.1/ws?wsdl",
-                prefix = "ru.krt.soap.soapScheme";
-        PackageInvoker packageInvoker = new PackageInvoker();
-        packageInvoker
-                .enumSoapScheme(packageName, new StringBuilder(),
-                        new Reflections(prefix)
-                                .getSubTypesOf(AbstractSoapScheme.class) );
-        ImplDomDocument documentImplementated = (ImplDomDocument)packageInvoker.invokeMain(packageName, objectId);
-*/
+    protected void implDomDocumentToFile(Document document, DOMImplementation implDom, String pathname) {
         File file = new File(pathname);
-        DOMImplementationLS domSaver = (DOMImplementationLS) implDomDocument.getImplDom();
+        DOMImplementationLS domSaver = (DOMImplementationLS) implDom;
         LSSerializer save_serializer = domSaver.createLSSerializer();
         LSOutput save_outer = domSaver.createLSOutput();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         save_outer.setByteStream(byteArrayOutputStream);
-        save_serializer.write(implDomDocument.getDocument(), save_outer);
+        save_serializer.write(document, save_outer);
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file);
@@ -110,7 +107,6 @@ public class AbstractPackageEnumeratorAndSaxHandler implements SaxDatatypeUse {
                 e.printStackTrace();
             }
         }
-
     }
 
 }
