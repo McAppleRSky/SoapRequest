@@ -64,9 +64,7 @@ public class VS00648001PFR001Test extends AbstractPackageEnumeratorAndSaxHandler
         assertTrue( matcher.matches() );
         //assertEquals("Expected text value ", iter.next().toString().split("^", 1)[0] );
         assertFalse(  iter.hasNext() );
-        System.out.println();
     }
-
 
     @Test
     public void testImportSnilsChengeNsFaults_Diff2 () {

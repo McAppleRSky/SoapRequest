@@ -5,55 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="063fc279-043f-4a64-ab07-97911141c7e5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileContent/fileContent.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/fileHashes/resourceHashesCache.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/classAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/jarAnalysis.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/javaCompile.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.3/javaCompile/taskHistory.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5.1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.5.1/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.6.1/executionHistory/executionHistory.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.6.1/fileChanges/last-build.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.6.1/fileHashes/fileHashes.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.6.1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/configuration-cache/gc.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/workspace-id.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/workspace-id.txt.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/edu/moduleLoader/Module.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/edu/moduleLoader/ModuleEngine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/edu/moduleLoader/ModuleLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/edu/moduleLoader/ModulePrinter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/packageInvoker/PackageInvoker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/krt/packageInvoker/PackageInvoker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/soap/artefactData/VS00648001PFR001.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/krt/soap/artefactData/VS00648001PFR001.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/soap/saxhandler/AbstractPackageEnumeratorAndSaxHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/krt/soap/saxhandler/AbstractPackageEnumeratorAndSaxHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/krt/soap/soapScheme/Wsdl1Devenv.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/krt/packageInvoker/PackageInvokerUniTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/krt/packageInvoker/PackageInvokerUniTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/krt/packageInvoker/xmlTestAssist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/krt/packageInvoker/xmlTestAssist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ru/krt/soap/artefactData/VS00648001PFR001Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/krt/soap/artefactData/VS00648001PFR001Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/krt/soap/saxhandler/AbstractPackageEnumeratorAndSaxHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/krt/soap/saxhandler/AbstractPackageEnumeratorAndSaxHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ru/krt/soap/soapScheme/Wsdl1TestenvTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/krt/soap/soapScheme/Wsdl1TestenvTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/wsdlRequest1.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +90,7 @@
       <recent name="ru.krt.packageInvoker.type" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.SoapRequest [test]">
+  <component name="RunManager" selected="Application.Cli">
     <configuration name="Cli" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ru.krt.soap.Cli" />
       <module name="SoapRequest.main" />
@@ -222,10 +182,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Cli" />
         <item itemvalue="Gradle.SoapRequest [test]" />
         <item itemvalue="Gradle.VS00648001PFR001Test" />
         <item itemvalue="Gradle.VS00648001PFR001Test.testImportSnilsChengeNsFaultsFillMsgId_Diff2" />
-        <item itemvalue="Application.Cli" />
         <item itemvalue="Gradle.VS00648001PFR001Test.testImportSnilsChengeNsFaults_Diff2" />
       </list>
     </recent_temporary>
@@ -251,38 +211,38 @@
     </state>
     <state x="323" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605951741436" />
     <state x="1608" y="-82" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728/1366.-192.1024.728@1366.-192.1024.728" timestamp="1605936682032" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1605972083992">
+    <state width="1323" height="196" key="GridCell.Tab.0.bottom" timestamp="1605973586914">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605972083992" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1605972083991">
+    <state width="1323" height="196" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586914" />
+    <state width="1323" height="196" key="GridCell.Tab.0.center" timestamp="1605973586913">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605972083991" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1605972083991">
+    <state width="1323" height="196" key="GridCell.Tab.0.center/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586913" />
+    <state width="1323" height="196" key="GridCell.Tab.0.left" timestamp="1605973586913">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605972083991" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1605972083991">
+    <state width="1323" height="196" key="GridCell.Tab.0.left/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586913" />
+    <state width="1323" height="196" key="GridCell.Tab.0.right" timestamp="1605973586914">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605972083991" />
-    <state width="1323" height="196" key="GridCell.Tab.1.bottom" timestamp="1605971918502">
+    <state width="1323" height="196" key="GridCell.Tab.0.right/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586914" />
+    <state width="1323" height="196" key="GridCell.Tab.1.bottom" timestamp="1605973586915">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="196" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605971918502" />
-    <state width="1323" height="196" key="GridCell.Tab.1.center" timestamp="1605971918501">
+    <state width="1323" height="196" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586915" />
+    <state width="1323" height="196" key="GridCell.Tab.1.center" timestamp="1605973586915">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="196" key="GridCell.Tab.1.center/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605971918501" />
-    <state width="1323" height="196" key="GridCell.Tab.1.left" timestamp="1605971918501">
+    <state width="1323" height="196" key="GridCell.Tab.1.center/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586915" />
+    <state width="1323" height="196" key="GridCell.Tab.1.left" timestamp="1605973586915">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="196" key="GridCell.Tab.1.left/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605971918501" />
-    <state width="1323" height="196" key="GridCell.Tab.1.right" timestamp="1605971918501">
+    <state width="1323" height="196" key="GridCell.Tab.1.left/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586915" />
+    <state width="1323" height="196" key="GridCell.Tab.1.right" timestamp="1605973586915">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="196" key="GridCell.Tab.1.right/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605971918501" />
+    <state width="1323" height="196" key="GridCell.Tab.1.right/0.0.1366.728/1366.-192.1024.728@0.0.1366.728" timestamp="1605973586915" />
     <state x="1534" y="66" key="run.anything.popup" timestamp="1605936460658">
       <screen x="1366" y="-192" width="1024" height="728" />
     </state>
@@ -302,18 +262,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/krt/soap/artefactData/VS00648001PFR001Test.java</url>
-          <line>129</line>
+          <line>127</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/ru/krt/soap/artefactData/VS00648001PFR001Test.java</url>
-          <line>98</line>
+          <line>96</line>
           <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/ru/krt/soap/artefactData/VS00648001PFR001Test.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
